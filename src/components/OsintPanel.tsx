@@ -728,8 +728,12 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         <div className="grid grid-cols-4 gap-1 mt-1">
           {TABS.filter(t => t.id !== 'sweep').map(tab => (
             <button key={tab.id} onClick={() => { setActiveTab(tab.id); setQuery(''); setResults(null); setError(''); }}
-              className={`flex flex-col items-center gap-1 px-1 py-2 rounded-lg text-[8px] font-mono tracking-wider transition-all border ${activeTab === tab.id ? 'border-opacity-40 bg-opacity-15' : 'border-transparent hover:bg-[var(--hover-accent)]'}`}
-              style={{ borderColor: activeTab === tab.id ? tab.color : 'transparent', backgroundColor: activeTab === tab.id ? `${tab.color}15` : undefined, color: activeTab === tab.id ? tab.color : 'var(--text-muted)' }}>
+              className="flex flex-col items-center gap-1 px-1 py-2 rounded-lg text-[8px] font-mono tracking-wider transition-all border"
+              style={{
+                borderColor: activeTab === tab.id ? tab.color : 'rgba(201,216,168,0.18)',
+                backgroundColor: activeTab === tab.id ? `${tab.color}26` : '#1A2014',
+                color: activeTab === tab.id ? tab.color : '#C9D8A8',
+              }}>
               <tab.icon className="w-3.5 h-3.5" />
               <span className="leading-none text-center truncate w-full">{tab.label}</span>
             </button>
