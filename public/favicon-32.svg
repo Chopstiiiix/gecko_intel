@@ -1,18 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <defs>
-    <radialGradient id="iris" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#F5D76E"/>
-      <stop offset="100%" stop-color="#D4AF37"/>
-    </radialGradient>
-  </defs>
-  <rect width="32" height="32" rx="6" fill="#06060C"/>
-  <!-- Eye shape -->
-  <path d="M3 15 Q10 7 16 9 Q22 7 29 15 Q22 23 16 21 Q10 23 3 15Z" 
-        fill="rgba(212,175,55,0.1)" stroke="#D4AF37" stroke-width="1.2"/>
-  <!-- Iris -->
-  <circle cx="16" cy="15" r="4" fill="url(#iris)"/>
-  <!-- Pupil -->
-  <circle cx="16" cy="15" r="1.5" fill="#06060C"/>
-  <!-- Teardrop -->
-  <path d="M16 19 L14 25 L13 23" stroke="#D4AF37" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0B0E09"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#294922" stroke-width="1.5"/>
+  <path d="M41 24.5c-2.2-3-5.8-4.9-9.8-4.9-7 0-12.4 5.6-12.4 12.6S24.2 44.8 31.2 44.8c6.2 0 10.8-4 11.6-9.7H31.6v-4.6H47v2.1c0 9.3-6.4 16.8-15.8 16.8C21.4 49.4 14 41.8 14 32.2S21.4 15 31.2 15c5.2 0 9.8 2.1 13 5.7z" fill="#C9D8A8"/>
+  <circle cx="45" cy="20" r="3" fill="#D29B3B"/>
 </svg>

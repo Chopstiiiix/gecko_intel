@@ -33,7 +33,7 @@ interface GraphData { nodes: EntityNode[]; links: EntityLink[]; }
 
 const TYPE_COLORS: Record<string, string> = {
   aircraft: '#D29B3B', vessel: '#5F8443', company: '#5F8443',
-  person: '#B388FF', country: '#5F8443', event: '#D29B3B', sanction: '#B0492F',
+  person: '#8FA376', country: '#5F8443', event: '#D29B3B', sanction: '#B0492F',
   ip: '#D29B3B',
 };
 

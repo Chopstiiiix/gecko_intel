@@ -19,9 +19,9 @@ interface LayerPanelProps {
 
 const getLayerGroups = (theme: 'core' | 'ghost') => {
   const isGhost = theme === 'ghost';
-  const phantomPurple = '#B388FF';
-  const ghostPriv = '#CE93D8';
-  const ghostGov = '#D500F9';
+  const phantomPurple = '#8FA376';
+  const ghostPriv = '#C9D8A8';
+  const ghostGov = '#5F8443';
 
   const flightCom = isGhost ? phantomPurple : '#D29B3B';
   const flightPriv = isGhost ? ghostPriv : '#D29B3B';
@@ -218,35 +218,6 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
           </div>
         ))}
 
-        {/* MOBILE THEME TOGGLE */}
-        {setTheme && (
-          <div className="flex items-center justify-between mt-4 pt-4 border-t border-[var(--border-primary)] px-2">
-            <div className="text-[10px] font-bold font-mono tracking-widest text-[var(--text-secondary)]">
-              GHOST MODE
-            </div>
-            <button
-              onClick={() => setTheme(theme === 'core' ? 'ghost' : 'core')}
-              className="relative w-12 h-6 rounded-full transition-all duration-500 ease-in-out border flex items-center px-0.5 cursor-pointer hover:shadow-lg"
-              style={{
-                backgroundColor: theme === 'ghost' ? 'rgba(179, 136, 255, 0.15)' : 'rgba(0,0,0,0.4)',
-                borderColor: theme === 'ghost' ? 'rgba(179, 136, 255, 0.5)' : 'rgba(255,255,255,0.1)',
-                boxShadow: theme === 'ghost' ? '0 0 15px rgba(179, 136, 255, 0.3), inset 0 0 8px rgba(179, 136, 255, 0.2)' : 'inset 0 0 5px rgba(0,0,0,0.5)'
-              }}
-            >
-              <motion.div 
-                layout
-                className="w-4 h-4 rounded-full"
-                style={{
-                  backgroundColor: theme === 'ghost' ? '#B388FF' : 'rgba(255,255,255,0.4)',
-                  boxShadow: theme === 'ghost' ? '0 0 10px #B388FF' : 'none'
-                }}
-                animate={{ x: theme === 'ghost' ? 24 : 0 }}
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              />
-            </button>
-          </div>
-        )}
-
       </div>
     );
   }
@@ -354,33 +325,6 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
           );
         })}
       </div>
-
-      {/* DESKTOP THEME TOGGLE */}
-      {setTheme && (
-        <div className="mt-auto px-2 pt-6 pb-2 border-t border-[var(--border-primary)] flex flex-col items-center gap-3 relative z-50">
-          <div className="text-[9px] font-mono tracking-[0.25em] text-white">GHOST PROTOCOL</div>
-          <button
-            onClick={() => setTheme(theme === 'core' ? 'ghost' : 'core')}
-            className="relative w-14 h-7 rounded-full transition-all duration-500 ease-in-out border flex items-center px-1 cursor-pointer hover:shadow-lg"
-            style={{
-              backgroundColor: theme === 'ghost' ? 'rgba(179, 136, 255, 0.15)' : 'rgba(0,0,0,0.4)',
-              borderColor: theme === 'ghost' ? 'rgba(179, 136, 255, 0.5)' : 'rgba(255,255,255,0.1)',
-              boxShadow: theme === 'ghost' ? '0 0 15px rgba(179, 136, 255, 0.3), inset 0 0 8px rgba(179, 136, 255, 0.2)' : 'inset 0 0 5px rgba(0,0,0,0.5)'
-            }}
-          >
-            <motion.div 
-              layout
-              className="w-5 h-5 rounded-full"
-              style={{
-                backgroundColor: theme === 'ghost' ? '#B388FF' : 'rgba(255,255,255,0.4)',
-                boxShadow: theme === 'ghost' ? '0 0 10px #B388FF' : 'none'
-              }}
-              animate={{ x: theme === 'ghost' ? 28 : 0 }}
-              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            />
-          </button>
-        </div>
-      )}
 
     </motion.div>
   );

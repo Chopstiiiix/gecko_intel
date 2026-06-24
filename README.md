@@ -6,7 +6,7 @@
 
 **A real-time intelligence dashboard for Nigeria — map security incidents, critical infrastructure, security checkpoints, road corridors and live geoparsed news across all 36 states + the FCT, with a built-in data-entry console to plot fresh field intel live.**
 
-Built on a GPU-accelerated MapLibre map (Next.js 16 + TypeScript). Forked from and powered by the open-source [Osiris](https://github.com/simplifaisoul/osiris) OSINT engine.
+Built on a GPU-accelerated MapLibre map (Next.js 16 + TypeScript).
 
 </div>
 
@@ -14,7 +14,7 @@ Built on a GPU-accelerated MapLibre map (Next.js 16 + TypeScript). Forked from a
 
 ## Overview
 
-Gecko is a focused, self-hosted situational-awareness platform for Nigeria. It keeps the powerful Osiris map/feed engine (aviation, maritime, seismic, weather, sanctions, RECON toolkit, etc. all remain available as toggleable global layers) but re-centres the experience on Nigeria and adds a first-class **operator data pipeline** so you can input and curate your own verified intelligence.
+Gecko is a focused, self-hosted situational-awareness platform for Nigeria. It pairs a powerful global map/feed engine (aviation, maritime, seismic, weather, sanctions, RECON toolkit — all available as toggleable layers) with a Nigeria-first experience and a first-class **operator data pipeline** so you can input and curate your own verified intelligence.
 
 The map opens on Nigeria and ships with Nigeria-specific layers turned on by default.
 
@@ -110,6 +110,6 @@ The view presets (left panel) jump to Nigeria, the FCT, Lagos, Kano, Port Harcou
 
 ## Credits & License
 
-Gecko is a Nigeria-focused fork of **[Osiris](https://github.com/simplifaisoul/osiris)** by [simplifaisoul](https://github.com/simplifaisoul). The underlying global OSINT engine, map and feed integrations are their work, used under the MIT License. All Nigeria-specific layers, the data-entry pipeline and rebranding are Gecko additions.
+Gecko builds on open-source foundations used under the MIT License; the upstream copyright notice is retained in [LICENSE](LICENSE). All Nigeria-specific layers, the data-entry pipeline, the Gecko design system and branding are Gecko's own.
 
 MIT — see [LICENSE](LICENSE).

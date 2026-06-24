@@ -160,9 +160,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       
       // Theme colors
       const isGhost = theme === 'ghost';
-      const phantomPurple = '#B388FF';
-      const phantomDark = '#1A0040';
-      const cameraColor = isGhost ? '#B388FF' : '#5F8443';
+      const phantomPurple = '#8FA376';
+      const phantomDark = '#10150D';
+      const cameraColor = isGhost ? '#8FA376' : '#5F8443';
       const flightCom = isGhost ? phantomPurple : '#D29B3B';
       const flightPriv = isGhost ? phantomPurple : '#D29B3B';
       const flightGov = isGhost ? phantomPurple : '#D29B3B';
@@ -246,7 +246,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         'circle-stroke-width': 1.5, 'circle-stroke-color': '#0A0A0A', 'circle-opacity': 0.95 }});
       map.addLayer({ id: 'ng-infra-label', type: 'symbol', source: 'ng-infra', minzoom: 7, layout: {
         'text-field': ['get', 'label'], 'text-size': 9, 'text-font': ['Open Sans Bold'], 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true,
-      }, paint: { 'text-color': '#4DD0C4', 'text-halo-color': '#000', 'text-halo-width': 1.2, 'text-opacity': 0.85 }});
+      }, paint: { 'text-color': '#8FA376', 'text-halo-color': '#000', 'text-halo-width': 1.2, 'text-opacity': 0.85 }});
 
       // Security checkpoints (blue)
       map.addLayer({ id: 'ng-checkpoints-dots', type: 'circle', source: 'ng-checkpoints', paint: {
@@ -274,7 +274,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         'circle-stroke-width': 1, 'circle-stroke-color': '#0A0A0A', 'circle-opacity': 0.9 }});
 
       // Day/Night
-      map.addLayer({ id: 'day-night-fill', type: 'fill', source: 'day-night', paint: { 'fill-color': isGhost ? '#0D0030' : '#000022', 'fill-opacity': 0.35 }});
+      map.addLayer({ id: 'day-night-fill', type: 'fill', source: 'day-night', paint: { 'fill-color': isGhost ? '#10150D' : '#0B0E09', 'fill-opacity': 0.35 }});
 
       // Earthquakes — amber threat spectrum
       map.addLayer({ id: 'eq-circles', type: 'circle', source: 'earthquakes', paint: {
@@ -565,7 +565,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
 
       // ── AIR domain (Steel Gray / Cyan) ──
       map.addLayer({ id: 'sdk-air-atmo', type: 'line', source: 'sdk-links', filter: ['==',['get','domain'],'AIR'], paint: {
-        'line-color': '#4DD0E1',
+        'line-color': '#8FA376',
         'line-width': ['interpolate',['linear'],['zoom'], 1, 1.5, 5, 5, 10, 8],
         'line-opacity': 0.04,
         'line-blur': 3,
@@ -632,7 +632,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       popupRef.current?.remove();
       popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '420px', offset: 14 }).setLngLat(coords).setHTML(html).addTo(map);
     };
-    const pStyle = `background:rgba(12,14,26,0.95);backdrop-filter:blur(16px);border-radius:10px;padding:16px;font-family:'JetBrains Mono',monospace;`;
+    const pStyle = `background:rgba(16,21,13,0.95);backdrop-filter:blur(16px);border-radius:10px;padding:16px;font-family:'JetBrains Mono',monospace;`;
     const linkStyle = `display:inline-block;margin-top:8px;padding:5px 12px;font-size:10px;letter-spacing:0.12em;text-decoration:none;border-radius:5px;font-family:'JetBrains Mono',monospace;`;
 
     // ── XSS PROTECTION HELPERS ──
@@ -1204,9 +1204,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const map = mapRef.current;
       
       const isGhost = theme === 'ghost';
-      const phantomPurple = '#B388FF';
-      const ghostPriv = '#CE93D8';
-      const ghostGov = '#D500F9';
+      const phantomPurple = '#8FA376';
+      const ghostPriv = '#C9D8A8';
+      const ghostGov = '#5F8443';
 
       const flightCom = isGhost ? phantomPurple : '#D29B3B';
       const flightPriv = isGhost ? ghostPriv : '#D29B3B';
@@ -1496,7 +1496,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
     // Switch to globe and fly to the sweep location
     try {
       (map as any).setProjection({ type: 'globe' });
-      map.setSky({ 'sky-color': '#0A0A0F', 'sky-horizon-blend': 0.02, 'horizon-color': '#0A0A0F', 'horizon-fog-blend': 0.02 });
+      map.setSky({ 'sky-color': '#0B0E09', 'sky-horizon-blend': 0.02, 'horizon-color': '#0B0E09', 'horizon-fog-blend': 0.02 });
     } catch { /* projection may not be supported */ }
 
     map.flyTo({ center: centerCoord, zoom: 14, pitch: 50, bearing: -20, duration: 3000, essential: true });
@@ -1579,11 +1579,11 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         map.easeTo({ pitch: 20, duration: 1200 });
         try {
           (map as any).setSky({
-            'sky-color': '#04040A',
+            'sky-color': '#0B0E09',
             'sky-horizon-blend': 0.5,
-            'horizon-color': '#0a0a1a',
+            'horizon-color': '#0B0E09',
             'horizon-fog-blend': 0.3,
-            'fog-color': '#04040A',
+            'fog-color': '#0B0E09',
             'fog-ground-blend': 0.9,
           });
         } catch (e) { console.warn('[GECKO] Suppressed error:', e instanceof Error ? e.message : e); }
@@ -1622,9 +1622,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
             paint: {
               'fill-extrusion-color': [
                 'interpolate', ['linear'], ['get', 'render_height'],
-                0, '#1a1a2e',
-                20, '#16213e',
-                50, '#0f3460',
+                0, '#10150D',
+                20, '#10150D',
+                50, '#10150D',
                 120, '#8FA376',
                 300, '#B0492F',
               ],

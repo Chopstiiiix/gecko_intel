@@ -43,10 +43,10 @@
   --cyan-glow: rgba(var(--cyan-rgb), 0.15);
 
   /* ── Alert Colors ── */
-  --alert-red: #C2502F;
+  --alert-red: #B0492F;
   --alert-orange: #D29B3B;
   --alert-green: #5F8443;
-  --alert-blue: #6E94C2;
+  --alert-blue: #8FA376;
 
   /* ── Accent Colors (layer-specific) ── */
   --accent-weather: #D29B3B;
@@ -63,7 +63,7 @@
   --text-secondary: #8FA376;
   --text-muted: #62704E;
   --text-heading: #E9E5D6;
-  --text-gold: #A9C07E;
+  --text-gold: #8FA376;
   --text-cyan: #D29B3B;
 
   /* ── Scrollbar ── */
@@ -94,42 +94,42 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   THEME: GHOST PROTOCOL (DEEP VIOLET / PHANTOM OPS)
+   THEME: ALT (reserved) — palette-aligned
    ═══════════════════════════════════════════════════════════════ */
 body.theme-ghost {
-  --gold-rgb: 179, 136, 255;
-  --cyan-rgb: 124, 77, 255;
-  --bg-void: #05000F;
-  --bg-primary: #08001A;
-  --bg-secondary: #0D0025;
-  --bg-tertiary: #140033;
-  --bg-panel: rgba(8, 0, 26, 0.92);
-  --bg-panel-solid: #0D0025;
+  --gold-rgb: 95, 132, 67;
+  --cyan-rgb: 210, 155, 59;
+  --bg-void: #0B0E09;
+  --bg-primary: #0B0E09;
+  --bg-secondary: #10150D;
+  --bg-tertiary: #161C12;
+  --bg-panel: rgba(16, 21, 13, 0.92);
+  --bg-panel-solid: #10150D;
 
-  --gold-primary: #B388FF;
-  --gold-light: #D1C4E9;
-  --gold-dim: #6A1B9A;
-  --gold-glow: rgba(179, 136, 255, 0.3);
+  --gold-primary: #8FA376;
+  --gold-light: #C9D8A8;
+  --gold-dim: #294922;
+  --gold-glow: rgba(95, 132, 67, 0.3);
 
-  --cyan-primary: #7C4DFF;
-  --cyan-dim: #4A148C;
-  --cyan-glow: rgba(124, 77, 255, 0.2);
+  --cyan-primary: #D29B3B;
+  --cyan-dim: #294922;
+  --cyan-glow: rgba(210, 155, 59, 0.2);
 
-  --border-primary: rgba(179, 136, 255, 0.2);
-  --border-secondary: rgba(179, 136, 255, 0.08);
-  --border-active: rgba(179, 136, 255, 0.45);
-  --border-cyan: rgba(124, 77, 255, 0.25);
+  --border-primary: rgba(95, 132, 67, 0.2);
+  --border-secondary: rgba(95, 132, 67, 0.08);
+  --border-active: rgba(95, 132, 67, 0.45);
+  --border-cyan: rgba(210, 155, 59, 0.25);
 
-  --text-primary: #E1BEE7;
-  --text-secondary: #9575CD;
-  --text-muted: #4A148C;
-  --text-heading: #B388FF;
-  --text-gold: #B388FF;
-  --text-cyan: #7C4DFF;
+  --text-primary: #C9D8A8;
+  --text-secondary: #8FA376;
+  --text-muted: #294922;
+  --text-heading: #8FA376;
+  --text-gold: #8FA376;
+  --text-cyan: #D29B3B;
 
-  --scrollbar-thumb: rgba(179, 136, 255, 0.25);
-  --scrollbar-thumb-hover: rgba(179, 136, 255, 0.5);
-  --hover-accent: rgba(179, 136, 255, 0.1);
+  --scrollbar-thumb: rgba(95, 132, 67, 0.25);
+  --scrollbar-thumb-hover: rgba(95, 132, 67, 0.5);
+  --hover-accent: rgba(95, 132, 67, 0.1);
 }
 
 @theme inline {
@@ -309,10 +309,10 @@ html, body {
 .layer-toggle.active::after { left: 15px; background: var(--gold-primary); box-shadow: 0 0 8px rgba(var(--gold-rgb), 0.5); }
 
 /* ── Risk Badges ── */
-.risk-critical { color: #FF3D3D; text-shadow: 0 0 8px rgba(255, 61, 61, 0.5); }
-.risk-high { color: #FF9500; text-shadow: 0 0 8px rgba(255, 149, 0, 0.3); }
-.risk-medium { color: #D4AF37; }
-.risk-low { color: #00E676; }
+.risk-critical { color: #B0492F; text-shadow: 0 0 8px rgba(176, 73, 47, 0.5); }
+.risk-high { color: #D29B3B; text-shadow: 0 0 8px rgba(210, 155, 59, 0.3); }
+.risk-medium { color: #5F8443; }
+.risk-low { color: #5F8443; }
 
 /* ── CRT Scanlines ── */
 .crt-scanlines {
@@ -321,7 +321,7 @@ html, body {
 
 /* ── Vignette ── */
 .vignette {
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(4,4,10,0.6) 80%, rgba(4,4,10,0.95) 100%);
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(11,14,9,0.6) 80%, rgba(11,14,9,0.95) 100%);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -357,7 +357,7 @@ html, body {
   display: none;
   padding: 0 4px;
   padding-bottom: env(safe-area-inset-bottom, 4px);
-  background: linear-gradient(180deg, transparent 0%, rgba(4,4,10,0.95) 30%);
+  background: linear-gradient(180deg, transparent 0%, rgba(11,14,9,0.95) 30%);
 }
 
 .mobile-nav-inner {
@@ -683,8 +683,8 @@ html, body {
 .stat-value-glow--alert {
   color: var(--alert-red);
   text-shadow:
-    0 0 8px rgba(255, 61, 61, 0.3),
-    0 0 20px rgba(255, 61, 61, 0.15);
+    0 0 8px rgba(176, 73, 47, 0.3),
+    0 0 20px rgba(176, 73, 47, 0.15);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -802,13 +802,13 @@ html, body {
    8. THREAT LEVEL BADGES — Color-coded with pulse animations
    ───────────────────────────────────────────────────────────── */
 @keyframes threat-pulse-critical {
-  0%, 100% { box-shadow: 0 0 6px rgba(255, 61, 61, 0.4), inset 0 0 6px rgba(255, 61, 61, 0.1); }
-  50% { box-shadow: 0 0 16px rgba(255, 61, 61, 0.6), inset 0 0 10px rgba(255, 61, 61, 0.15); }
+  0%, 100% { box-shadow: 0 0 6px rgba(176, 73, 47, 0.4), inset 0 0 6px rgba(176, 73, 47, 0.1); }
+  50% { box-shadow: 0 0 16px rgba(176, 73, 47, 0.6), inset 0 0 10px rgba(176, 73, 47, 0.15); }
 }
 
 @keyframes threat-pulse-high {
-  0%, 100% { box-shadow: 0 0 6px rgba(255, 149, 0, 0.3), inset 0 0 6px rgba(255, 149, 0, 0.08); }
-  50% { box-shadow: 0 0 14px rgba(255, 149, 0, 0.5), inset 0 0 8px rgba(255, 149, 0, 0.12); }
+  0%, 100% { box-shadow: 0 0 6px rgba(210, 155, 59, 0.3), inset 0 0 6px rgba(210, 155, 59, 0.08); }
+  50% { box-shadow: 0 0 14px rgba(210, 155, 59, 0.5), inset 0 0 8px rgba(210, 155, 59, 0.12); }
 }
 
 @keyframes threat-pulse-elevated {
@@ -833,15 +833,15 @@ html, body {
 
 .threat-badge-critical {
   color: var(--alert-red);
-  background: rgba(255, 61, 61, 0.1);
-  border-color: rgba(255, 61, 61, 0.3);
+  background: rgba(176, 73, 47, 0.1);
+  border-color: rgba(176, 73, 47, 0.3);
   animation: threat-pulse-critical 1.8s ease-in-out infinite;
 }
 
 .threat-badge-high {
   color: var(--alert-orange);
-  background: rgba(255, 149, 0, 0.1);
-  border-color: rgba(255, 149, 0, 0.25);
+  background: rgba(210, 155, 59, 0.1);
+  border-color: rgba(210, 155, 59, 0.25);
   animation: threat-pulse-high 2.2s ease-in-out infinite;
 }
 
@@ -854,9 +854,9 @@ html, body {
 
 .threat-badge-nominal {
   color: var(--alert-green);
-  background: rgba(0, 230, 118, 0.08);
-  border-color: rgba(0, 230, 118, 0.2);
-  box-shadow: 0 0 4px rgba(0, 230, 118, 0.15);
+  background: rgba(95, 132, 67, 0.08);
+  border-color: rgba(95, 132, 67, 0.2);
+  box-shadow: 0 0 4px rgba(95, 132, 67, 0.15);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -912,7 +912,7 @@ html, body {
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--text-primary);
-  background: rgba(12, 14, 26, 0.92);
+  background: rgba(16, 21, 13, 0.92);
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
   border: 1px solid var(--border-primary);
@@ -935,7 +935,7 @@ html, body {
   transform: translateX(-50%) rotate(45deg);
   width: 8px;
   height: 8px;
-  background: rgba(12, 14, 26, 0.92);
+  background: rgba(16, 21, 13, 0.92);
   border-right: 1px solid var(--border-primary);
   border-bottom: 1px solid var(--border-primary);
 }
@@ -1126,7 +1126,7 @@ html, body {
   height: 10px;
   border-radius: 50%;
   background: var(--alert-red);
-  box-shadow: 0 0 6px rgba(255, 61, 61, 0.5);
+  box-shadow: 0 0 6px rgba(176, 73, 47, 0.5);
 }
 
 .notification-pulse::before {
@@ -1356,7 +1356,7 @@ html, body {
   align-items: center;
   gap: 16px;
   padding: 10px 20px;
-  background: linear-gradient(180deg, rgba(15,15,20,0.95) 0%, rgba(8,10,20,0.9) 100%);
+  background: linear-gradient(180deg, rgba(15,15,20,0.95) 0%, rgba(16,21,13,0.9) 100%);
   border-bottom: 1px solid;
   border-image: linear-gradient(90deg, transparent 0%, var(--border-primary) 20%, var(--border-active) 50%, var(--border-primary) 80%, transparent 100%) 1;
   box-shadow: 0 1px 0 rgba(var(--gold-rgb),0.05) inset, 0 4px 20px rgba(0,0,0,0.4);
@@ -1401,10 +1401,10 @@ html, body {
   text-transform: uppercase;
   border: 1px solid;
 }
-.gotham-tag--critical { background: rgba(255,61,61,0.12); color: #FF3D3D; border-color: rgba(255,61,61,0.3); }
-.gotham-tag--high { background: rgba(255,149,0,0.12); color: #FF9500; border-color: rgba(255,149,0,0.3); }
-.gotham-tag--medium { background: rgba(var(--gold-rgb),0.12); color: #D4AF37; border-color: rgba(var(--gold-rgb),0.3); }
-.gotham-tag--low { background: rgba(0,230,118,0.12); color: #00E676; border-color: rgba(0,230,118,0.3); }
+.gotham-tag--critical { background: rgba(176,73,47,0.12); color: #B0492F; border-color: rgba(176,73,47,0.3); }
+.gotham-tag--high { background: rgba(210,155,59,0.12); color: #D29B3B; border-color: rgba(210,155,59,0.3); }
+.gotham-tag--medium { background: rgba(var(--gold-rgb),0.12); color: #5F8443; border-color: rgba(var(--gold-rgb),0.3); }
+.gotham-tag--low { background: rgba(95,132,67,0.12); color: #5F8443; border-color: rgba(95,132,67,0.3); }
 .gotham-tag--info { background: rgba(var(--cyan-rgb),0.08); color: var(--cyan-primary); border-color: rgba(var(--cyan-rgb),0.2); }
 .gotham-tag--classified { background: rgba(var(--gold-rgb),0.08); color: var(--gold-primary); border-color: rgba(var(--gold-rgb),0.25); letter-spacing: 0.2em; }
 
@@ -1469,8 +1469,8 @@ html, body {
   height: 48px;
   background: linear-gradient(
     180deg,
-    rgba(12, 14, 26, 0.96) 0%,
-    rgba(6, 6, 12, 0.98) 100%
+    rgba(16, 21, 13, 0.96) 0%,
+    rgba(11, 14, 9, 0.98) 100%
   );
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
@@ -1614,14 +1614,14 @@ html, body {
 
 /* Variant: Alert accent for critical items */
 .gotham-card--alert {
-  border-left-color: rgba(255, 61, 61, 0.4);
+  border-left-color: rgba(176, 73, 47, 0.4);
 }
 
 .gotham-card--alert:hover {
   border-left-color: var(--alert-red);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(255, 61, 61, 0.06);
+    0 0 20px rgba(176, 73, 47, 0.06);
 }
 
 .gotham-card__header {
@@ -1695,8 +1695,8 @@ html, body {
 .gotham-stat__value--alert {
   color: var(--alert-red);
   text-shadow:
-    0 0 10px rgba(255, 61, 61, 0.25),
-    0 0 30px rgba(255, 61, 61, 0.1);
+    0 0 10px rgba(176, 73, 47, 0.25),
+    0 0 30px rgba(176, 73, 47, 0.1);
 }
 
 .gotham-stat__label {
@@ -1842,28 +1842,28 @@ html, body {
 /* ── Priority Level Tags ── */
 .gotham-tag-critical {
   color: var(--alert-red);
-  background: rgba(255, 61, 61, 0.1);
-  border-color: rgba(255, 61, 61, 0.25);
-  box-shadow: 0 0 8px rgba(255, 61, 61, 0.1);
+  background: rgba(176, 73, 47, 0.1);
+  border-color: rgba(176, 73, 47, 0.25);
+  box-shadow: 0 0 8px rgba(176, 73, 47, 0.1);
 }
 
 .gotham-tag-critical:hover {
-  background: rgba(255, 61, 61, 0.15);
-  border-color: rgba(255, 61, 61, 0.35);
-  box-shadow: 0 0 14px rgba(255, 61, 61, 0.15);
+  background: rgba(176, 73, 47, 0.15);
+  border-color: rgba(176, 73, 47, 0.35);
+  box-shadow: 0 0 14px rgba(176, 73, 47, 0.15);
 }
 
 .gotham-tag-high {
   color: var(--alert-orange);
-  background: rgba(255, 149, 0, 0.08);
-  border-color: rgba(255, 149, 0, 0.2);
-  box-shadow: 0 0 6px rgba(255, 149, 0, 0.08);
+  background: rgba(210, 155, 59, 0.08);
+  border-color: rgba(210, 155, 59, 0.2);
+  box-shadow: 0 0 6px rgba(210, 155, 59, 0.08);
 }
 
 .gotham-tag-high:hover {
-  background: rgba(255, 149, 0, 0.13);
-  border-color: rgba(255, 149, 0, 0.3);
-  box-shadow: 0 0 12px rgba(255, 149, 0, 0.12);
+  background: rgba(210, 155, 59, 0.13);
+  border-color: rgba(210, 155, 59, 0.3);
+  box-shadow: 0 0 12px rgba(210, 155, 59, 0.12);
 }
 
 .gotham-tag-medium {
@@ -1879,13 +1879,13 @@ html, body {
 
 .gotham-tag-low {
   color: var(--alert-green);
-  background: rgba(0, 230, 118, 0.07);
-  border-color: rgba(0, 230, 118, 0.15);
+  background: rgba(95, 132, 67, 0.07);
+  border-color: rgba(95, 132, 67, 0.15);
 }
 
 .gotham-tag-low:hover {
-  background: rgba(0, 230, 118, 0.1);
-  border-color: rgba(0, 230, 118, 0.25);
+  background: rgba(95, 132, 67, 0.1);
+  border-color: rgba(95, 132, 67, 0.25);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -1970,7 +1970,7 @@ html, body {
 /* Variant: Alert (red) for critical status */
 .gotham-pulse-ring--alert::before {
   background: var(--alert-red);
-  box-shadow: 0 0 8px rgba(255, 61, 61, 0.4);
+  box-shadow: 0 0 8px rgba(176, 73, 47, 0.4);
 }
 
 .gotham-pulse-ring--alert::after,
@@ -1981,7 +1981,7 @@ html, body {
 /* Variant: Nominal (green) */
 .gotham-pulse-ring--nominal::before {
   background: var(--alert-green);
-  box-shadow: 0 0 6px rgba(0, 230, 118, 0.3);
+  box-shadow: 0 0 6px rgba(95, 132, 67, 0.3);
 }
 
 .gotham-pulse-ring--nominal::after,
@@ -2169,15 +2169,15 @@ html, body {
 /* Variant: Green — operational / live */
 .gotham-badge--live {
   color: var(--alert-green);
-  background: rgba(0, 230, 118, 0.06);
-  border-color: rgba(0, 230, 118, 0.15);
+  background: rgba(95, 132, 67, 0.06);
+  border-color: rgba(95, 132, 67, 0.15);
 }
 
 /* Variant: Red — alert / error */
 .gotham-badge--alert {
   color: var(--alert-red);
-  background: rgba(255, 61, 61, 0.08);
-  border-color: rgba(255, 61, 61, 0.2);
+  background: rgba(176, 73, 47, 0.08);
+  border-color: rgba(176, 73, 47, 0.2);
 }
 
 /* With dot indicator */
