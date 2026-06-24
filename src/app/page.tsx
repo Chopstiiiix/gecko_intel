@@ -818,7 +818,7 @@ export default function Dashboard() {
           <img src="/gecko-logo.png" alt="Gecko Intelligence" className="w-8 h-8 md:w-10 md:h-10 shrink-0 object-contain" />
           <div className="flex flex-col items-start gap-0.5">
             <h1 className="gecko-display text-lg md:text-xl font-bold tracking-[0.38em] text-[var(--bone)]">GECKO</h1>
-            <span className="text-[8px] md:text-[9px] font-mono tracking-[0.22em] opacity-90 uppercase text-[var(--moss)]">NIGERIA INTELLIGENCE</span>
+            <span className="text-[8px] md:text-[9px] font-mono tracking-[0.22em] opacity-90 uppercase text-[var(--moss)]">INTELLIGENCE</span>
           </div>
         </div>
       </motion.div>
