@@ -8,7 +8,7 @@ const SITE_TITLE = "GECKO — Nigeria Intelligence & Situational Awareness Platf
 const SITE_DESCRIPTION = "Gecko is a real-time intelligence and situational-awareness dashboard focused on Nigeria. Map security incidents (banditry, kidnapping, terrorism, unrest), critical infrastructure, security checkpoints, road networks and live news feeds across all 36 states + FCT — with a built-in data-entry console to plot fresh field intel live. Built on open-source feeds and a GPU-accelerated MapLibre map.";
 
 export const viewport: Viewport = {
-  themeColor: "#D4AF37",
+  themeColor: "#294922",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
