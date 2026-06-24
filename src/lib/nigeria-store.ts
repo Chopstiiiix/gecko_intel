@@ -53,26 +53,48 @@ export interface RoadFeature {
   };
 }
 
+// Live working data (operator-entered + initialized seed). Git-ignored so real
+// field intel never leaves the machine. Override with GECKO_DATA_DIR.
 const DATA_DIR = process.env.GECKO_DATA_DIR || path.join(process.cwd(), 'gecko-data');
+// Pristine seed templates shipped in the repo (tracked in git). Copied into the
+// live files on first run so the map renders out of the box.
+const SEED_DIR = path.join(DATA_DIR, 'seed');
 
 function fileFor(kind: IntelKind): string {
   return path.join(DATA_DIR, `${kind}.json`);
+}
+
+function seedFileFor(kind: IntelKind): string {
+  return path.join(SEED_DIR, `${kind}.json`);
 }
 
 async function ensureDir(): Promise<void> {
   await fs.mkdir(DATA_DIR, { recursive: true });
 }
 
-/** Read a collection. Returns [] if the file does not exist yet. */
-export async function readKind(kind: IntelKind): Promise<any[]> {
+async function readJsonArray(file: string): Promise<any[] | null> {
   try {
-    const raw = await fs.readFile(fileFor(kind), 'utf8');
+    const raw = await fs.readFile(file, 'utf8');
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
   } catch (err: any) {
-    if (err?.code === 'ENOENT') return [];
+    if (err?.code === 'ENOENT') return null;
     throw err;
   }
+}
+
+/**
+ * Read a collection. If the live file doesn't exist yet, initialize it from the
+ * tracked seed template (so a fresh clone renders immediately) and persist that
+ * copy as the operator's editable working file.
+ */
+export async function readKind(kind: IntelKind): Promise<any[]> {
+  const live = await readJsonArray(fileFor(kind));
+  if (live !== null) return live;
+  // First run for this kind — seed the live file from the template (or empty).
+  const seed = (await readJsonArray(seedFileFor(kind))) ?? [];
+  await writeKind(kind, seed);
+  return seed;
 }
 
 async function writeKind(kind: IntelKind, rows: any[]): Promise<void> {

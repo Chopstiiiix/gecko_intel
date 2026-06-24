@@ -59,3 +59,8 @@ scanner_backend_backup.js
 
 # Intel sub-service deps
 intel/node_modules/
+
+# Nigeria operator data — live working files stay local (real field intel).
+# The pristine seed templates in gecko-data/seed/ ARE tracked so the map
+# renders out of the box; the store copies them into these files on first run.
+/gecko-data/*.json
