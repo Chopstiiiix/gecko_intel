@@ -74,9 +74,12 @@
   --hover-accent: rgba(95, 132, 67, 0.10);
 
   /* ── Fonts ── */
-  --font-hud: 'Courier Prime', 'Courier New', monospace;
   --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+  /* HUD/label text now uses the normal sans font (was a typewriter mono) */
+  --font-hud: var(--font-body);
   --font-display: 'Chakra Petch', 'IBM Plex Sans', sans-serif;
+  /* Typewriter retained ONLY for the intro loading screen */
+  --font-typewriter: 'Courier Prime', 'Courier New', monospace;
 
   /* ── Spacing (responsive) ── */
   --panel-gap: 12px;
@@ -2276,6 +2279,9 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-display);
   letter-spacing: 0.02em;
 }
+
+/* — The intro loading screen keeps the typewriter font — */
+.splash-screen .font-mono { font-family: var(--font-typewriter) !important; }
 
 /* — Solid panels (consoles / windows / cards) — Gecko green, light text — */
 .glass-panel {

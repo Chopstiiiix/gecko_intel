@@ -601,7 +601,7 @@ export default function Dashboard() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: 'easeInOut' }}
-            className="absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden"
+            className="splash-screen absolute inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden"
             style={{ background: 'radial-gradient(ellipse at center, #0B0E09 0%, var(--bg-void) 70%)' }}
           >
             {/* ── Scanline CRT overlay ── */}
