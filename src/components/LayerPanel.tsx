@@ -302,9 +302,12 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                     animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, x: -5, filter: 'blur(2px)' }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-3 shadow-2xl z-50 pointer-events-auto"
+                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] border border-white/10 rounded-2xl p-3 z-50 pointer-events-auto"
                     style={{
-                      boxShadow: `0 0 30px ${group.color}15, inset 0 0 20px ${group.color}05`
+                      background: 'rgba(13,18,11,0.62)',
+                      backdropFilter: 'blur(26px) saturate(150%)',
+                      WebkitBackdropFilter: 'blur(26px) saturate(150%)',
+                      boxShadow: '0 16px 44px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08)'
                     }}
                   >
                     <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-white/10 pb-2 text-white">
