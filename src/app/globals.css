@@ -2044,7 +2044,7 @@ html, body {
 .gotham-sidebar {
   display: flex;
   flex-direction: column;
-  width: 280px;
+  width: 320px;
   height: 100%;
   background: linear-gradient(
     180deg,
