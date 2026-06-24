@@ -133,21 +133,21 @@ export default function SharePanel({ mapView, activeLayers, mouseCoords }: Share
               <a
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('🏛️ GECKO — Global Intelligence Dashboard')}&url=${encodeURIComponent(generateShareUrl())}`}
                 target="_blank"
-                className="flex-1 text-center py-1.5 rounded text-[7px] font-mono tracking-wider text-[var(--text-muted)] border border-[var(--border-primary)] hover:border-[#1DA1F2] hover:text-[#1DA1F2] transition-colors"
+                className="flex-1 text-center py-1.5 rounded text-[7px] font-mono tracking-wider text-[var(--text-muted)] border border-[var(--border-primary)] hover:border-[#8FA376] hover:text-[#8FA376] transition-colors"
               >
                 𝕏 POST
               </a>
               <a
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(generateShareUrl())}`}
                 target="_blank"
-                className="flex-1 text-center py-1.5 rounded text-[7px] font-mono tracking-wider text-[var(--text-muted)] border border-[var(--border-primary)] hover:border-[#0A66C2] hover:text-[#0A66C2] transition-colors"
+                className="flex-1 text-center py-1.5 rounded text-[7px] font-mono tracking-wider text-[var(--text-muted)] border border-[var(--border-primary)] hover:border-[#294922] hover:text-[#294922] transition-colors"
               >
                 IN SHARE
               </a>
               <a
                 href={`https://reddit.com/submit?url=${encodeURIComponent(generateShareUrl())}&title=${encodeURIComponent('GECKO — Open Source Global Intelligence Platform')}`}
                 target="_blank"
-                className="flex-1 text-center py-1.5 rounded text-[7px] font-mono tracking-wider text-[var(--text-muted)] border border-[var(--border-primary)] hover:border-[#FF4500] hover:text-[#FF4500] transition-colors"
+                className="flex-1 text-center py-1.5 rounded text-[7px] font-mono tracking-wider text-[var(--text-muted)] border border-[var(--border-primary)] hover:border-[#D29B3B] hover:text-[#D29B3B] transition-colors"
               >
                 REDDIT
               </a>

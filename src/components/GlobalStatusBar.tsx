@@ -10,15 +10,15 @@ interface Earthquake { id: string; magnitude: number; place: string; time: numbe
 const CryptoIcon = ({ symbol }: { symbol: string }) => {
   if (symbol === 'BTC') return (
     <svg className="w-3.5 h-3.5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="16" cy="16" r="16" fill="#F7931A"/>
+      <circle cx="16" cy="16" r="16" fill="#D29B3B"/>
       <path d="M22.5 13.5c0-2-1.5-3-3.5-3h-1.5v-2h-2v2h-1.5v-2h-2v2h-2.5v2h1.5c.5 0 1 .5 1 1v6c0 .5-.5 1-1 1h-1.5v2h2.5v2h2v-2h1.5v2h2v-2c2 0 4-1 4-3 0-1.5-.5-2.5-1.5-3 1-.5 1.5-1.5 1.5-2.5zm-5 4c0 1-1 1-1.5 1h-2v-3h2c1 0 1.5 0 1.5 1v1zm-.5-4.5c0 1-1 1-1.5 1h-2v-2.5h2c.5 0 1.5 0 1.5 1v.5z" fill="#FFF"/>
     </svg>
   );
   if (symbol === 'ETH') return (
     <svg className="w-3.5 h-3.5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15.9 2L7 16.8l8.9 5.3 8.9-5.3L15.9 2z" fill="#627EEA"/>
-      <path d="M15.9 24v6.8l8.9-12.6-8.9 5.8z" fill="#627EEA"/>
-      <path d="M7 18.2l8.9 12.6V24l-8.9-5.8z" fill="#627EEA"/>
+      <path d="M15.9 2L7 16.8l8.9 5.3 8.9-5.3L15.9 2z" fill="#8FA376"/>
+      <path d="M15.9 24v6.8l8.9-12.6-8.9 5.8z" fill="#8FA376"/>
+      <path d="M7 18.2l8.9 12.6V24l-8.9-5.8z" fill="#8FA376"/>
     </svg>
   );
   if (symbol === 'SOL') return (
@@ -26,8 +26,8 @@ const CryptoIcon = ({ symbol }: { symbol: string }) => {
       <path d="M6 10h14l4 3H10l-4-3zm0 9h14l4 3H10l-4-3zm18-6H10l-4 3h14l4-3z" fill="url(#sol_grad)"/>
       <defs>
         <linearGradient id="sol_grad" x1="6" y1="13" x2="24" y2="13" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#9945FF"/>
-          <stop offset="1" stopColor="#14F195"/>
+          <stop stopColor="#8FA376"/>
+          <stop offset="1" stopColor="#5F8443"/>
         </linearGradient>
       </defs>
     </svg>
@@ -101,8 +101,8 @@ export default function GlobalStatusBar() {
           onMouseEnter={() => setHoveredQuake(quake)}
           onMouseLeave={() => setHoveredQuake(null)}
         >
-          <span className="text-[#FF9500] text-[10px]">🌋</span>
-          <span className="text-[#FF9500] font-bold tracking-wider">M{quake.magnitude.toFixed(1)}</span>
+          <span className="text-[#D29B3B] text-[10px]">🌋</span>
+          <span className="text-[#D29B3B] font-bold tracking-wider">M{quake.magnitude.toFixed(1)}</span>
           <span className="text-[var(--text-muted)] truncate max-w-[150px]">{quake.place}</span>
         </span>
       ))}
@@ -147,10 +147,10 @@ export default function GlobalStatusBar() {
       {/* Hover tooltips */}
       {hoveredQuake && (
         <div className="absolute bottom-[28px] left-1/2 -translate-x-1/2 z-[300] pointer-events-none">
-          <div className="glass-panel px-4 py-3 text-[10px] font-mono whitespace-nowrap" style={{ borderColor: '#FF950040' }}>
+          <div className="glass-panel px-4 py-3 text-[10px] font-mono whitespace-nowrap" style={{ borderColor: '#D29B3B40' }}>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-[12px] text-[#FF9500]">🌋</span>
-              <span className="font-bold text-[#FF9500]">Magnitude {hoveredQuake.magnitude.toFixed(1)}</span>
+              <span className="text-[12px] text-[#D29B3B]">🌋</span>
+              <span className="font-bold text-[#D29B3B]">Magnitude {hoveredQuake.magnitude.toFixed(1)}</span>
               <span className="text-[var(--text-muted)] text-[9px] bg-black/40 px-1.5 py-0.5 rounded">USGS</span>
             </div>
             <div className="text-[11px] text-[var(--text-primary)] font-bold mb-2">

@@ -606,7 +606,7 @@ export default function Dashboard() {
           >
             {/* ── Scanline CRT overlay ── */}
             <div className="absolute inset-0 pointer-events-none z-[1]" style={{
-              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212,175,55,0.015) 2px, rgba(212,175,55,0.015) 4px)',
+              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(95,132,67,0.015) 2px, rgba(95,132,67,0.015) 4px)',
               animation: 'splashScanDrift 8s linear infinite',
             }} />
 
@@ -661,8 +661,8 @@ export default function Dashboard() {
                 transition={{ delay: 1.2, duration: 0.8, ease: 'easeInOut' }}
                 className="overflow-hidden whitespace-nowrap"
               >
-                <p className="text-[10px] md:text-[11px] font-mono tracking-[0.5em] text-[var(--gold-primary)]" style={{ opacity: 0.8 }}>
-                  GLOBAL INTELLIGENCE PLATFORM
+                <p className="text-[10px] md:text-[11px] font-mono tracking-[0.5em]" style={{ color: 'var(--moss)', opacity: 0.95 }}>
+                  SOVEREIGN SECURITY OS · WEST AFRICA
                 </p>
               </motion.div>
             </div>
@@ -670,13 +670,13 @@ export default function Dashboard() {
             {/* ── Multi-stage progress bar ── */}
             <div className="w-64 md:w-80 z-[2]">
               {/* Thin progress track */}
-              <div className="relative w-full h-[2px] rounded-full overflow-hidden" style={{ background: 'rgba(212,175,55,0.1)' }}>
+              <div className="relative w-full h-[2px] rounded-full overflow-hidden" style={{ background: 'rgba(95,132,67,0.1)' }}>
                 <motion.div
                   initial={{ width: '0%' }}
                   animate={{ width: ['0%', '25%', '50%', '78%', '100%'] }}
                   transition={{ duration: 2.2, delay: 0.5, times: [0, 0.25, 0.5, 0.75, 1], ease: 'easeInOut' }}
                   className="absolute inset-y-0 left-0 rounded-full"
-                  style={{ background: 'linear-gradient(90deg, var(--gold-primary), var(--cyan-primary), var(--gold-primary))', boxShadow: '0 0 12px rgba(212,175,55,0.4)' }}
+                  style={{ background: 'linear-gradient(90deg, var(--gecko), var(--moss), var(--signal))', boxShadow: '0 0 6px rgba(95,132,67,0.35)' }}
                 />
               </div>
 
@@ -694,7 +694,7 @@ export default function Dashboard() {
                     animate={{ opacity: [0, 1, 1, 0] }}
                     transition={{ delay: stage.delay, duration: 0.6, times: [0, 0.1, 0.7, 1] }}
                     className="absolute text-[9px] font-mono tracking-[0.25em]"
-                    style={{ color: i === 3 ? 'var(--cyan-primary)' : 'var(--text-muted)' }}
+                    style={{ color: i === 3 ? 'var(--signal)' : 'var(--signal-dim)' }}
                   >
                     {stage.text}
                   </motion.span>
@@ -705,7 +705,7 @@ export default function Dashboard() {
             {/* ── Decorative grid lines ── */}
             <div className="absolute inset-0 pointer-events-none z-[0]" style={{ opacity: 0.03 }}>
               <div className="absolute inset-0" style={{
-                backgroundImage: 'linear-gradient(rgba(212,175,55,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.5) 1px, transparent 1px)',
+                backgroundImage: 'linear-gradient(rgba(95,132,67,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(95,132,67,0.5) 1px, transparent 1px)',
                 backgroundSize: '60px 60px',
               }} />
             </div>
@@ -903,8 +903,8 @@ export default function Dashboard() {
         </div>
 
         <div className="relative group">
-          <button onClick={() => { setShowAlerts(!showAlerts); setShowIntel(false); setShowMarkets(false); setShowEntityGraph(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showAlerts ? 'bg-[#FF3D3D]/20' : 'hover:bg-white/10'}`}>
-            <AlertTriangle className={`w-4 h-4 ${showAlerts ? 'text-[#FF3D3D]' : 'text-white/60'}`} />
+          <button onClick={() => { setShowAlerts(!showAlerts); setShowIntel(false); setShowMarkets(false); setShowEntityGraph(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showAlerts ? 'bg-[#B0492F]/20' : 'hover:bg-white/10'}`}>
+            <AlertTriangle className={`w-4 h-4 ${showAlerts ? 'text-[#B0492F]' : 'text-white/60'}`} />
           </button>
           {/* Alerts Panel Slideout */}
           <AnimatePresence>
@@ -917,7 +917,7 @@ export default function Dashboard() {
         </div>
 
         <div className="relative group">
-          <button onClick={() => { setShowEntityGraph(!showEntityGraph); setShowIntel(false); setShowMarkets(false); setShowAlerts(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showEntityGraph ? 'bg-[#D4AF37]/20' : 'hover:bg-white/10'}`}>
+          <button onClick={() => { setShowEntityGraph(!showEntityGraph); setShowIntel(false); setShowMarkets(false); setShowAlerts(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showEntityGraph ? 'bg-[#5F8443]/20' : 'hover:bg-white/10'}`}>
             <Network className={`w-4 h-4 ${showEntityGraph ? 'text-[var(--gold-primary)]' : 'text-white/60'}`} />
           </button>
         </div>
@@ -957,7 +957,7 @@ export default function Dashboard() {
               {/* Header */}
               <div className="flex items-center justify-between px-4 py-2.5 bg-[#111] border-b border-[var(--border-primary)]">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#FF4081] animate-gecko-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-[#B0492F] animate-gecko-pulse" />
                   <span className="text-[12px] font-mono font-bold text-white tracking-wider">{liveFeedName}</span>
                   <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 font-mono text-[9px] font-bold">LIVE STREAM</span>
                   {!liveFeedEmbedAllowed && (
@@ -993,8 +993,8 @@ export default function Dashboard() {
               ) : (
                 <div className="w-full aspect-video flex items-center justify-center bg-black/95">
                   <div className="text-center px-8">
-                    <div className="w-14 h-14 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20 flex items-center justify-center mx-auto mb-4">
-                      <ExternalLink className="w-6 h-6 text-[#39FF14]" />
+                    <div className="w-14 h-14 rounded-full bg-[#5F8443]/10 border border-[#5F8443]/20 flex items-center justify-center mx-auto mb-4">
+                      <ExternalLink className="w-6 h-6 text-[#5F8443]" />
                     </div>
                     <p className="text-[13px] font-mono font-bold text-white tracking-widest mb-2">EMBED RESTRICTED</p>
                     <p className="text-[11px] font-mono text-white/50 mb-6 max-w-xs">
@@ -1004,7 +1004,7 @@ export default function Dashboard() {
                       href={getYouTubeWatchUrl(liveFeedUrl)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded border border-[#39FF14]/40 text-[#39FF14] font-mono text-[12px] hover:bg-[#39FF14]/10 transition-colors tracking-wider"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded border border-[#5F8443]/40 text-[#5F8443] font-mono text-[12px] hover:bg-[#5F8443]/10 transition-colors tracking-wider"
                     >
                       <ExternalLink className="w-4 h-4" />
                       OPEN LIVE STREAM

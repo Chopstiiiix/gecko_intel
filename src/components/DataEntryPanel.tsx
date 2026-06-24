@@ -17,22 +17,22 @@ type Kind = 'incidents' | 'infrastructure' | 'checkpoints' | 'roads';
 const KIND_META: Record<Kind, { label: string; categories: string[]; color: string }> = {
   incidents: {
     label: 'Security Incident',
-    color: '#FF3D3D',
+    color: '#B0492F',
     categories: ['kidnapping', 'banditry', 'terrorism', 'armed-robbery', 'communal-clash', 'protest', 'unrest', 'ied-explosion', 'piracy', 'cultism', 'other'],
   },
   infrastructure: {
     label: 'Infrastructure / Asset',
-    color: '#26A69A',
+    color: '#5F8443',
     categories: ['airport', 'seaport', 'refinery', 'power', 'pipeline', 'bridge', 'telecom', 'government', 'military-base', 'hospital', 'market', 'other'],
   },
   checkpoints: {
     label: 'Security Checkpoint',
-    color: '#448AFF',
+    color: '#C9D8A8',
     categories: ['military', 'police', 'customs', 'immigration', 'vigilante', 'joint-task-force', 'toll', 'other'],
   },
   roads: {
     label: 'Road / Corridor',
-    color: '#FFB300',
+    color: '#D29B3B',
     categories: ['expressway', 'trunk-a', 'trunk-b', 'urban', 'rural', 'bridge', 'other'],
   },
 };
@@ -301,7 +301,7 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
         )}
 
         {msg && (
-          <div className={`text-[10px] font-mono px-2 py-1.5 rounded ${msg.kind === 'ok' ? 'text-[#26A69A] bg-[#26A69A]/10' : 'text-[var(--alert-red)] bg-[var(--alert-red)]/10'}`}>
+          <div className={`text-[10px] font-mono px-2 py-1.5 rounded ${msg.kind === 'ok' ? 'text-[#5F8443] bg-[#5F8443]/10' : 'text-[var(--alert-red)] bg-[var(--alert-red)]/10'}`}>
             {msg.text}
           </div>
         )}

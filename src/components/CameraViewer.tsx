@@ -232,7 +232,7 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
                   <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center mb-2 mx-auto"><Camera className="w-4 h-4 text-red-400" /></div>
                   <span className="text-[9px] font-mono text-red-400 tracking-widest block mb-1">FEED UNAVAILABLE</span>
                   <span className="text-[7px] font-mono text-[var(--text-muted)]">Camera may be offline or restricted</span>
-                  <button onClick={() => { setError(false); setRetryCount(c => c + 1); }} className="block mx-auto mt-3 px-3 py-1 text-[8px] font-mono text-[#7E57C2] border border-[#7E57C2]/30 rounded hover:bg-[#7E57C2]/10 transition-colors tracking-wider">
+                  <button onClick={() => { setError(false); setRetryCount(c => c + 1); }} className="block mx-auto mt-3 px-3 py-1 text-[8px] font-mono text-[#8FA376] border border-[#8FA376]/30 rounded hover:bg-[#8FA376]/10 transition-colors tracking-wider">
                     RETRY
                   </button>
                 </div>
@@ -282,7 +282,7 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
             {/* Live indicator */}
             {!error && !loading && !externalOnly && (
               <div className="absolute top-3 left-3 flex items-center gap-2 bg-black/80 border border-[var(--gold-primary)]/50 px-2 py-1 shadow-[0_0_10px_rgba(0,0,0,0.8)]">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_#ef4444]" />
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_#B0492F]" />
                 <span className="text-[8px] font-mono text-white tracking-[0.2em]">
                   {streamType === 'jpg' ? 'LIVE SAT-LINK' : 'LIVE FEED'}
                 </span>

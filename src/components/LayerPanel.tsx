@@ -23,31 +23,31 @@ const getLayerGroups = (theme: 'core' | 'ghost') => {
   const ghostPriv = '#CE93D8';
   const ghostGov = '#D500F9';
 
-  const flightCom = isGhost ? phantomPurple : '#00E5FF';
-  const flightPriv = isGhost ? ghostPriv : '#FFD700';
-  const flightGov = isGhost ? ghostGov : '#FF9500';
-  const flightMil = '#FF0000';
+  const flightCom = isGhost ? phantomPurple : '#D29B3B';
+  const flightPriv = isGhost ? ghostPriv : '#D29B3B';
+  const flightGov = isGhost ? ghostGov : '#D29B3B';
+  const flightMil = '#B0492F';
 
   return [
   {
     label: 'NIGERIA',
     fullLabel: 'NIGERIA INTEL',
-    color: '#00E5A8',
+    color: '#5F8443',
     layers: [
-      { key: 'ng_incidents', label: 'Security Incidents', icon: AlertTriangle, color: '#FF3D3D', dataKey: 'ng_incidents' },
-      { key: 'ng_infrastructure', label: 'Infrastructure / Assets', icon: Landmark, color: '#26A69A', dataKey: 'ng_infrastructure' },
-      { key: 'ng_checkpoints', label: 'Security Checkpoints', icon: Shield, color: '#448AFF', dataKey: 'ng_checkpoints' },
-      { key: 'ng_roads', label: 'Roads / Corridors', icon: Route, color: '#FFB300', dataKey: 'ng_roads' },
-      { key: 'ng_news', label: 'Nigeria News Feed', icon: Newspaper, color: '#EC407A', dataKey: 'ng_news_items' },
+      { key: 'ng_incidents', label: 'Security Incidents', icon: AlertTriangle, color: '#B0492F', dataKey: 'ng_incidents' },
+      { key: 'ng_infrastructure', label: 'Infrastructure / Assets', icon: Landmark, color: '#5F8443', dataKey: 'ng_infrastructure' },
+      { key: 'ng_checkpoints', label: 'Security Checkpoints', icon: Shield, color: '#C9D8A8', dataKey: 'ng_checkpoints' },
+      { key: 'ng_roads', label: 'Roads / Corridors', icon: Route, color: '#D29B3B', dataKey: 'ng_roads' },
+      { key: 'ng_news', label: 'Nigeria News Feed', icon: Newspaper, color: '#E9E5D6', dataKey: 'ng_news_items' },
     ],
   },
   {
     label: 'SDK',
     fullLabel: 'GECKO SDK',
-    color: '#1565C0',
+    color: '#294922',
     layers: [
-      { key: 'sdk_sea', label: 'Maritime Lines', icon: Anchor, color: '#4FC3F7', dataKey: 'sdk_entities' },
-      { key: 'sdk_ransomware', label: 'Ransomware Feed', icon: AlertTriangle, color: '#D32F2F', dataKey: 'sdk_entities' },
+      { key: 'sdk_sea', label: 'Maritime Lines', icon: Anchor, color: '#8FA376', dataKey: 'sdk_entities' },
+      { key: 'sdk_ransomware', label: 'Ransomware Feed', icon: AlertTriangle, color: '#B0492F', dataKey: 'sdk_entities' },
     ],
   },
   {
@@ -64,69 +64,69 @@ const getLayerGroups = (theme: 'core' | 'ghost') => {
   {
     label: 'MARITIME',
     fullLabel: 'MARITIME',
-    color: '#26C6DA',
+    color: '#5F8443',
     layers: [
-      { key: 'maritime', label: 'Maritime / Naval', icon: Ship, color: '#26C6DA', dataKey: 'maritime_ships,maritime_ports,maritime_chokepoints' },
+      { key: 'maritime', label: 'Maritime / Naval', icon: Ship, color: '#5F8443', dataKey: 'maritime_ships,maritime_ports,maritime_chokepoints' },
     ],
   },
   {
     label: 'SPACE',
     fullLabel: 'SPACE TRACKING',
-    color: '#D4AF37',
+    color: '#5F8443',
     layers: [
-      { key: 'satellites', label: 'All Satellites', icon: Satellite, color: '#D4AF37', dataKey: 'satellites' },
-      { key: 'sat_comms', label: 'Starlink / Comms', icon: Satellite, color: '#00E676', dataKey: 'satellites', catKey: 'comms' },
-      { key: 'sat_military', label: 'Military / Intel', icon: Satellite, color: '#FF3D3D', dataKey: 'satellites', catKey: 'military' },
-      { key: 'sat_navigation', label: 'GPS / Navigation', icon: Satellite, color: '#448AFF', dataKey: 'satellites', catKey: 'navigation' },
-      { key: 'sat_earth', label: 'Earth Observation', icon: Satellite, color: '#90EE90', dataKey: 'satellites', catKey: 'earth_obs' },
-      { key: 'sat_science', label: 'Stations / Telescopes', icon: Satellite, color: '#FFD700', dataKey: 'satellites', catKey: 'science' },
+      { key: 'satellites', label: 'All Satellites', icon: Satellite, color: '#5F8443', dataKey: 'satellites' },
+      { key: 'sat_comms', label: 'Starlink / Comms', icon: Satellite, color: '#5F8443', dataKey: 'satellites', catKey: 'comms' },
+      { key: 'sat_military', label: 'Military / Intel', icon: Satellite, color: '#B0492F', dataKey: 'satellites', catKey: 'military' },
+      { key: 'sat_navigation', label: 'GPS / Navigation', icon: Satellite, color: '#C9D8A8', dataKey: 'satellites', catKey: 'navigation' },
+      { key: 'sat_earth', label: 'Earth Observation', icon: Satellite, color: '#C9D8A8', dataKey: 'satellites', catKey: 'earth_obs' },
+      { key: 'sat_science', label: 'Stations / Telescopes', icon: Satellite, color: '#D29B3B', dataKey: 'satellites', catKey: 'science' },
     ],
   },
   {
     label: 'SURVEIL',
     fullLabel: 'SURVEILLANCE',
-    color: '#7E57C2',
+    color: '#8FA376',
     layers: [
-      { key: 'cctv', label: 'CCTV Cameras', icon: Camera, color: '#7E57C2', dataKey: 'cameras' },
-      { key: 'live_news', label: 'Live News Feeds', icon: Tv, color: '#EC407A', dataKey: 'live_feeds' },
+      { key: 'cctv', label: 'CCTV Cameras', icon: Camera, color: '#8FA376', dataKey: 'cameras' },
+      { key: 'live_news', label: 'Live News Feeds', icon: Tv, color: '#E9E5D6', dataKey: 'live_feeds' },
     ],
   },
   {
     label: 'HAZARD',
     fullLabel: 'NATURAL HAZARDS',
-    color: '#F9A825',
+    color: '#D29B3B',
     layers: [
-      { key: 'earthquakes', label: 'Earthquakes (24h)', icon: Activity, color: '#F9A825', dataKey: 'earthquakes' },
-      { key: 'fires', label: 'Active Fires', icon: Flame, color: '#E65100', dataKey: 'fires' },
-      { key: 'weather', label: 'Severe Weather', icon: CloudLightning, color: '#7E57C2', dataKey: 'weather_events' },
+      { key: 'earthquakes', label: 'Earthquakes (24h)', icon: Activity, color: '#D29B3B', dataKey: 'earthquakes' },
+      { key: 'fires', label: 'Active Fires', icon: Flame, color: '#D29B3B', dataKey: 'fires' },
+      { key: 'weather', label: 'Severe Weather', icon: CloudLightning, color: '#8FA376', dataKey: 'weather_events' },
     ],
   },
   {
     label: 'THREAT',
     fullLabel: 'THREATS & INFRA',
-    color: '#D32F2F',
+    color: '#B0492F',
     layers: [
-      { key: 'infrastructure', label: 'Nuclear Facilities', icon: Radiation, color: '#26A69A', dataKey: 'infrastructure' },
-      { key: 'global_incidents', label: 'Global Incidents', icon: AlertTriangle, color: '#D32F2F', dataKey: 'gdelt' },
-      { key: 'gps_jamming', label: 'GPS Jamming', icon: Radio, color: '#D32F2F', dataKey: 'gps_jamming' },
+      { key: 'infrastructure', label: 'Nuclear Facilities', icon: Radiation, color: '#5F8443', dataKey: 'infrastructure' },
+      { key: 'global_incidents', label: 'Global Incidents', icon: AlertTriangle, color: '#B0492F', dataKey: 'gdelt' },
+      { key: 'gps_jamming', label: 'GPS Jamming', icon: Radio, color: '#B0492F', dataKey: 'gps_jamming' },
     ],
   },
   {
     label: 'NETWORK',
     fullLabel: 'NETWORK INTEL',
-    color: '#D32F2F',
+    color: '#B0492F',
     layers: [
 
-      { key: 'malware', label: 'Live Malware', icon: AlertTriangle, color: '#D32F2F', dataKey: 'malware_threats' },
+      { key: 'malware', label: 'Live Malware', icon: AlertTriangle, color: '#B0492F', dataKey: 'malware_threats' },
     ],
   },
   {
     label: 'DISPLAY',
     fullLabel: 'DISPLAY',
-    color: '#448AFF',
+    color: '#C9D8A8',
     layers: [
-      { key: 'day_night', label: 'Day / Night Cycle', icon: Sun, color: '#448AFF', dataKey: '' },
-      { key: 'terrain_3d', label: '3D Terrain & Buildings', icon: Mountain, color: '#8D6E63', dataKey: '' },
+      { key: 'day_night', label: 'Day / Night Cycle', icon: Sun, color: '#C9D8A8', dataKey: '' },
+      { key: 'terrain_3d', label: '3D Terrain & Buildings', icon: Mountain, color: '#5F8443', dataKey: '' },
     ],
   },
   ];
@@ -171,9 +171,8 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
       <div className="flex flex-col gap-4 py-2">
         {LAYER_GROUPS.map((group) => (
           <div key={group.label} className="flex flex-col gap-2">
-            <div 
-              className="text-[10px] font-bold font-mono tracking-widest border-b border-white/10 pb-1"
-              style={{ color: group.color }}
+            <div
+              className="text-[10px] font-bold font-mono tracking-widest border-b border-white/10 pb-1 text-white"
             >
               {group.fullLabel}
             </div>
@@ -279,10 +278,10 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                 className={`text-[10px] font-mono font-bold cursor-pointer select-none transition-all duration-300 flex items-center justify-center`}
                 style={{
                   writingMode: 'horizontal-tb',
-                  color: isActive ? group.color : 'rgba(255, 255, 255, 0.4)',
-                  textShadow: isActive ? `0 0 10px ${group.color}80` : 'none',
+                  color: '#FFFFFF',
+                  textShadow: 'none',
                   letterSpacing: '0.1em',
-                  opacity: isActive || isHovered ? 1 : 0.5,
+                  opacity: isActive ? 1 : (isHovered ? 0.85 : 0.55),
                 }}
               >
                 {/* Active Indicator dot */}
@@ -308,7 +307,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                       boxShadow: `0 0 30px ${group.color}15, inset 0 0 20px ${group.color}05`
                     }}
                   >
-                    <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-white/10 pb-2" style={{ color: group.color }}>
+                    <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-white/10 pb-2 text-white">
                       {group.fullLabel}
                     </div>
                     <div className="flex flex-col gap-1.5">
@@ -337,7 +336,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                               {layer.label}
                             </span>
                             {count !== null && (
-                              <span className="text-[9px] font-mono tabular-nums opacity-60">
+                              <span className="text-[9px] font-mono tabular-nums text-white opacity-70">
                                 {count.toLocaleString()}
                               </span>
                             )}
@@ -356,7 +355,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
       {/* DESKTOP THEME TOGGLE */}
       {setTheme && (
         <div className="mt-auto px-2 pt-6 pb-2 border-t border-[var(--border-primary)] flex flex-col items-center gap-3 relative z-50">
-          <div className="text-[9px] font-mono tracking-[0.25em] text-[var(--text-secondary)]">GHOST PROTOCOL</div>
+          <div className="text-[9px] font-mono tracking-[0.25em] text-white">GHOST PROTOCOL</div>
           <button
             onClick={() => setTheme(theme === 'core' ? 'ghost' : 'core')}
             className="relative w-14 h-7 rounded-full transition-all duration-500 ease-in-out border flex items-center px-1 cursor-pointer hover:shadow-lg"

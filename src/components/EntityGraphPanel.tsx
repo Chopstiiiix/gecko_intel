@@ -32,9 +32,9 @@ interface GraphData { nodes: EntityNode[]; links: EntityLink[]; }
 // ── PALETTE ──
 
 const TYPE_COLORS: Record<string, string> = {
-  aircraft: '#00E5FF', vessel: '#00BCD4', company: '#D4AF37',
-  person: '#B388FF', country: '#76FF03', event: '#FF9500', sanction: '#FF1744',
-  ip: '#FF6D00',
+  aircraft: '#D29B3B', vessel: '#5F8443', company: '#5F8443',
+  person: '#B388FF', country: '#5F8443', event: '#D29B3B', sanction: '#B0492F',
+  ip: '#D29B3B',
 };
 
 const TYPE_ICONS: Record<string, typeof Plane> = {
@@ -176,14 +176,14 @@ function EntityGraphPanel({ entity, onClose }: Props) {
     if (!s.x || !t.x) return;
     ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y);
     // Smooth, thin, non-dashed lines
-    ctx.strokeStyle = 'rgba(212,175,55,0.15)'; // faint gold
+    ctx.strokeStyle = 'rgba(95,132,67,0.15)'; // faint gold
     ctx.lineWidth = Math.max(0.5, 1 / globalScale); 
     ctx.stroke();
     
     const fs = Math.max(8 / globalScale, 2);
     if (fs > 3) {
       ctx.font = `${fs}px 'JetBrains Mono', monospace`; 
-      ctx.fillStyle = 'rgba(212,175,55,0.4)';
+      ctx.fillStyle = 'rgba(95,132,67,0.4)';
       ctx.textAlign = 'center'; ctx.fillText(link.label || '', (s.x + t.x) / 2, (s.y + t.y) / 2);
     }
   }, []);
@@ -208,12 +208,12 @@ function EntityGraphPanel({ entity, onClose }: Props) {
         <style>{`
           .scanline {
             position: absolute; inset: 0; pointer-events: none;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(212,175,55,0.03) 50%, rgba(212,175,55,0.03));
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(95,132,67,0.03) 50%, rgba(95,132,67,0.03));
             background-size: 100% 4px;
             z-index: 10;
           }
           .hud-corner {
-            position: absolute; width: 16px; height: 16px; border-color: rgba(212,175,55,0.4); border-style: solid; z-index: 20; pointer-events: none;
+            position: absolute; width: 16px; height: 16px; border-color: rgba(95,132,67,0.4); border-style: solid; z-index: 20; pointer-events: none;
           }
           .hud-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
           .hud-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
@@ -244,8 +244,8 @@ function EntityGraphPanel({ entity, onClose }: Props) {
             <button onClick={() => setExpanded(!expanded)} className="p-1 hover:bg-[var(--gold-primary)]/20 rounded transition-colors border border-transparent hover:border-[var(--gold-primary)]/40">
               {expanded ? <Minimize2 className="w-3.5 h-3.5 text-[var(--gold-primary)]" /> : <Maximize2 className="w-3.5 h-3.5 text-[var(--gold-primary)]" />}
             </button>
-            <button onClick={onClose} className="p-1 hover:bg-[#FF1744]/20 rounded transition-colors border border-transparent hover:border-[#FF1744]/40">
-              <X className="w-3.5 h-3.5 text-[#FF1744]" />
+            <button onClick={onClose} className="p-1 hover:bg-[#B0492F]/20 rounded transition-colors border border-transparent hover:border-[#B0492F]/40">
+              <X className="w-3.5 h-3.5 text-[#B0492F]" />
             </button>
           </div>
         </div>
@@ -266,9 +266,9 @@ function EntityGraphPanel({ entity, onClose }: Props) {
 
         {/* ERROR */}
         {error && (
-          <div className="px-6 py-2 bg-[#FF1744]/10 border-b border-[#FF1744]/30 flex items-center gap-2 relative z-20 shadow-[inset_0_0_15px_rgba(255,23,68,0.2)]">
-            <AlertTriangle className="w-3.5 h-3.5 text-[#FF1744]" />
-            <span className="text-[10px] font-mono font-bold tracking-widest text-[#FF1744] uppercase">[ ERR: {error} ]</span>
+          <div className="px-6 py-2 bg-[#B0492F]/10 border-b border-[#B0492F]/30 flex items-center gap-2 relative z-20 shadow-[inset_0_0_15px_rgba(255,23,68,0.2)]">
+            <AlertTriangle className="w-3.5 h-3.5 text-[#B0492F]" />
+            <span className="text-[10px] font-mono font-bold tracking-widest text-[#B0492F] uppercase">[ ERR: {error} ]</span>
           </div>
         )}
 
@@ -284,7 +284,7 @@ function EntityGraphPanel({ entity, onClose }: Props) {
               d3AlphaDecay={0.05} d3VelocityDecay={0.4} cooldownTicks={100}
               linkDirectionalParticles={1} linkDirectionalParticleWidth={1.5}
               linkDirectionalParticleSpeed={0.003}
-              linkDirectionalParticleColor={() => 'rgba(212,175,55,0.6)'}
+              linkDirectionalParticleColor={() => 'rgba(95,132,67,0.6)'}
             />
           )}
           {graphData.nodes.length === 0 && !loading && (

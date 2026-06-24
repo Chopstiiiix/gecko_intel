@@ -15,11 +15,11 @@ interface LiveAlertsProps {
 }
 
 const RISK_COLORS: Record<string, string> = {
-  HIGH: '#FF3D3D',
-  CRITICAL: '#FF1744',
-  ELEVATED: '#FF9500',
-  MODERATE: '#FFD700',
-  LOW: '#00E676',
+  HIGH: '#B0492F',
+  CRITICAL: '#B0492F',
+  ELEVATED: '#D29B3B',
+  MODERATE: '#D29B3B',
+  LOW: '#5F8443',
 };
 
 export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsProps) {
@@ -129,13 +129,13 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
         className="flex-shrink-0 flex items-center justify-between px-3 py-2 hover:bg-[var(--hover-accent)] transition-colors cursor-pointer outline-none border-b border-[rgba(255,255,255,0.05)] bg-[rgba(0,0,0,0.3)]"
       >
         <div className="flex items-center gap-2">
-          <Radio className="w-3.5 h-3.5 text-[#FF4081]" />
+          <Radio className="w-3.5 h-3.5 text-[#B0492F]" />
           <span className="hud-text text-[10px] text-[var(--text-primary)]">LIVE ALERTS</span>
           <span className="gotham-tag gotham-tag--high" style={{ fontSize: '7px', padding: '1px 5px' }}>{alerts.filter(a => a.type === 'news' || a.type === 'quake').length}</span>
           <span className="gotham-tag gotham-tag--info" style={{ fontSize: '7px', padding: '1px 4px' }}>{BUILTIN_FEEDS.length} FEEDS</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#FF4081] animate-gecko-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#B0492F] animate-gecko-pulse" />
           <button onClick={(e) => { e.stopPropagation(); setMaximized(!maximized); if (!expanded && !maximized) setExpanded(true); }} className="hover:text-white transition-colors" title={maximized ? "Restore" : "Maximize"}>
             {maximized ? <Minimize2 className="w-3 h-3 text-[var(--text-muted)]" /> : <Maximize2 className="w-3 h-3 text-[var(--text-muted)]" />}
           </button>
@@ -158,7 +158,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-3 py-1.5 rounded text-[10px] font-mono tracking-wider transition-all ${filter === f ? 'bg-[var(--cyan-primary)]/20 text-[var(--cyan-primary)] border border-[var(--cyan-primary)]/50' : 'text-[#8A8880] border border-transparent hover:text-[#E8E6E0] hover:bg-[#2A2A28]'}`}
+                  className={`px-3 py-1.5 rounded text-[10px] font-mono tracking-wider transition-all ${filter === f ? 'bg-[var(--cyan-primary)]/20 text-[var(--cyan-primary)] border border-[var(--cyan-primary)]/50' : 'text-[#62704E] border border-transparent hover:text-[#E9E5D6] hover:bg-[#2A2A28]'}`}
                 >
                   {f.toUpperCase()}
                 </button>
@@ -170,7 +170,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
               <div className="space-y-2">
                 {filtered.map((alert, i) => {
                   const Icon = getIcon(alert.type);
-                const sevColor = RISK_COLORS[alert.severity] || '#FFD700';
+                const sevColor = RISK_COLORS[alert.severity] || '#D29B3B';
                 return (
                   <div
                     key={i}
@@ -193,15 +193,15 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start gap-1.5 mb-2">
                           <Icon className="w-3.5 h-3.5 flex-shrink-0 mt-[2px]" style={{ color: sevColor }} />
-                          <span className={`text-[10px] font-mono text-[#E8E6E0] leading-relaxed ${alert.type === 'news' ? 'line-clamp-3' : 'truncate'}`}>
+                          <span className={`text-[10px] font-mono text-[#E9E5D6] leading-relaxed ${alert.type === 'news' ? 'line-clamp-3' : 'truncate'}`}>
                             {(alert.description || alert.title || '').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')}
                           </span>
                         </div>
                         <div className="flex items-center justify-between border-t border-[#2A2A28]/50 pt-1.5 mt-1.5">
                           <div className="flex items-center gap-2">
-                            <span className="text-[9px] font-mono text-[#8A8880] uppercase tracking-wider">{alert.source}</span>
+                            <span className="text-[9px] font-mono text-[#62704E] uppercase tracking-wider">{alert.source}</span>
                             {alert.time && (
-                              <span className="text-[9px] font-mono text-[#5C5A54] flex items-center gap-1 border-l border-[#2A2A28] pl-2">
+                              <span className="text-[9px] font-mono text-[#62704E] flex items-center gap-1 border-l border-[#2A2A28] pl-2">
                                 <Clock className="w-2.5 h-2.5" />
                                 {new Date(alert.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>

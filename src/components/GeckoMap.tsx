@@ -162,23 +162,23 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const isGhost = theme === 'ghost';
       const phantomPurple = '#B388FF';
       const phantomDark = '#1A0040';
-      const cameraColor = isGhost ? '#B388FF' : '#00E676';
-      const flightCom = isGhost ? phantomPurple : '#00E5FF';
-      const flightPriv = isGhost ? phantomPurple : '#FFD700';
-      const flightGov = isGhost ? phantomPurple : '#FF9500';
-      const flightMil = isGhost ? phantomPurple : '#FF3D3D';
+      const cameraColor = isGhost ? '#B388FF' : '#5F8443';
+      const flightCom = isGhost ? phantomPurple : '#D29B3B';
+      const flightPriv = isGhost ? phantomPurple : '#D29B3B';
+      const flightGov = isGhost ? phantomPurple : '#D29B3B';
+      const flightMil = isGhost ? phantomPurple : '#B0492F';
 
       // Create icons — GECKO Unified Palette
       createIcon(map, 'plane-cyan', flightCom, 24);   
       createIcon(map, 'plane-green', flightPriv, 24);   
       createIcon(map, 'plane-pink', flightGov, 24);    
       createIcon(map, 'plane-red', flightMil, 24);     
-      createIcon(map, 'plane-grey', isGhost ? phantomPurple : '#546E7A', 24);    
-      createDot(map, 'dot-gold', isGhost ? phantomPurple : '#D4AF37', 8);
-      createDot(map, 'dot-red', isGhost ? phantomPurple : '#D32F2F', 10);
-      createDot(map, 'dot-orange', isGhost ? phantomPurple : '#E65100', 10);
-      createDot(map, 'dot-green', isGhost ? phantomPurple : '#26A69A', 10);
-      createDot(map, 'dot-fire', isGhost ? phantomPurple : '#E65100', 10);
+      createIcon(map, 'plane-grey', isGhost ? phantomPurple : '#62704E', 24);    
+      createDot(map, 'dot-gold', isGhost ? phantomPurple : '#5F8443', 8);
+      createDot(map, 'dot-red', isGhost ? phantomPurple : '#B0492F', 10);
+      createDot(map, 'dot-orange', isGhost ? phantomPurple : '#D29B3B', 10);
+      createDot(map, 'dot-green', isGhost ? phantomPurple : '#5F8443', 10);
+      createDot(map, 'dot-fire', isGhost ? phantomPurple : '#D29B3B', 10);
       createDot(map, 'dot-cctv', cameraColor, 10);
 
       const sources = ['flights','military','jets','private-fl','satellites','earthquakes','gdelt','gps-jamming','day-night','cctv','fires','weather','infrastructure','maritime','maritime-choke','maritime-ships','live-news','sigint-news','conflict-zones', 'war-alerts-targets', 'war-alerts-lines', 'balloons', 'radiation', 'ip-sweep-devices', 'ip-sweep-pulse', 'ip-sweep-connections', 'scan-targets', 'sdk-entities', 'sdk-links', 'malware-nodes', 'network-mesh', 'ng-incidents', 'ng-infra', 'ng-checkpoints', 'ng-roads', 'ng-news'];
@@ -203,9 +203,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         ctx.fillText('!', s/2, s - 4);
         map.addImage(id, { width: s, height: s, data: new Uint8Array(ctx.getImageData(0, 0, s, s).data) });
       };
-      createWarningIcon('warn-icon', '#D32F2F');
-      createWarningIcon('warn-orange', '#E65100');
-      createWarningIcon('warn-yellow', '#F9A825');
+      createWarningIcon('warn-icon', '#B0492F');
+      createWarningIcon('warn-orange', '#D29B3B');
+      createWarningIcon('warn-yellow', '#D29B3B');
 
       map.addLayer({ id: 'conflict-icons', type: 'symbol', source: 'conflict-zones', layout: {
         'icon-image': ['match', ['get','severity'], 'war','warn-icon', 'high','warn-orange', 'warn-yellow'],
@@ -217,7 +217,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         'text-offset': [0, 1.4],
         'text-allow-overlap': false,
       }, paint: {
-        'text-color': ['match', ['get','severity'], 'war','#D32F2F', 'high','#E65100', '#F9A825'],
+        'text-color': ['match', ['get','severity'], 'war','#B0492F', 'high','#D29B3B', '#D29B3B'],
         'text-halo-color': '#000', 'text-halo-width': 1.5, 'text-opacity': 0.9,
       }});
 
@@ -226,23 +226,23 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       //  NIGERIA INTEL LAYERS (Gecko)
       // ════════════════════════════════════════════════════════════
       const sevColor: any = ['match', ['get', 'severity'],
-        'critical', '#FF1744', 'high', '#FF3D3D', 'medium', '#FF9500', 'low', '#FFD500', '#9E9E9E'];
+        'critical', '#B0492F', 'high', '#B0492F', 'medium', '#D29B3B', 'low', '#8FA376', '#62704E'];
 
       // Roads / corridors (lines) — status-coloured
       map.addLayer({ id: 'ng-roads-line', type: 'line', source: 'ng-roads', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: {
-        'line-color': ['match', ['get', 'status'], 'closed', '#FF1744', 'restricted', '#FF3D3D', 'caution', '#FFB300', '#00E5A8'],
+        'line-color': ['match', ['get', 'status'], 'closed', '#B0492F', 'restricted', '#B0492F', 'caution', '#D29B3B', '#5F8443'],
         'line-width': ['interpolate', ['linear'], ['zoom'], 4, 1.5, 8, 3, 12, 5],
         'line-opacity': 0.85,
       }});
       map.addLayer({ id: 'ng-roads-label', type: 'symbol', source: 'ng-roads', minzoom: 6, layout: {
         'symbol-placement': 'line', 'text-field': ['get', 'name'], 'text-size': 10, 'text-font': ['Open Sans Bold'],
-      }, paint: { 'text-color': '#E8E6E0', 'text-halo-color': '#000', 'text-halo-width': 1.4, 'text-opacity': 0.85 }});
+      }, paint: { 'text-color': '#E9E5D6', 'text-halo-color': '#000', 'text-halo-width': 1.4, 'text-opacity': 0.85 }});
 
       // Infrastructure / assets (teal)
       map.addLayer({ id: 'ng-infra-glow', type: 'circle', source: 'ng-infra', paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 6, 8, 12, 12, 20], 'circle-color': '#26A69A', 'circle-opacity': 0.18, 'circle-blur': 1 }});
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 6, 8, 12, 12, 20], 'circle-color': '#5F8443', 'circle-opacity': 0.18, 'circle-blur': 1 }});
       map.addLayer({ id: 'ng-infra-dots', type: 'circle', source: 'ng-infra', paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 4, 8, 6, 12, 9], 'circle-color': '#26A69A',
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 4, 8, 6, 12, 9], 'circle-color': '#5F8443',
         'circle-stroke-width': 1.5, 'circle-stroke-color': '#0A0A0A', 'circle-opacity': 0.95 }});
       map.addLayer({ id: 'ng-infra-label', type: 'symbol', source: 'ng-infra', minzoom: 7, layout: {
         'text-field': ['get', 'label'], 'text-size': 9, 'text-font': ['Open Sans Bold'], 'text-offset': [0, 1.2], 'text-anchor': 'top', 'text-optional': true,
@@ -250,11 +250,11 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
 
       // Security checkpoints (blue)
       map.addLayer({ id: 'ng-checkpoints-dots', type: 'circle', source: 'ng-checkpoints', paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 3.5, 8, 5, 12, 8], 'circle-color': '#448AFF',
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 3.5, 8, 5, 12, 8], 'circle-color': '#C9D8A8',
         'circle-stroke-width': 1.5, 'circle-stroke-color': '#0A0A0A', 'circle-opacity': 0.95 }});
       map.addLayer({ id: 'ng-checkpoints-label', type: 'symbol', source: 'ng-checkpoints', minzoom: 8, layout: {
         'text-field': ['get', 'label'], 'text-size': 8.5, 'text-font': ['Open Sans Bold'], 'text-offset': [0, 1.1], 'text-anchor': 'top', 'text-optional': true,
-      }, paint: { 'text-color': '#82B1FF', 'text-halo-color': '#000', 'text-halo-width': 1.2, 'text-opacity': 0.8 }});
+      }, paint: { 'text-color': '#C9D8A8', 'text-halo-color': '#000', 'text-halo-width': 1.2, 'text-opacity': 0.8 }});
 
       // Security incidents (severity-coloured, pulsing glow)
       map.addLayer({ id: 'ng-incidents-glow', type: 'circle', source: 'ng-incidents', paint: {
@@ -268,9 +268,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
 
       // Nigeria news (geoparsed headlines, pink)
       map.addLayer({ id: 'ng-news-glow', type: 'circle', source: 'ng-news', paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 5, 8, 9, 12, 14], 'circle-color': '#EC407A', 'circle-opacity': 0.18, 'circle-blur': 1 }});
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 5, 8, 9, 12, 14], 'circle-color': '#E9E5D6', 'circle-opacity': 0.18, 'circle-blur': 1 }});
       map.addLayer({ id: 'ng-news-dots', type: 'circle', source: 'ng-news', paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 3, 8, 4.5, 12, 7], 'circle-color': '#EC407A',
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 4, 3, 8, 4.5, 12, 7], 'circle-color': '#E9E5D6',
         'circle-stroke-width': 1, 'circle-stroke-color': '#0A0A0A', 'circle-opacity': 0.9 }});
 
       // Day/Night
@@ -279,17 +279,17 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       // Earthquakes — amber threat spectrum
       map.addLayer({ id: 'eq-circles', type: 'circle', source: 'earthquakes', paint: {
         'circle-radius': ['interpolate',['linear'],['get','magnitude'], 2.5,4, 5,12, 7,24],
-        'circle-color': ['interpolate',['linear'],['get','magnitude'], 2.5,'#F9A825', 4,'#E65100', 6,'#D32F2F'],
-        'circle-opacity': 0.55, 'circle-blur': 0.3, 'circle-stroke-width': 1, 'circle-stroke-color': '#F9A825', 'circle-stroke-opacity': 0.25,
+        'circle-color': ['interpolate',['linear'],['get','magnitude'], 2.5,'#D29B3B', 4,'#D29B3B', 6,'#B0492F'],
+        'circle-opacity': 0.55, 'circle-blur': 0.3, 'circle-stroke-width': 1, 'circle-stroke-color': '#D29B3B', 'circle-stroke-opacity': 0.25,
       }});
       map.addLayer({ id: 'eq-label', type: 'symbol', source: 'earthquakes', filter: ['>=',['get','magnitude'],4.5], layout: {
         'text-field': ['concat','M',['to-string',['get','magnitude']]], 'text-size': 9, 'text-font': ['Open Sans Regular'], 'text-offset': [0,1.5],
-      }, paint: { 'text-color': '#F9A825', 'text-halo-color': '#000', 'text-halo-width': 1 }});
+      }, paint: { 'text-color': '#D29B3B', 'text-halo-color': '#000', 'text-halo-width': 1 }});
 
       // Fires — burnt sienna
       map.addLayer({ id: 'fires-heat', type: 'circle', source: 'fires', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,2, 5,4, 10,8],
-        'circle-color': '#E65100', 'circle-opacity': 0.45, 'circle-blur': 0.5,
+        'circle-color': '#D29B3B', 'circle-opacity': 0.45, 'circle-blur': 0.5,
       }});
 
       // CCTV — outer glow ring (black/white depending on theme)
@@ -316,18 +316,18 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       // ══ NETWORK INTEL — Live Malware (abuse.ch) — crimson threat ══
       map.addLayer({ id: 'malware-glow', type: 'circle', source: 'malware-nodes', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,6, 5,12, 10,20],
-        'circle-color': '#D32F2F', 'circle-opacity': 0.06, 'circle-blur': 0.5,
+        'circle-color': '#B0492F', 'circle-opacity': 0.06, 'circle-blur': 0.5,
       }});
       map.addLayer({ id: 'malware-dots', type: 'circle', source: 'malware-nodes', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,2, 5,4, 10,6],
-        'circle-color': '#D32F2F',
+        'circle-color': '#B0492F',
         'circle-opacity': 0.9,
         'circle-stroke-width': 1, 'circle-stroke-color': '#000000', 'circle-stroke-opacity': 0.8,
       }});
       map.addLayer({ id: 'malware-label', type: 'symbol', source: 'malware-nodes', minzoom: 5, layout: {
         'text-field': ['get','malware'], 'text-size': 8, 'text-font': ['JetBrains Mono Bold', 'Open Sans Bold'],
         'text-offset': [0, 1.5], 'text-max-width': 10, 'text-allow-overlap': false,
-      }, paint: { 'text-color': '#D32F2F', 'text-halo-color': '#111', 'text-halo-width': 1.5, 'text-opacity': 0.85 }});
+      }, paint: { 'text-color': '#B0492F', 'text-halo-color': '#111', 'text-halo-width': 1.5, 'text-opacity': 0.85 }});
 
       // ── NETWORK INTEL MESH (SDK STYLE) ──
       map.addLayer({ id: 'network-mesh-atmo', type: 'line', source: 'network-mesh', paint: {
@@ -350,52 +350,52 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
 
 
       map.addLayer({ id: 'gdelt-dots', type: 'circle', source: 'gdelt', paint: {
-        'circle-radius': 4, 'circle-color': '#D32F2F', 'circle-opacity': 0.5, 'circle-stroke-width': 1, 'circle-stroke-color': '#D32F2F', 'circle-stroke-opacity': 0.25,
+        'circle-radius': 4, 'circle-color': '#B0492F', 'circle-opacity': 0.5, 'circle-stroke-width': 1, 'circle-stroke-color': '#B0492F', 'circle-stroke-opacity': 0.25,
       }});
 
       // GPS Jamming — crimson
-      map.addLayer({ id: 'jam-fill', type: 'circle', source: 'gps-jamming', paint: { 'circle-radius': 30, 'circle-color': '#D32F2F', 'circle-opacity': 0.12, 'circle-blur': 1 }});
+      map.addLayer({ id: 'jam-fill', type: 'circle', source: 'gps-jamming', paint: { 'circle-radius': 30, 'circle-color': '#B0492F', 'circle-opacity': 0.12, 'circle-blur': 1 }});
       map.addLayer({ id: 'jam-label', type: 'symbol', source: 'gps-jamming', layout: {
         'text-field': ['concat','GPS JAM ',['to-string',['get','severity']],'%'], 'text-size': 10, 'text-font': ['Open Sans Bold'], 'text-allow-overlap': true,
-      }, paint: { 'text-color': '#D32F2F', 'text-halo-color': '#000', 'text-halo-width': 1 }});
+      }, paint: { 'text-color': '#B0492F', 'text-halo-color': '#000', 'text-halo-width': 1 }});
 
       // Weather Events (NASA EONET) — deep violet
       map.addLayer({ id: 'weather-glow', type: 'circle', source: 'weather', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,12, 5,20, 10,30],
-        'circle-color': '#7E57C2', 'circle-opacity': 0.08, 'circle-blur': 1,
+        'circle-color': '#8FA376', 'circle-opacity': 0.08, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'weather-dots', type: 'circle', source: 'weather', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,5, 5,8, 10,14],
-        'circle-color': ['match', ['get','icon'], 'cyclone','#7E57C2', 'volcano','#D32F2F', '#7E57C2'],
+        'circle-color': ['match', ['get','icon'], 'cyclone','#8FA376', 'volcano','#B0492F', '#8FA376'],
         'circle-opacity': 0.75,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': '#7E57C2', 'circle-stroke-opacity': 0.35,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': '#8FA376', 'circle-stroke-opacity': 0.35,
       }});
       map.addLayer({ id: 'weather-label', type: 'symbol', source: 'weather', layout: {
         'text-field': ['get','title'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
         'text-offset': [0, 2], 'text-max-width': 14, 'text-allow-overlap': false,
-      }, paint: { 'text-color': '#7E57C2', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.8 }});
+      }, paint: { 'text-color': '#8FA376', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.8 }});
 
       // Nuclear Infrastructure — teal / amber risk
       map.addLayer({ id: 'infra-glow', type: 'circle', source: 'infrastructure', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,8, 5,14, 10,22],
-        'circle-color': ['case', ['in', 'SEISMIC RISK', ['get', 'status']], '#E65100', '#26A69A'],
+        'circle-color': ['case', ['in', 'SEISMIC RISK', ['get', 'status']], '#D29B3B', '#5F8443'],
         'circle-opacity': 0.08, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'infra-dots', type: 'circle', source: 'infrastructure', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,4, 5,6, 10,10],
         'circle-color': ['case', 
-          ['in', 'SEISMIC RISK', ['get', 'status']], '#E65100',
-          ['==', ['get','status'], 'Active Conflict Zone'], '#D32F2F', 
-          ['==', ['get','status'], 'Destroyed / Decommissioning'], '#546E7A', 
-          '#26A69A'
+          ['in', 'SEISMIC RISK', ['get', 'status']], '#D29B3B',
+          ['==', ['get','status'], 'Active Conflict Zone'], '#B0492F', 
+          ['==', ['get','status'], 'Destroyed / Decommissioning'], '#62704E', 
+          '#5F8443'
         ],
         'circle-opacity': 0.75,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': ['case', ['in', 'SEISMIC RISK', ['get', 'status']], '#E65100', '#26A69A'], 'circle-stroke-opacity': 0.35,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': ['case', ['in', 'SEISMIC RISK', ['get', 'status']], '#D29B3B', '#5F8443'], 'circle-stroke-opacity': 0.35,
       }});
       map.addLayer({ id: 'infra-label', type: 'symbol', source: 'infrastructure', minzoom: 5, layout: {
         'text-field': ['get','name'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
         'text-offset': [0, 2], 'text-max-width': 14, 'text-allow-overlap': false,
-      }, paint: { 'text-color': ['case', ['in', 'SEISMIC RISK', ['get', 'status']], '#E65100', '#26A69A'], 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.7 }});
+      }, paint: { 'text-color': ['case', ['in', 'SEISMIC RISK', ['get', 'status']], '#D29B3B', '#5F8443'], 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.7 }});
 
       // Satellites
       map.addLayer({ id: 'sat-glow', type: 'circle', source: 'satellites', paint: {
@@ -408,65 +408,65 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       // Maritime — ports & naval bases — ocean teal
       map.addLayer({ id: 'maritime-glow', type: 'circle', source: 'maritime', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,6, 5,12, 10,20],
-        'circle-color': ['match', ['get','type'], 'naval','#D32F2F', 'energy','#E65100', '#26C6DA'],
+        'circle-color': ['match', ['get','type'], 'naval','#B0492F', 'energy','#D29B3B', '#5F8443'],
         'circle-opacity': 0.08, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'maritime-dots', type: 'circle', source: 'maritime', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,3, 5,5, 10,9],
-        'circle-color': ['match', ['get','type'], 'naval','#D32F2F', 'energy','#E65100', '#26C6DA'],
+        'circle-color': ['match', ['get','type'], 'naval','#B0492F', 'energy','#D29B3B', '#5F8443'],
         'circle-opacity': 0.8,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': ['match', ['get','type'], 'naval','#D32F2F', 'energy','#E65100', '#26C6DA'], 'circle-stroke-opacity': 0.35,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': ['match', ['get','type'], 'naval','#B0492F', 'energy','#D29B3B', '#5F8443'], 'circle-stroke-opacity': 0.35,
       }});
       map.addLayer({ id: 'maritime-label', type: 'symbol', source: 'maritime', minzoom: 4, layout: {
         'text-field': ['get','name'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
         'text-offset': [0, 1.8], 'text-max-width': 12, 'text-allow-overlap': false,
-      }, paint: { 'text-color': '#26C6DA', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.7 }});
+      }, paint: { 'text-color': '#5F8443', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.7 }});
 
       // Maritime chokepoints — amber threat spectrum
       map.addLayer({ id: 'choke-glow', type: 'circle', source: 'maritime-choke', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,10, 5,18, 10,28],
-        'circle-color': '#E65100', 'circle-opacity': 0.1, 'circle-blur': 1,
+        'circle-color': '#D29B3B', 'circle-opacity': 0.1, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'choke-dots', type: 'circle', source: 'maritime-choke', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,4, 5,7, 10,12],
-        'circle-color': ['match', ['get','risk'], 'CRITICAL','#D32F2F', 'HIGH','#E65100', 'ELEVATED','#F9A825', '#26A69A'],
+        'circle-color': ['match', ['get','risk'], 'CRITICAL','#B0492F', 'HIGH','#D29B3B', 'ELEVATED','#D29B3B', '#5F8443'],
         'circle-opacity': 0.85,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': '#E65100', 'circle-stroke-opacity': 0.4,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': '#D29B3B', 'circle-stroke-opacity': 0.4,
       }});
       map.addLayer({ id: 'choke-label', type: 'symbol', source: 'maritime-choke', minzoom: 3, layout: {
         'text-field': ['get','name'], 'text-size': 10, 'text-font': ['Open Sans Bold'],
         'text-offset': [0, 2], 'text-max-width': 14, 'text-allow-overlap': false,
-      }, paint: { 'text-color': '#E65100', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.9 }});
+      }, paint: { 'text-color': '#D29B3B', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.9 }});
 
       // Live News — muted rose
       map.addLayer({ id: 'news-glow', type: 'circle', source: 'live-news', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,8, 5,14, 10,22],
-        'circle-color': '#EC407A', 'circle-opacity': 0.08, 'circle-blur': 1,
+        'circle-color': '#E9E5D6', 'circle-opacity': 0.08, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'news-dots', type: 'circle', source: 'live-news', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,4, 5,6, 10,10],
-        'circle-color': '#EC407A', 'circle-opacity': 0.8,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': '#EC407A', 'circle-stroke-opacity': 0.4,
+        'circle-color': '#E9E5D6', 'circle-opacity': 0.8,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': '#E9E5D6', 'circle-stroke-opacity': 0.4,
       }});
       map.addLayer({ id: 'news-label', type: 'symbol', source: 'live-news', minzoom: 4, layout: {
         'text-field': ['get','name'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
         'text-offset': [0, 1.8], 'text-max-width': 12, 'text-allow-overlap': false,
-      }, paint: { 'text-color': '#EC407A', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.8 }});
+      }, paint: { 'text-color': '#E9E5D6', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.8 }});
 
       // SIGINT RSS news - gold markers
       map.addLayer({ id: 'sigint-news-glow', type: 'circle', source: 'sigint-news', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,6, 5,10, 10,18],
-        'circle-color': '#D4AF37', 'circle-opacity': 0.12, 'circle-blur': 1,
+        'circle-color': '#5F8443', 'circle-opacity': 0.12, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'sigint-news-dots', type: 'circle', source: 'sigint-news', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,3, 5,5, 10,8],
-        'circle-color': '#D4AF37', 'circle-opacity': 0.9,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': '#FFF8DC', 'circle-stroke-opacity': 0.6,
+        'circle-color': '#5F8443', 'circle-opacity': 0.9,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': '#E9E5D6', 'circle-stroke-opacity': 0.6,
       }});
       map.addLayer({ id: 'sigint-news-label', type: 'symbol', source: 'sigint-news', minzoom: 5, layout: {
         'text-field': ['get','source'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
         'text-offset': [0, 1.6], 'text-max-width': 10, 'text-allow-overlap': false,
-      }, paint: { 'text-color': '#D4AF37', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.85 }});
+      }, paint: { 'text-color': '#5F8443', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.85 }});
 
       // ══ IP SWEEP — Neighborhood device visualization ══
       map.addLayer({ id: 'sweep-connections', type: 'line', source: 'ip-sweep-connections', paint: {
@@ -475,7 +475,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       map.addLayer({ id: 'sweep-pulse-ring', type: 'circle', source: 'ip-sweep-pulse', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 8,40, 12,80, 16,160],
         'circle-color': 'transparent', 'circle-opacity': 0.6,
-        'circle-stroke-width': 2, 'circle-stroke-color': '#FF3D3D', 'circle-stroke-opacity': 0.4,
+        'circle-stroke-width': 2, 'circle-stroke-color': '#B0492F', 'circle-stroke-opacity': 0.4,
       }});
       map.addLayer({ id: 'sweep-device-glow', type: 'circle', source: 'ip-sweep-devices', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 8,8, 12,16, 16,30],
@@ -497,17 +497,17 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       // ══ SCAN TARGETS — Geolocated individual scans ══
       map.addLayer({ id: 'scan-targets-glow', type: 'circle', source: 'scan-targets', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,12, 5,25, 10,40],
-        'circle-color': '#D32F2F', 'circle-opacity': 0.15, 'circle-blur': 1,
+        'circle-color': '#B0492F', 'circle-opacity': 0.15, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'scan-targets-dots', type: 'circle', source: 'scan-targets', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,5, 5,8, 10,12],
-        'circle-color': '#D32F2F', 'circle-opacity': 0.9,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': '#ECEFF1', 'circle-stroke-opacity': 0.7,
+        'circle-color': '#B0492F', 'circle-opacity': 0.9,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': '#E9E5D6', 'circle-stroke-opacity': 0.7,
       }});
       map.addLayer({ id: 'scan-targets-label', type: 'symbol', source: 'scan-targets', layout: {
         'text-field': ['get', 'id'], 'text-size': 11, 'text-font': ['Open Sans Bold'],
         'text-offset': [0, 2], 'text-max-width': 14, 'text-allow-overlap': false,
-      }, paint: { 'text-color': '#D32F2F', 'text-halo-color': '#000', 'text-halo-width': 1.5, 'text-opacity': 0.9 }});
+      }, paint: { 'text-color': '#B0492F', 'text-halo-color': '#000', 'text-halo-width': 1.5, 'text-opacity': 0.9 }});
 
       // Flight layers (WebGL symbol — GPU rendered, handles 50K+ smooth)
       const flightLayers = [
@@ -538,19 +538,19 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       // Radiation — violet base, threat spectrum for danger/warning
       map.addLayer({ id: 'rad-glow', type: 'circle', source: 'radiation', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,10, 5,20, 10,40],
-        'circle-color': ['match', ['get','status'], 'DANGER','#D32F2F', 'WARNING','#E65100', '#7E57C2'],
+        'circle-color': ['match', ['get','status'], 'DANGER','#B0492F', 'WARNING','#D29B3B', '#8FA376'],
         'circle-opacity': 0.12, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'rad-dots', type: 'circle', source: 'radiation', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,4, 5,6, 10,8],
-        'circle-color': ['match', ['get','status'], 'DANGER','#D32F2F', 'WARNING','#E65100', '#7E57C2'],
+        'circle-color': ['match', ['get','status'], 'DANGER','#B0492F', 'WARNING','#D29B3B', '#8FA376'],
         'circle-opacity': 0.85,
-        'circle-stroke-width': 1.5, 'circle-stroke-color': ['match', ['get','status'], 'DANGER','#D32F2F', 'WARNING','#E65100', '#7E57C2'], 'circle-stroke-opacity': 0.35,
+        'circle-stroke-width': 1.5, 'circle-stroke-color': ['match', ['get','status'], 'DANGER','#B0492F', 'WARNING','#D29B3B', '#8FA376'], 'circle-stroke-opacity': 0.35,
       }});
       map.addLayer({ id: 'rad-label', type: 'symbol', source: 'radiation', minzoom: 5, layout: {
         'text-field': ['concat', ['to-string', ['get','reading']], ' nSv/h'], 'text-size': 9, 'text-font': ['Open Sans Bold'],
         'text-offset': [0, 1.5], 'text-allow-overlap': false,
-      }, paint: { 'text-color': ['match', ['get','status'], 'DANGER','#D32F2F', 'WARNING','#E65100', '#7E57C2'], 'text-halo-color': '#000', 'text-halo-width': 1 }});
+      }, paint: { 'text-color': ['match', ['get','status'], 'DANGER','#B0492F', 'WARNING','#D29B3B', '#8FA376'], 'text-halo-color': '#000', 'text-halo-width': 1 }});
 
       // ══ GECKO SDK — Lattice Intelligence Mesh ══
       // Polybolos Style: Delicate, translucent, steel-blue splined mesh
@@ -558,7 +558,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       // ── SEA domain (Distinct Solid Lines) ──
       // Removed glow to match the clean, diagrammatic look of submarinecablemap.com
       map.addLayer({ id: 'sdk-sea', type: 'line', source: 'sdk-links', filter: ['==',['get','domain'],'SEA'], paint: {
-        'line-color': ['coalesce', ['get', 'color'], '#1976D2'], // Single solid color from properties
+        'line-color': ['coalesce', ['get', 'color'], '#294922'], // Single solid color from properties
         'line-width': ['interpolate',['linear'],['zoom'], 1, 0.8, 5, 1.5, 10, 2.5],
         'line-opacity': ['interpolate',['linear'],['zoom'], 1, 0.3, 5, 0.5, 10, 0.7],
       }});
@@ -571,32 +571,32 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         'line-blur': 3,
       }});
       map.addLayer({ id: 'sdk-air-glow', type: 'line', source: 'sdk-links', filter: ['==',['get','domain'],'AIR'], paint: {
-        'line-color': '#80DEEA',
+        'line-color': '#8FA376',
         'line-width': ['interpolate',['linear'],['zoom'], 1, 0.8, 5, 2, 10, 4],
         'line-opacity': ['interpolate',['linear'],['zoom'], 1, 0.08, 5, 0.12, 10, 0.18],
         'line-blur': 1,
       }});
       map.addLayer({ id: 'sdk-air', type: 'line', source: 'sdk-links', filter: ['==',['get','domain'],'AIR'], paint: {
-        'line-color': '#B2EBF2',
+        'line-color': '#8FA376',
         'line-width': ['interpolate',['linear'],['zoom'], 1, 0.15, 5, 0.6, 10, 1.2],
         'line-opacity': ['interpolate',['linear'],['zoom'], 1, 0.2, 5, 0.35, 10, 0.5],
       }});
 
       // ── INTEL domain (Deep Steel / Violet) ──
       map.addLayer({ id: 'sdk-intel-atmo', type: 'line', source: 'sdk-links', filter: ['==',['get','domain'],'INTEL'], paint: {
-        'line-color': '#7986CB',
+        'line-color': '#8FA376',
         'line-width': ['interpolate',['linear'],['zoom'], 1, 2.5, 5, 7, 10, 12],
         'line-opacity': 0.06,
         'line-blur': 5,
       }});
       map.addLayer({ id: 'sdk-intel-glow', type: 'line', source: 'sdk-links', filter: ['==',['get','domain'],'INTEL'], paint: {
-        'line-color': '#9FA8DA',
+        'line-color': '#8FA376',
         'line-width': ['interpolate',['linear'],['zoom'], 1, 1.2, 5, 3, 10, 6],
         'line-opacity': ['interpolate',['linear'],['zoom'], 1, 0.12, 5, 0.18, 10, 0.25],
         'line-blur': 2,
       }});
       map.addLayer({ id: 'sdk-intel', type: 'line', source: 'sdk-links', filter: ['==',['get','domain'],'INTEL'], paint: {
-        'line-color': '#C5CAE9',
+        'line-color': '#C9D8A8',
         'line-width': ['interpolate',['linear'],['zoom'], 1, 0.3, 5, 1, 10, 2],
         'line-opacity': ['interpolate',['linear'],['zoom'], 1, 0.3, 5, 0.45, 10, 0.7],
       }});
@@ -604,13 +604,13 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       // Maritime Ships (moving entities) — ocean teal family
       map.addLayer({ id: 'ship-dots', type: 'circle', source: 'maritime-ships', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,2, 5,4, 10,6],
-        'circle-color': ['match', ['get','type'], 'military','#D32F2F', 'tanker','#E65100', 'cargo','#26C6DA', '#B0BEC5'],
+        'circle-color': ['match', ['get','type'], 'military','#B0492F', 'tanker','#D29B3B', 'cargo','#5F8443', '#8FA376'],
         'circle-opacity': 0.75,
       }});
       map.addLayer({ id: 'ship-label', type: 'symbol', source: 'maritime-ships', minzoom: 5, layout: {
         'text-field': ['get','name'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
         'text-offset': [0, 1.2], 'text-allow-overlap': false,
-      }, paint: { 'text-color': ['match', ['get','type'], 'military','#D32F2F', 'tanker','#E65100', 'cargo','#26C6DA', '#B0BEC5'], 'text-halo-color': '#000', 'text-halo-width': 1 }});
+      }, paint: { 'text-color': ['match', ['get','type'], 'military','#B0492F', 'tanker','#D29B3B', 'cargo','#5F8443', '#8FA376'], 'text-halo-color': '#000', 'text-halo-width': 1 }});
 
       setMapReady(true);
     });
@@ -648,25 +648,25 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         const p = e.features[0].properties as any;
         const coords = (e.features[0].geometry as any).coordinates;
         const cs = (p.callsign||'').trim();
-        popup(coords, `<div style="${pStyle}border:1px solid rgba(212,175,55,0.3);">
+        popup(coords, `<div style="${pStyle}border:1px solid rgba(95,132,67,0.3);">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-            <span style="color:#D4AF37;font-size:16px;font-weight:700;letter-spacing:0.1em;">${htmlEsc(cs)}</span>
-            <span style="color:#5C5A54;font-size:10px;">${htmlEsc(p.icao24||'')}</span>
+            <span style="color:#5F8443;font-size:16px;font-weight:700;letter-spacing:0.1em;">${htmlEsc(cs)}</span>
+            <span style="color:#62704E;font-size:10px;">${htmlEsc(p.icao24||'')}</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:11px;">
-            <div><span style="color:#5C5A54;font-size:9px;">MODEL</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.model||'—')}</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">ALT</span><br/><span style="color:#00E5FF;">${p.alt?Math.round(p.alt)+'m':'—'}</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">SPEED</span><br/><span style="color:#E8E6E0;">${p.speed_knots||'—'}kt</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">HDG</span><br/><span style="color:#E8E6E0;">${Math.round(p.heading||0)}°</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">REG</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.registration||'—')}</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">POS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(2)},${coords[0].toFixed(2)}</span></div>
+            <div><span style="color:#62704E;font-size:9px;">MODEL</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.model||'—')}</span></div>
+            <div><span style="color:#62704E;font-size:9px;">ALT</span><br/><span style="color:#D29B3B;">${p.alt?Math.round(p.alt)+'m':'—'}</span></div>
+            <div><span style="color:#62704E;font-size:9px;">SPEED</span><br/><span style="color:#E9E5D6;">${p.speed_knots||'—'}kt</span></div>
+            <div><span style="color:#62704E;font-size:9px;">HDG</span><br/><span style="color:#E9E5D6;">${Math.round(p.heading||0)}°</span></div>
+            <div><span style="color:#62704E;font-size:9px;">REG</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.registration||'—')}</span></div>
+            <div><span style="color:#62704E;font-size:9px;">POS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(2)},${coords[0].toFixed(2)}</span></div>
           </div>
           <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
-            <a href="https://www.flightaware.com/live/flight/${encodeURIComponent(cs)}" target="_blank" style="${linkStyle}color:#D4AF37;border:1px solid rgba(212,175,55,0.4);background:rgba(212,175,55,0.1);">⚡ FLIGHTAWARE</a>
-            <a href="https://globe.adsbexchange.com/?icao=${encodeURIComponent(p.icao24||'')}" target="_blank" style="${linkStyle}color:#00E5FF;border:1px solid rgba(0,229,255,0.4);background:rgba(0,229,255,0.1);">📡 ADS-B</a>
-            <a href="https://www.radarbox.com/data/flights/${encodeURIComponent(cs)}" target="_blank" style="${linkStyle}color:#FF69B4;border:1px solid rgba(255,105,180,0.4);background:rgba(255,105,180,0.1);">📍 RADARBOX</a>
+            <a href="https://www.flightaware.com/live/flight/${encodeURIComponent(cs)}" target="_blank" style="${linkStyle}color:#5F8443;border:1px solid rgba(95,132,67,0.4);background:rgba(95,132,67,0.1);">⚡ FLIGHTAWARE</a>
+            <a href="https://globe.adsbexchange.com/?icao=${encodeURIComponent(p.icao24||'')}" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(210,155,59,0.4);background:rgba(210,155,59,0.1);">📡 ADS-B</a>
+            <a href="https://www.radarbox.com/data/flights/${encodeURIComponent(cs)}" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(255,105,180,0.4);background:rgba(255,105,180,0.1);">📍 RADARBOX</a>
           </div>
-          <button onclick="window.openGeckoIntel({ callsign: '${idSafe(cs)}', icao24: '${idSafe(p.icao24||'')}', model: '${idSafe(p.model||'')}', registration: '${idSafe(p.registration||'')}' })" style="width:100%;margin-top:8px;padding:6px 12px;background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.5);color:#D4AF37;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ DEEP DIVE INTEL ]</button>
+          <button onclick="window.openGeckoIntel({ callsign: '${idSafe(cs)}', icao24: '${idSafe(p.icao24||'')}', model: '${idSafe(p.model||'')}', registration: '${idSafe(p.registration||'')}' })" style="width:100%;margin-top:8px;padding:6px 12px;background:rgba(95,132,67,0.15);border:1px solid rgba(95,132,67,0.5);color:#5F8443;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ DEEP DIVE INTEL ]</button>
         </div>`);
       });
       map.on('mouseenter', layer, () => { map.getCanvas().style.cursor = 'pointer'; });
@@ -702,14 +702,14 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      popup(coords, `<div style="${pStyle}border:1px solid rgba(255,149,0,0.3);">
-        <div style="color:#FF9500;font-size:14px;font-weight:700;margin-bottom:4px;">M${p.magnitude} EARTHQUAKE</div>
-        <div style="font-size:9px;color:#E8E6E0;margin-bottom:8px;">${htmlEsc(p.place||'Unknown location')}</div>
+      popup(coords, `<div style="${pStyle}border:1px solid rgba(210,155,59,0.3);">
+        <div style="color:#D29B3B;font-size:14px;font-weight:700;margin-bottom:4px;">M${p.magnitude} EARTHQUAKE</div>
+        <div style="font-size:9px;color:#E9E5D6;margin-bottom:8px;">${htmlEsc(p.place||'Unknown location')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#5C5A54;">DEPTH</span><br/><span style="color:#E8E6E0;">${p.depth||'—'}km</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}, ${coords[0].toFixed(3)}</span></div>
+          <div><span style="color:#62704E;">DEPTH</span><br/><span style="color:#E9E5D6;">${p.depth||'—'}km</span></div>
+          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}, ${coords[0].toFixed(3)}</span></div>
         </div>
-        <a href="${p.source === 'NIGGG-BAS' ? 'https://ndc.niggg.bas.bg/' : `https://earthquake.usgs.gov/earthquakes/eventpage/${encodeURIComponent(p.id||'')}`}" target="_blank" style="${linkStyle}color:#FF9500;border:1px solid rgba(255,149,0,0.4);background:rgba(255,149,0,0.1);">📊 ${p.source === 'NIGGG-BAS' ? 'NIGGG-BAS' : 'USGS DETAILS'}</a>
+        <a href="${p.source === 'NIGGG-BAS' ? 'https://ndc.niggg.bas.bg/' : `https://earthquake.usgs.gov/earthquakes/eventpage/${encodeURIComponent(p.id||'')}`}" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(210,155,59,0.4);background:rgba(210,155,59,0.1);">📊 ${p.source === 'NIGGG-BAS' ? 'NIGGG-BAS' : 'USGS DETAILS'}</a>
       </div>`);
     });
 
@@ -718,14 +718,14 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      popup(coords, `<div style="${pStyle}border:1px solid rgba(212,175,55,0.3);">
-        <div style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.1em;margin-bottom:4px;">🛰️ ${htmlEsc(p.name)}</div>
+      popup(coords, `<div style="${pStyle}border:1px solid rgba(95,132,67,0.3);">
+        <div style="color:#5F8443;font-size:12px;font-weight:700;letter-spacing:0.1em;margin-bottom:4px;">🛰️ ${htmlEsc(p.name)}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">MISSION</span><br/><span style="color:${colorSafe(p.color)};">${htmlEsc(p.mission||'Unknown')}</span></div>
-          <div><span style="color:#5C5A54;">ALT</span><br/><span style="color:#00E5FF;">${p.alt ? p.alt+' km' : '—'}</span></div>
-          <div><span style="color:#5C5A54;">POS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(2)}°, ${coords[0].toFixed(2)}°</span></div>
+          <div><span style="color:#62704E;">MISSION</span><br/><span style="color:${colorSafe(p.color)};">${htmlEsc(p.mission||'Unknown')}</span></div>
+          <div><span style="color:#62704E;">ALT</span><br/><span style="color:#D29B3B;">${p.alt ? p.alt+' km' : '—'}</span></div>
+          <div><span style="color:#62704E;">POS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(2)}°, ${coords[0].toFixed(2)}°</span></div>
         </div>
-        ${p.noradId ? `<a href="https://www.n2yo.com/satellite/?s=${p.noradId}" target="_blank" style="display:block;text-align:center;padding:4px;margin-top:6px;font-size:8px;font-family:monospace;letter-spacing:0.1em;text-decoration:none;color:#00E5FF;border:1px solid rgba(0,229,255,0.4);background:rgba(0,229,255,0.1);border-radius:2px;cursor:pointer;">📡 TRACK ON N2YO</a>` : ''}
+        ${p.noradId ? `<a href="https://www.n2yo.com/satellite/?s=${p.noradId}" target="_blank" style="display:block;text-align:center;padding:4px;margin-top:6px;font-size:8px;font-family:monospace;letter-spacing:0.1em;text-decoration:none;color:#D29B3B;border:1px solid rgba(210,155,59,0.4);background:rgba(210,155,59,0.1);border-radius:2px;cursor:pointer;">📡 TRACK ON N2YO</a>` : ''}
       </div>`);
     });
 
@@ -735,12 +735,12 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
       popup(coords, `<div style="${pStyle}border:1px solid rgba(255,107,0,0.3);">
-        <div style="color:#FF6B00;font-size:12px;font-weight:700;margin-bottom:6px;">🔥 ACTIVE FIRE DETECTED</div>
+        <div style="color:#D29B3B;font-size:12px;font-weight:700;margin-bottom:6px;">🔥 ACTIVE FIRE DETECTED</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">BRIGHTNESS</span><br/><span style="color:#FF6B00;">${p.brightness||'—'}K</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#62704E;">BRIGHTNESS</span><br/><span style="color:#D29B3B;">${p.brightness||'—'}K</span></div>
+          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
-        <a href="https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;l:noaa20-viirs,viirs,modis_a,modis_t;@${coords[0]},${coords[1]},10z" target="_blank" style="${linkStyle}color:#FF6B00;border:1px solid rgba(255,107,0,0.4);background:rgba(255,107,0,0.1);">🛰️ NASA FIRMS MAP</a>
+        <a href="https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;l:noaa20-viirs,viirs,modis_a,modis_t;@${coords[0]},${coords[1]},10z" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(255,107,0,0.4);background:rgba(255,107,0,0.1);">🛰️ NASA FIRMS MAP</a>
       </div>`);
     });
 
@@ -750,22 +750,22 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
       const tType = (p.threat_type || 'MALWARE').toUpperCase();
-      const statusColor = p.status === 'online' ? '#39FF14' : '#FF1744';
+      const statusColor = p.status === 'online' ? '#5F8443' : '#B0492F';
       
       popup(coords, `<div style="${pStyle}border:1px solid rgba(255,23,68,0.4);box-shadow:inset 0 0 12px rgba(255,23,68,0.1);">
         <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,23,68,0.3);padding-bottom:6px;margin-bottom:8px;">
-          <div style="color:#FF1744;font-size:12px;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 4px rgba(255,23,68,0.5);">[ ${htmlEsc(tType)} ]</div>
-          <div style="color:#5C5A54;font-size:9px;">${htmlEsc(p.country || 'UNKNOWN')}</div>
+          <div style="color:#B0492F;font-size:12px;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 4px rgba(255,23,68,0.5);">[ ${htmlEsc(tType)} ]</div>
+          <div style="color:#62704E;font-size:9px;">${htmlEsc(p.country || 'UNKNOWN')}</div>
         </div>
-        <div style="color:#E8E6E0;font-size:11px;font-weight:bold;margin-bottom:10px;">${htmlEsc(p.malware || 'Unidentified Threat Payload')}</div>
+        <div style="color:#E9E5D6;font-size:11px;font-weight:bold;margin-bottom:10px;">${htmlEsc(p.malware || 'Unidentified Threat Payload')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:12px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
-          <div><span style="color:#5C5A54;">TARGET IP</span><br/><span style="color:#00E5FF;font-family:monospace;">${htmlEsc(p.ip)}</span></div>
-          <div><span style="color:#5C5A54;">STATUS</span><br/><span style="color:${statusColor};">${(p.status||'UNKNOWN').toUpperCase()}</span></div>
+          <div><span style="color:#62704E;">TARGET IP</span><br/><span style="color:#D29B3B;font-family:monospace;">${htmlEsc(p.ip)}</span></div>
+          <div><span style="color:#62704E;">STATUS</span><br/><span style="color:${statusColor};">${(p.status||'UNKNOWN').toUpperCase()}</span></div>
         </div>
         <div style="display:flex;gap:6px;">
-          <a href="https://feodotracker.abuse.ch/browse/" target="_blank" style="${linkStyle}flex:1;text-align:center;color:#E8E6E0;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);">THREAT INTEL ↗</a>
+          <a href="https://feodotracker.abuse.ch/browse/" target="_blank" style="${linkStyle}flex:1;text-align:center;color:#E9E5D6;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);">THREAT INTEL ↗</a>
         </div>
-        <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${idSafe(p.ip)}', threat_type: '${idSafe(p.malware || p.threat_type || '')}', status: '${idSafe(p.status || '')}' })" style="width:100%;margin-top:8px;padding:8px 12px;background:linear-gradient(90deg, rgba(255,23,68,0.1) 0%, rgba(255,23,68,0.2) 100%);border:1px solid rgba(255,23,68,0.6);color:#FF1744;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.15em;border-radius:4px;cursor:pointer;transition:all 0.2s;">DEEP DIVE ANALYTICS</button>
+        <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${idSafe(p.ip)}', threat_type: '${idSafe(p.malware || p.threat_type || '')}', status: '${idSafe(p.status || '')}' })" style="width:100%;margin-top:8px;padding:8px 12px;background:linear-gradient(90deg, rgba(255,23,68,0.1) 0%, rgba(255,23,68,0.2) 100%);border:1px solid rgba(255,23,68,0.6);color:#B0492F;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.15em;border-radius:4px;cursor:pointer;transition:all 0.2s;">DEEP DIVE ANALYTICS</button>
       </div>`);
     });
 
@@ -789,10 +789,10 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         else sourceUrl = 'https://liveuamap.com/'; // Global fallback
       }
 
-      popup(coords, `<div style="${pStyle}border:1px solid rgba(255,61,61,0.3);">
-        <div style="color:#FF3D3D;font-size:12px;font-weight:700;margin-bottom:6px;">⚠️ CONFLICT EVENT</div>
-        <div style="font-size:9px;color:#E8E6E0;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.name||'Unclassified incident')}</div>
-        <a href="${urlSafe(sourceUrl)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:#FF3D3D;border:1px solid rgba(255,61,61,0.4);background:rgba(255,61,61,0.15);display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>
+      popup(coords, `<div style="${pStyle}border:1px solid rgba(176,73,47,0.3);">
+        <div style="color:#B0492F;font-size:12px;font-weight:700;margin-bottom:6px;">⚠️ CONFLICT EVENT</div>
+        <div style="font-size:9px;color:#E9E5D6;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.name||'Unclassified incident')}</div>
+        <a href="${urlSafe(sourceUrl)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:#B0492F;border:1px solid rgba(176,73,47,0.4);background:rgba(176,73,47,0.15);display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>
       </div>`);
     });
 
@@ -801,13 +801,13 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      const color = p.severity === 'war' ? '#FF1744' : p.severity === 'high' ? '#FF9500' : '#FFD500';
+      const color = p.severity === 'war' ? '#B0492F' : p.severity === 'high' ? '#D29B3B' : '#8FA376';
       popup(coords, `<div style="${pStyle}border:1px solid ${color}40;">
         <div style="color:${color};font-size:12px;font-weight:700;margin-bottom:6px;">⚠️ ${htmlEsc(p.label || 'WARNING EVENT')}</div>
-        <div style="font-size:10px;color:#E8E6E0;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.description || 'Global event detected at this location.')}</div>
+        <div style="font-size:10px;color:#E9E5D6;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.description || 'Global event detected at this location.')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">SEVERITY</span><br/><span style="color:${color};">${(p.severity||'unknown').toUpperCase()}</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#62704E;">SEVERITY</span><br/><span style="color:${color};">${(p.severity||'unknown').toUpperCase()}</span></div>
+          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
         ${p.sourceUrl ? `<a href="${urlSafe(p.sourceUrl)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>` : ''}
       </div>`);
@@ -817,10 +817,10 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
     // ── NIGERIA INTEL clicks (Gecko) ──
     const ngColorFor = (p: any, fallback: string) => {
       const s = (p.severity || '').toLowerCase();
-      if (s === 'critical') return '#FF1744';
-      if (s === 'high') return '#FF3D3D';
-      if (s === 'medium') return '#FF9500';
-      if (s === 'low') return '#FFD500';
+      if (s === 'critical') return '#B0492F';
+      if (s === 'high') return '#B0492F';
+      if (s === 'medium') return '#D29B3B';
+      if (s === 'low') return '#8FA376';
       return fallback;
     };
     const ngPointPopup = (kindLabel: string, fallback: string) => (e: any) => {
@@ -830,15 +830,15 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const color = ngColorFor(p, fallback);
       popup(coords, `<div style="${pStyle}border:1px solid ${color}40;">
         <div style="color:${color};font-size:9px;font-weight:700;letter-spacing:0.12em;margin-bottom:4px;">${kindLabel}${p.seed ? ' · SEED' : ''}</div>
-        <div style="color:#E8E6E0;font-size:12px;font-weight:700;margin-bottom:6px;">${htmlEsc(p.label || 'Untitled')}</div>
-        ${p.description ? `<div style="font-size:10px;color:#B8B6B0;margin-bottom:8px;line-height:1.45;">${htmlEsc(p.description)}</div>` : ''}
+        <div style="color:#E9E5D6;font-size:12px;font-weight:700;margin-bottom:6px;">${htmlEsc(p.label || 'Untitled')}</div>
+        ${p.description ? `<div style="font-size:10px;color:#8FA376;margin-bottom:8px;line-height:1.45;">${htmlEsc(p.description)}</div>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          ${p.category ? `<div><span style="color:#5C5A54;">CATEGORY</span><br/><span style="color:${color};">${htmlEsc(String(p.category).toUpperCase())}</span></div>` : ''}
-          ${p.severity ? `<div><span style="color:#5C5A54;">SEVERITY</span><br/><span style="color:${color};">${htmlEsc(String(p.severity).toUpperCase())}</span></div>` : ''}
-          ${p.state ? `<div><span style="color:#5C5A54;">STATE</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.state)}</span></div>` : ''}
-          ${p.date ? `<div><span style="color:#5C5A54;">DATE</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.date)}</span></div>` : ''}
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
-          ${p.source ? `<div><span style="color:#5C5A54;">SOURCE</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.source)}</span></div>` : ''}
+          ${p.category ? `<div><span style="color:#62704E;">CATEGORY</span><br/><span style="color:${color};">${htmlEsc(String(p.category).toUpperCase())}</span></div>` : ''}
+          ${p.severity ? `<div><span style="color:#62704E;">SEVERITY</span><br/><span style="color:${color};">${htmlEsc(String(p.severity).toUpperCase())}</span></div>` : ''}
+          ${p.state ? `<div><span style="color:#62704E;">STATE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.state)}</span></div>` : ''}
+          ${p.date ? `<div><span style="color:#62704E;">DATE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.date)}</span></div>` : ''}
+          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          ${p.source ? `<div><span style="color:#62704E;">SOURCE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.source)}</span></div>` : ''}
         </div>
         ${p.sourceUrl ? `<a href="${urlSafe(p.sourceUrl)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>` : ''}
       </div>`);
@@ -847,29 +847,29 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      const color = '#EC407A';
+      const color = '#E9E5D6';
       popup(coords, `<div style="${pStyle}border:1px solid ${color}40;">
         <div style="color:${color};font-size:9px;font-weight:700;letter-spacing:0.12em;margin-bottom:4px;">📰 ${htmlEsc(p.source || 'NIGERIA NEWS')} · ${htmlEsc(p.place || '')}</div>
-        <div style="color:#E8E6E0;font-size:11px;font-weight:600;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.title || '')}</div>
-        ${p.pubDate ? `<div style="font-size:9px;color:#5C5A54;margin-bottom:8px;">${htmlEsc(p.pubDate)}</div>` : ''}
+        <div style="color:#E9E5D6;font-size:11px;font-weight:600;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.title || '')}</div>
+        ${p.pubDate ? `<div style="font-size:9px;color:#62704E;margin-bottom:8px;">${htmlEsc(p.pubDate)}</div>` : ''}
         ${p.link ? `<a href="${urlSafe(p.link)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;">[ READ ARTICLE ↗ ]</a>` : ''}
       </div>`);
     });
-    map.on('click', 'ng-incidents-dots', ngPointPopup('⚠ SECURITY INCIDENT', '#FF3D3D'));
-    map.on('click', 'ng-infra-dots', ngPointPopup('▣ INFRASTRUCTURE', '#26A69A'));
-    map.on('click', 'ng-checkpoints-dots', ngPointPopup('▲ CHECKPOINT', '#448AFF'));
+    map.on('click', 'ng-incidents-dots', ngPointPopup('⚠ SECURITY INCIDENT', '#B0492F'));
+    map.on('click', 'ng-infra-dots', ngPointPopup('▣ INFRASTRUCTURE', '#5F8443'));
+    map.on('click', 'ng-checkpoints-dots', ngPointPopup('▲ CHECKPOINT', '#C9D8A8'));
     map.on('click', 'ng-roads-line', (e: any) => {
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
-      const color = p.status === 'closed' ? '#FF1744' : p.status === 'restricted' ? '#FF3D3D' : p.status === 'caution' ? '#FFB300' : '#00E5A8';
+      const color = p.status === 'closed' ? '#B0492F' : p.status === 'restricted' ? '#B0492F' : p.status === 'caution' ? '#D29B3B' : '#5F8443';
       popup([e.lngLat.lng, e.lngLat.lat], `<div style="${pStyle}border:1px solid ${color}40;">
         <div style="color:${color};font-size:9px;font-weight:700;letter-spacing:0.12em;margin-bottom:4px;">⟿ ROAD / CORRIDOR${p.seed ? ' · SEED' : ''}</div>
-        <div style="color:#E8E6E0;font-size:12px;font-weight:700;margin-bottom:6px;">${htmlEsc(p.name || 'Road')}</div>
-        ${p.description ? `<div style="font-size:10px;color:#B8B6B0;margin-bottom:8px;line-height:1.45;">${htmlEsc(p.description)}</div>` : ''}
+        <div style="color:#E9E5D6;font-size:12px;font-weight:700;margin-bottom:6px;">${htmlEsc(p.name || 'Road')}</div>
+        ${p.description ? `<div style="font-size:10px;color:#8FA376;margin-bottom:8px;line-height:1.45;">${htmlEsc(p.description)}</div>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#5C5A54;">STATUS</span><br/><span style="color:${color};">${htmlEsc(String(p.status || 'open').toUpperCase())}</span></div>
-          ${p.roadClass ? `<div><span style="color:#5C5A54;">CLASS</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.roadClass)}</span></div>` : ''}
-          ${p.state ? `<div style="grid-column:1/3;"><span style="color:#5C5A54;">STATES</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.state)}</span></div>` : ''}
+          <div><span style="color:#62704E;">STATUS</span><br/><span style="color:${color};">${htmlEsc(String(p.status || 'open').toUpperCase())}</span></div>
+          ${p.roadClass ? `<div><span style="color:#62704E;">CLASS</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.roadClass)}</span></div>` : ''}
+          ${p.state ? `<div style="grid-column:1/3;"><span style="color:#62704E;">STATES</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.state)}</span></div>` : ''}
         </div>
       </div>`);
     });
@@ -890,7 +890,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         const coords = e.lngLat;
         const srcUrl = p.url || SDK_SOURCE_URLS[p.source] || 'https://geckoai.live';
         const domainLabel = p.domain === 'SEA' ? '⚓ MARITIME' : p.domain === 'AIR' ? '✈ AIR CORRIDOR' : '🛡 NAVAL INTEL';
-        const domainColor = p.domain === 'SEA' ? '#4FC3F7' : p.domain === 'AIR' ? '#B3E5FC' : '#81D4FA';
+        const domainColor = p.domain === 'SEA' ? '#8FA376' : p.domain === 'AIR' ? '#8FA376' : '#8FA376';
         const linkStyle = 'text-decoration:none;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:0.05em;';
         popup([coords.lng, coords.lat], `<div style="${pStyle}border:1px solid ${domainColor}40;">
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
@@ -898,10 +898,10 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
             <span style="color:${domainColor};font-size:11px;font-weight:700;letter-spacing:0.1em;">${domainLabel}</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:8px;">
-            <div><span style="color:#5C5A54;">FROM</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.fromName || 'Origin')}</span></div>
-            <div><span style="color:#5C5A54;">TO</span><br/><span style="color:#E8E6E0;">${htmlEsc(p.toName || 'Destination')}</span></div>
-            <div><span style="color:#5C5A54;">DOMAIN</span><br/><span style="color:${domainColor};">${p.domain}</span></div>
-            <div><span style="color:#5C5A54;">SOURCE</span><br/><a href="${urlSafe(srcUrl)}" target="_blank" style="color:${domainColor};text-decoration:underline;cursor:pointer;">${htmlEsc(p.source || 'GECKO')}</a></div>
+            <div><span style="color:#62704E;">FROM</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.fromName || 'Origin')}</span></div>
+            <div><span style="color:#62704E;">TO</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.toName || 'Destination')}</span></div>
+            <div><span style="color:#62704E;">DOMAIN</span><br/><span style="color:${domainColor};">${p.domain}</span></div>
+            <div><span style="color:#62704E;">SOURCE</span><br/><a href="${urlSafe(srcUrl)}" target="_blank" style="color:${domainColor};text-decoration:underline;cursor:pointer;">${htmlEsc(p.source || 'GECKO')}</a></div>
           </div>
           <a href="${urlSafe(srcUrl)}" target="_blank" style="${linkStyle}color:${domainColor};border:1px solid ${domainColor}40;background:${domainColor}18;display:inline-block;margin-top:4px;">OPEN SOURCE ↗</a>
         </div>`);
@@ -919,14 +919,14 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const p = e.features?.[0]?.properties;
       if (!p) return;
       const coords = e.features[0].geometry.coordinates.slice();
-      popup(coords, `<div style="${pStyle}border:1px solid rgba(255,61,61,0.5);">
-        <div style="color:#FF3D3D;font-size:12px;font-weight:700;margin-bottom:6px;">🎯 TARGET: ${htmlEsc(p.id)}</div>
-        <div style="font-size:9px;color:#E8E6E0;margin-bottom:8px;">${htmlEsc(p.city || 'Unknown')}, ${htmlEsc(p.country || 'Unknown')} — ${htmlEsc(p.isp || 'Unknown ISP')}</div>
+      popup(coords, `<div style="${pStyle}border:1px solid rgba(176,73,47,0.5);">
+        <div style="color:#B0492F;font-size:12px;font-weight:700;margin-bottom:6px;">🎯 TARGET: ${htmlEsc(p.id)}</div>
+        <div style="font-size:9px;color:#E9E5D6;margin-bottom:8px;">${htmlEsc(p.city || 'Unknown')}, ${htmlEsc(p.country || 'Unknown')} — ${htmlEsc(p.isp || 'Unknown ISP')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#5C5A54;">TYPE</span><br/><span style="color:#00E5FF;">${(p.type || 'UNKNOWN').toUpperCase()}</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#62704E;">TYPE</span><br/><span style="color:#D29B3B;">${(p.type || 'UNKNOWN').toUpperCase()}</span></div>
+          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
-        <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${idSafe(p.id)}' })" style="width:100%;margin-top:8px;padding:6px 12px;background:rgba(255,109,0,0.15);border:1px solid rgba(255,109,0,0.5);color:#FF6D00;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ IP INTEL DEEP DIVE ]</button>
+        <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${idSafe(p.id)}' })" style="width:100%;margin-top:8px;padding:6px 12px;background:rgba(255,109,0,0.15);border:1px solid rgba(255,109,0,0.5);color:#D29B3B;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ IP INTEL DEEP DIVE ]</button>
       </div>`);
     });
 
@@ -935,7 +935,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      const color = p.risk_level === 'CRITICAL' ? '#FF1744' : p.risk_level === 'HIGH' ? '#FF9500' : '#00BCD4';
+      const color = p.risk_level === 'CRITICAL' ? '#B0492F' : p.risk_level === 'HIGH' ? '#D29B3B' : '#5F8443';
       const activeThreats = p.active_threats ? JSON.parse(p.active_threats) : [];
       
       let threatsHtml = '';
@@ -949,7 +949,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:${color};font-size:12px;font-weight:700;margin-bottom:4px;">🏢 ${htmlEsc(p.name)}</div>
         <div style="font-size:9px;color:#aaa;margin-bottom:8px;">${htmlEsc(p.category)} | ${htmlEsc(p.city)}, ${htmlEsc(p.country)}</div>
         <div style="display:grid;grid-template-columns:1fr;gap:4px;font-size:11px;">
-          <div><span style="color:#5C5A54;font-size:9px;">SCM RISK LEVEL</span><br/><span style="color:${color};font-weight:bold;">${p.risk_level}</span></div>
+          <div><span style="color:#62704E;font-size:9px;">SCM RISK LEVEL</span><br/><span style="color:${color};font-weight:bold;">${p.risk_level}</span></div>
         </div>
         ${threatsHtml}
       </div>`);
@@ -963,18 +963,18 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const ports = JSON.parse(p.ports || '[]');
       const vulns = JSON.parse(p.vulns || '[]');
       const hostnames = JSON.parse(p.hostnames || '[]');
-      const riskColors: Record<string, string> = { CRITICAL: '#FF3D3D', HIGH: '#FF6B00', MEDIUM: '#FFD700', LOW: '#76FF03', INFO: '#5C5A54' };
-      popup(coords, `<div style="font-family:monospace;font-size:11px;color:#E8E6E0;">
+      const riskColors: Record<string, string> = { CRITICAL: '#B0492F', HIGH: '#D29B3B', MEDIUM: '#D29B3B', LOW: '#5F8443', INFO: '#62704E' };
+      popup(coords, `<div style="font-family:monospace;font-size:11px;color:#E9E5D6;">
         <div style="font-size:13px;font-weight:bold;margin-bottom:6px;color:${p.color};">${p.device_type}</div>
         <div style="font-size:12px;margin-bottom:8px;color:#fff;">${p.ip}</div>
-        ${hostnames.length > 0 ? `<div style="font-size:9px;color:#8A8880;margin-bottom:6px;">${hostnames.join(', ')}</div>` : ''}
+        ${hostnames.length > 0 ? `<div style="font-size:9px;color:#62704E;margin-bottom:6px;">${hostnames.join(', ')}</div>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">PORTS</span><br/><span style="color:#E8E6E0;">${ports.length}</span></div>
-          <div><span style="color:#5C5A54;">RISK</span><br/><span style="color:${riskColors[p.risk_level] || '#666'};">${p.risk_level}</span></div>
+          <div><span style="color:#62704E;">PORTS</span><br/><span style="color:#E9E5D6;">${ports.length}</span></div>
+          <div><span style="color:#62704E;">RISK</span><br/><span style="color:${riskColors[p.risk_level] || '#666'};">${p.risk_level}</span></div>
         </div>
-        <div style="font-size:9px;color:#8A8880;margin-bottom:6px;">Open: ${ports.slice(0, 12).join(', ')}${ports.length > 12 ? ' ...' : ''}</div>
-        ${vulns.length > 0 ? `<div style="font-size:9px;color:#FF3D3D;margin-bottom:6px;">⚠ CVEs: ${vulns.slice(0, 5).join(', ')}${vulns.length > 5 ? ` +${vulns.length - 5} more` : ''}</div>` : ''}
-        <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${p.ip}' })" style="width:100%;margin-top:6px;padding:6px 12px;background:rgba(255,109,0,0.15);border:1px solid rgba(255,109,0,0.5);color:#FF6D00;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ IP INTEL DEEP DIVE ]</button>
+        <div style="font-size:9px;color:#62704E;margin-bottom:6px;">Open: ${ports.slice(0, 12).join(', ')}${ports.length > 12 ? ' ...' : ''}</div>
+        ${vulns.length > 0 ? `<div style="font-size:9px;color:#B0492F;margin-bottom:6px;">⚠ CVEs: ${vulns.slice(0, 5).join(', ')}${vulns.length > 5 ? ` +${vulns.length - 5} more` : ''}</div>` : ''}
+        <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${p.ip}' })" style="width:100%;margin-top:6px;padding:6px 12px;background:rgba(255,109,0,0.15);border:1px solid rgba(255,109,0,0.5);color:#D29B3B;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ IP INTEL DEEP DIVE ]</button>
       </div>`);
     });
 
@@ -987,10 +987,10 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:${p.color};font-size:12px;font-weight:700;letter-spacing:0.1em;margin-bottom:4px;">🎈 ${p.callsign}</div>
         <div style="font-size:9px;color:#aaa;margin-bottom:8px;">${p.type.toUpperCase()} / STATUS: ${p.status.toUpperCase()}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#5C5A54;">ALTITUDE</span><br/><span style="color:#E8E6E0;">${p.altitude} m</span></div>
-          <div><span style="color:#5C5A54;">SPEED</span><br/><span style="color:#E8E6E0;">${Math.round(p.speed)} km/h</span></div>
-          <div><span style="color:#5C5A54;">VERT RATE</span><br/><span style="color:${p.verticalRate > 0 ? '#00E676' : '#FF3D3D'};">${p.verticalRate.toFixed(1)} m/s</span></div>
-          <div><span style="color:#5C5A54;">TEMP</span><br/><span style="color:#E8E6E0;">${p.temperature}°C</span></div>
+          <div><span style="color:#62704E;">ALTITUDE</span><br/><span style="color:#E9E5D6;">${p.altitude} m</span></div>
+          <div><span style="color:#62704E;">SPEED</span><br/><span style="color:#E9E5D6;">${Math.round(p.speed)} km/h</span></div>
+          <div><span style="color:#62704E;">VERT RATE</span><br/><span style="color:${p.verticalRate > 0 ? '#5F8443' : '#B0492F'};">${p.verticalRate.toFixed(1)} m/s</span></div>
+          <div><span style="color:#62704E;">TEMP</span><br/><span style="color:#E9E5D6;">${p.temperature}°C</span></div>
         </div>
       </div>`);
     });
@@ -1000,14 +1000,14 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      const color = p.status === 'DANGER' ? '#FF1744' : p.status === 'WARNING' ? '#FF9500' : '#AB47BC';
+      const color = p.status === 'DANGER' ? '#B0492F' : p.status === 'WARNING' ? '#D29B3B' : '#8FA376';
       popup(coords, `<div style="${pStyle}border:1px solid ${color}40;">
         <div style="color:${color};font-size:12px;font-weight:700;margin-bottom:4px;">☢️ ${p.name}</div>
         <div style="font-size:9px;color:#aaa;margin-bottom:8px;">${p.city}, ${p.country}</div>
         <div style="display:grid;grid-template-columns:1fr;gap:4px;font-size:11px;">
-          <div><span style="color:#5C5A54;font-size:9px;">READING</span><br/><span style="color:${color};font-weight:bold;">${p.reading} nSv/h</span></div>
-          <div><span style="color:#5C5A54;font-size:9px;">STATUS</span><br/><span style="color:${color};">${p.status}</span></div>
-          <div><span style="color:#5C5A54;font-size:9px;">NETWORK</span><br/><span style="color:#E8E6E0;">${p.network}</span></div>
+          <div><span style="color:#62704E;font-size:9px;">READING</span><br/><span style="color:${color};font-weight:bold;">${p.reading} nSv/h</span></div>
+          <div><span style="color:#62704E;font-size:9px;">STATUS</span><br/><span style="color:${color};">${p.status}</span></div>
+          <div><span style="color:#62704E;font-size:9px;">NETWORK</span><br/><span style="color:#E9E5D6;">${p.network}</span></div>
         </div>
       </div>`);
     });
@@ -1017,22 +1017,22 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      const color = p.type === 'military' ? '#FF1744' : p.type === 'tanker' ? '#FF9500' : '#00E5FF';
+      const color = p.type === 'military' ? '#B0492F' : p.type === 'tanker' ? '#D29B3B' : '#D29B3B';
       const icon = p.type === 'military' ? '⚔️' : p.type === 'tanker' ? '🛢️' : '🚢';
       
       popup(coords, `<div style="${pStyle}border:1px solid ${color}60;box-shadow:inset 0 0 12px ${color}15;">
         <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid ${color}40;padding-bottom:6px;margin-bottom:8px;">
           <div style="color:${color};font-size:12px;font-weight:700;letter-spacing:0.1em;">${icon} [ ${(p.type||'VESSEL').toUpperCase()} ]</div>
-          <div style="color:#5C5A54;font-size:9px;">FLAG: ${p.flag||'UNK'}</div>
+          <div style="color:#62704E;font-size:9px;">FLAG: ${p.flag||'UNK'}</div>
         </div>
-        <div style="color:#E8E6E0;font-size:11px;font-weight:bold;margin-bottom:10px;">${p.name || 'UNIDENTIFIED VESSEL'}</div>
+        <div style="color:#E9E5D6;font-size:11px;font-weight:bold;margin-bottom:10px;">${p.name || 'UNIDENTIFIED VESSEL'}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:8px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
-          <div><span style="color:#5C5A54;">SPEED</span><br/><span style="color:${color};font-family:monospace;">${Number(p.speed).toFixed(1)} kn</span></div>
-          <div><span style="color:#5C5A54;">HEADING</span><br/><span style="color:${color};font-family:monospace;">${Number(p.heading).toFixed(0)}°</span></div>
-          <div><span style="color:#5C5A54;">LATITUDE</span><br/><span style="color:#E8E6E0;font-family:monospace;">${coords[1].toFixed(4)}°</span></div>
-          <div><span style="color:#5C5A54;">LONGITUDE</span><br/><span style="color:#E8E6E0;font-family:monospace;">${coords[0].toFixed(4)}°</span></div>
+          <div><span style="color:#62704E;">SPEED</span><br/><span style="color:${color};font-family:monospace;">${Number(p.speed).toFixed(1)} kn</span></div>
+          <div><span style="color:#62704E;">HEADING</span><br/><span style="color:${color};font-family:monospace;">${Number(p.heading).toFixed(0)}°</span></div>
+          <div><span style="color:#62704E;">LATITUDE</span><br/><span style="color:#E9E5D6;font-family:monospace;">${coords[1].toFixed(4)}°</span></div>
+          <div><span style="color:#62704E;">LONGITUDE</span><br/><span style="color:#E9E5D6;font-family:monospace;">${coords[0].toFixed(4)}°</span></div>
         </div>
-        <div><span style="color:#5C5A54;font-size:9px;">DESTINATION: </span><span style="color:#E8E6E0;font-size:9px;">${p.destination || 'UNKNOWN'}</span></div>
+        <div><span style="color:#62704E;font-size:9px;">DESTINATION: </span><span style="color:#E9E5D6;font-size:9px;">${p.destination || 'UNKNOWN'}</span></div>
         <a href="https://www.marinetraffic.com/en/ais/details/ships/mmsi:${p.mmsi}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>
       </div>`);
     });
@@ -1044,15 +1044,15 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const coords = (e.features[0].geometry as any).coordinates;
       const iconEmoji = p.icon === 'cyclone' ? '🌀' : p.icon === 'volcano' ? '🌋' : '⚡';
       popup(coords, `<div style="${pStyle}border:1px solid rgba(224,64,251,0.3);">
-        <div style="color:#E040FB;font-size:14px;font-weight:700;margin-bottom:6px;">${iconEmoji} ${p.type || 'Weather Event'}</div>
-        <div style="font-size:10px;color:#E8E6E0;margin-bottom:8px;line-height:1.4;">${p.title || 'Unknown event'}</div>
+        <div style="color:#D29B3B;font-size:14px;font-weight:700;margin-bottom:6px;">${iconEmoji} ${p.type || 'Weather Event'}</div>
+        <div style="font-size:10px;color:#E9E5D6;margin-bottom:8px;line-height:1.4;">${p.title || 'Unknown event'}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">SEVERITY</span><br/><span style="color:${p.severity === 'high' ? '#FF1744' : '#FFD700'};">${(p.severity||'low').toUpperCase()}</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#62704E;">SEVERITY</span><br/><span style="color:${p.severity === 'high' ? '#B0492F' : '#D29B3B'};">${(p.severity||'low').toUpperCase()}</span></div>
+          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
         <div style="display:flex;gap:6px;">
-          ${p.source ? `<a href="${p.source}" target="_blank" style="${linkStyle}color:#E040FB;border:1px solid rgba(224,64,251,0.4);background:rgba(224,64,251,0.1);">📡 SOURCE</a>` : ''}
-          <a href="https://eonet.gsfc.nasa.gov/api/v3/events/${p.id || ''}" target="_blank" style="${linkStyle}color:#D4AF37;border:1px solid rgba(212,175,55,0.4);background:rgba(212,175,55,0.1);">🛰️ NASA EONET</a>
+          ${p.source ? `<a href="${p.source}" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(224,64,251,0.4);background:rgba(224,64,251,0.1);">📡 SOURCE</a>` : ''}
+          <a href="https://eonet.gsfc.nasa.gov/api/v3/events/${p.id || ''}" target="_blank" style="${linkStyle}color:#5F8443;border:1px solid rgba(95,132,67,0.4);background:rgba(95,132,67,0.1);">🛰️ NASA EONET</a>
         </div>
       </div>`);
     });
@@ -1062,18 +1062,18 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      const statusColor = p.status.includes('SEISMIC RISK') ? '#FF9500' : p.status === 'Active Conflict Zone' ? '#FF1744' : p.status === 'Operational' ? '#76FF03' : '#757575';
+      const statusColor = p.status.includes('SEISMIC RISK') ? '#D29B3B' : p.status === 'Active Conflict Zone' ? '#B0492F' : p.status === 'Operational' ? '#5F8443' : '#62704E';
       popup(coords, `<div style="${pStyle}border:1px solid rgba(118,255,3,0.3);">
-        <div style="color:#76FF03;font-size:14px;font-weight:700;margin-bottom:4px;">☢️ ${p.name || 'Nuclear Facility'}</div>
+        <div style="color:#5F8443;font-size:14px;font-weight:700;margin-bottom:4px;">☢️ ${p.name || 'Nuclear Facility'}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">STATUS</span><br/><span style="color:${statusColor};">${p.status || '—'}</span></div>
-          <div><span style="color:#5C5A54;">CITY</span><br/><span style="color:#E8E6E0;">${p.city || '—'}, ${p.country || ''}</span></div>
-          <div><span style="color:#5C5A54;">REACTORS</span><br/><span style="color:#76FF03;">${p.reactors || '—'}</span></div>
-          <div><span style="color:#5C5A54;">CAPACITY</span><br/><span style="color:#E8E6E0;">${p.capacityMW ? p.capacityMW.toLocaleString() + ' MW' : '—'}</span></div>
-          <div><span style="color:#5C5A54;">OWNER</span><br/><span style="color:#E8E6E0;">${p.owner || '—'}</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#62704E;">STATUS</span><br/><span style="color:${statusColor};">${p.status || '—'}</span></div>
+          <div><span style="color:#62704E;">CITY</span><br/><span style="color:#E9E5D6;">${p.city || '—'}, ${p.country || ''}</span></div>
+          <div><span style="color:#62704E;">REACTORS</span><br/><span style="color:#5F8443;">${p.reactors || '—'}</span></div>
+          <div><span style="color:#62704E;">CAPACITY</span><br/><span style="color:#E9E5D6;">${p.capacityMW ? p.capacityMW.toLocaleString() + ' MW' : '—'}</span></div>
+          <div><span style="color:#62704E;">OWNER</span><br/><span style="color:#E9E5D6;">${p.owner || '—'}</span></div>
+          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
-        <a href="https://www.google.com/maps/@${coords[1]},${coords[0]},14z/data=!3m1!1e3" target="_blank" style="${linkStyle}color:#76FF03;border:1px solid rgba(118,255,3,0.4);background:rgba(118,255,3,0.1);">SATELLITE VIEW</a>
+        <a href="https://www.google.com/maps/@${coords[1]},${coords[0]},14z/data=!3m1!1e3" target="_blank" style="${linkStyle}color:#5F8443;border:1px solid rgba(118,255,3,0.4);background:rgba(118,255,3,0.1);">SATELLITE VIEW</a>
       </div>`);
     });
 
@@ -1082,14 +1082,14 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const p = e.features?.[0]?.properties;
       if (!p) return;
       const coords = (e.features![0].geometry as any).coordinates;
-      const typeColor = p.type === 'naval' ? '#FF3D3D' : p.type === 'energy' ? '#FF9500' : '#00BCD4';
+      const typeColor = p.type === 'naval' ? '#B0492F' : p.type === 'energy' ? '#D29B3B' : '#5F8443';
       const typeLabel = p.type === 'naval' ? 'NAVAL BASE' : p.type === 'energy' ? 'ENERGY PORT' : 'CONTAINER PORT';
       
       const congestionHtml = p.congestion ? `
         <div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-            <div><span style="color:#5C5A54;font-size:9px;">CONGESTION</span><br/><span style="color:${p.congestion === 'SEVERE' ? '#FF1744' : p.congestion === 'CONGESTED' ? '#FF9500' : '#00E676'};font-weight:bold;font-size:10px;">${p.congestion}</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">EST. DWELL TIME</span><br/><span style="color:#E8E6E0;font-weight:bold;font-size:10px;">${p.dwell_time || 'Unknown'}</span></div>
+            <div><span style="color:#62704E;font-size:9px;">CONGESTION</span><br/><span style="color:${p.congestion === 'SEVERE' ? '#B0492F' : p.congestion === 'CONGESTED' ? '#D29B3B' : '#5F8443'};font-weight:bold;font-size:10px;">${p.congestion}</span></div>
+            <div><span style="color:#62704E;font-size:9px;">EST. DWELL TIME</span><br/><span style="color:#E9E5D6;font-weight:bold;font-size:10px;">${p.dwell_time || 'Unknown'}</span></div>
           </div>
         </div>` : '';
 
@@ -1108,9 +1108,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const p = e.features?.[0]?.properties;
       if (!p) return;
       const coords = (e.features![0].geometry as any).coordinates;
-      const riskCol = p.risk === 'CRITICAL' ? '#FF1744' : p.risk === 'HIGH' ? '#FF9500' : p.risk === 'ELEVATED' ? '#FFD700' : '#00E676';
+      const riskCol = p.risk === 'CRITICAL' ? '#B0492F' : p.risk === 'HIGH' ? '#D29B3B' : p.risk === 'ELEVATED' ? '#D29B3B' : '#5F8443';
       popup(coords, `<div style="${pStyle}border:1px solid ${riskCol}40;">
-        <div style="color:#FF9500;font-weight:bold;font-size:11px;margin-bottom:4px;">${p.name}</div>
+        <div style="color:#D29B3B;font-weight:bold;font-size:11px;margin-bottom:4px;">${p.name}</div>
         <div style="font-size:9px;color:#aaa;">Traffic: <span style="color:#fff;">${p.traffic}</span></div>
         <div style="font-size:9px;color:#aaa;">Risk: <span style="color:${riskCol};font-weight:bold;">${p.risk}</span></div>
       </div>`);
@@ -1208,10 +1208,10 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const ghostPriv = '#CE93D8';
       const ghostGov = '#D500F9';
 
-      const flightCom = isGhost ? phantomPurple : '#00E5FF';
-      const flightPriv = isGhost ? ghostPriv : '#FFD700';
-      const flightGov = isGhost ? ghostGov : '#FF9500';
-      const flightMil = '#FF0000';
+      const flightCom = isGhost ? phantomPurple : '#D29B3B';
+      const flightPriv = isGhost ? ghostPriv : '#D29B3B';
+      const flightGov = isGhost ? ghostGov : '#D29B3B';
+      const flightMil = '#B0492F';
 
       const updateMapIcon = (id: string, color: string, size: number) => {
         if (!map.hasImage(id)) return;
@@ -1240,7 +1240,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       updateMapIcon('plane-green', flightPriv, 24);
       updateMapIcon('plane-pink', flightGov, 24);
       updateMapIcon('plane-red', flightMil, 24);
-      updateMapIcon('plane-grey', isGhost ? phantomPurple : '#546E7A', 24);
+      updateMapIcon('plane-grey', isGhost ? phantomPurple : '#62704E', 24);
     }, [mapReady, theme]);
 
   // ── DECOUPLED LAYER RENDERERS (Performance Optimized) ──
@@ -1371,7 +1371,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
 
     // ── SEA DOMAIN: Real submarine cable data (1-for-1 Match) ──
     if (activeLayers.sdk_sea && data.submarine_cables) {
-      const ignoredColors = new Set(['#9BB5CC', '#A0B8CD', '#8EABC2', '#9bb5cc', '#a0b8cd', '#8eabc2']);
+      const ignoredColors = new Set(['#8FA376', '#8FA376', '#8FA376', '#8FA376', '#8FA376', '#8FA376']);
       for (const cable of data.submarine_cables) {
         if (!cable.geometry) continue;
         
@@ -1388,7 +1388,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
             source: 'Global Subsea Cable Network',
             url: 'https://www.submarinecablemap.com/',
             ...cable.properties,
-            color: '#1976D2', // Darker blue as requested, more transparent in layer paint
+            color: '#294922', // Darker blue as requested, more transparent in layer paint
           },
         });
       }
@@ -1625,8 +1625,8 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
                 0, '#1a1a2e',
                 20, '#16213e',
                 50, '#0f3460',
-                120, '#533483',
-                300, '#e94560',
+                120, '#8FA376',
+                300, '#B0492F',
               ],
               'fill-extrusion-height': [
                 'interpolate', ['linear'], ['zoom'],

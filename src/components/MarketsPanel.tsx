@@ -104,7 +104,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
             {markets.scm_alerts && markets.scm_alerts.length > 0 && (
               <div className="mb-2 space-y-1">
                 {markets.scm_alerts.map((alert: string, i: number) => (
-                  <div key={i} className="px-2 py-1.5 rounded border border-[#FF9500] bg-[#FF9500]/10 text-[#FF9500] text-[9px] font-mono leading-tight shadow-[0_0_8px_rgba(255,149,0,0.15)]">
+                  <div key={i} className="px-2 py-1.5 rounded border border-[#D29B3B] bg-[#D29B3B]/10 text-[#D29B3B] text-[9px] font-mono leading-tight shadow-[0_0_8px_rgba(210,155,59,0.15)]">
                     {alert}
                   </div>
                 ))}
