@@ -182,7 +182,7 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 30 }}
-      className="absolute top-[70px] right-3 z-[400] w-[340px] max-h-[82vh] overflow-y-auto rounded-2xl p-4 pointer-events-auto styled-scrollbar"
+      className="fixed md:absolute top-[64px] right-2 left-2 md:left-auto md:right-3 z-[400] w-auto md:w-[340px] max-h-[calc(100dvh-140px)] md:max-h-[82vh] overflow-y-auto rounded-2xl p-4 pointer-events-auto styled-scrollbar"
       style={{ background: '#294922', border: '1px solid rgba(201,216,168,0.25)', boxShadow: '0 18px 48px rgba(0,0,0,0.6)' }}
     >
       <div className="flex items-center justify-between mb-3">

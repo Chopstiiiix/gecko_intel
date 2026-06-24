@@ -366,30 +366,34 @@ html, body {
 .mobile-nav-inner {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  padding: 6px 2px 4px;
-  gap: 0;
+  align-items: stretch;
+  padding: 6px 4px;
+  gap: 2px;
+  /* Solid dark bar (override the green glass-panel) so labels stay readable */
+  background: #10150D !important;
+  border: 1px solid rgba(143, 163, 118, 0.22) !important;
+  border-radius: 16px 16px 0 0 !important;
 }
 
 .mobile-nav-btn {
-  display: flex; flex-direction: column; align-items: center; gap: 1px;
-  padding: 5px 6px; border-radius: 8px;
-  font-family: var(--font-hud); font-size: 6px; letter-spacing: 0.08em;
-  color: var(--text-muted); background: transparent;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  padding: 8px 4px; border-radius: 10px;
+  font-family: var(--font-body); font-size: 8.5px; letter-spacing: 0.06em;
+  color: #A6BC84; background: transparent;
   border: none; cursor: pointer; transition: all 0.2s ease;
   text-transform: uppercase;
-  min-width: 0;
+  min-width: 0; min-height: 46px;
   flex: 1;
   -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-nav-btn.active {
-  color: var(--gold-primary);
-  background: rgba(var(--gold-rgb), 0.1);
+  color: #D29B3B;
+  background: rgba(210, 155, 59, 0.14);
 }
 
 .mobile-nav-btn svg {
-  width: 16px; height: 16px;
+  width: 20px; height: 20px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -433,8 +437,8 @@ html, body {
 /* Small phones */
 @media (max-width: 390px) {
   :root { --edge-pad: 4px; }
-  .mobile-nav-btn { padding: 4px 3px; font-size: 5px; }
-  .mobile-nav-btn svg { width: 14px; height: 14px; }
+  .mobile-nav-btn { padding: 7px 2px; font-size: 7.5px; }
+  .mobile-nav-btn svg { width: 18px; height: 18px; }
 }
 
 /* ── Landscape mobile ── */
@@ -443,10 +447,9 @@ html, body {
   .desktop-panel { display: none !important; }
   .status-bar-desktop { display: none !important; }
   .mobile-nav { display: block; }
-  .mobile-nav-inner { padding: 4px 2px 2px; }
-  .mobile-nav-btn { padding: 3px 4px; font-size: 5px; }
-  .mobile-nav-btn svg { width: 14px; height: 14px; }
-  .mobile-nav-btn span { display: none; }
+  .mobile-nav-inner { padding: 4px 4px; }
+  .mobile-nav-btn { padding: 5px 3px; font-size: 7px; min-height: 38px; }
+  .mobile-nav-btn svg { width: 16px; height: 16px; }
   .mobile-drawer-handle { margin: 4px auto 4px; }
 }
 

@@ -1060,12 +1060,17 @@ export default function Dashboard() {
                 { id: 'recon' as const, icon: Radar, label: 'RECON' },
                 { id: 'search' as const, icon: Search, label: 'SEARCH' },
               ].map(tab => (
-                <button key={tab.id} onClick={() => setMobilePanel(mobilePanel === tab.id ? null : tab.id)}
+                <button key={tab.id} onClick={() => { setMobilePanel(mobilePanel === tab.id ? null : tab.id); setShowDataEntry(false); }}
                   className={`mobile-nav-btn ${mobilePanel === tab.id ? 'active' : ''}`}>
-                  <tab.icon className={`w-4 h-4 ${tab.id === 'recon' ? 'text-[var(--cyan-primary)]' : ''}`} />
-                  <span className={tab.id === 'recon' ? 'text-[var(--cyan-primary)]' : ''}>{tab.label}</span>
+                  <tab.icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
                 </button>
               ))}
+              <button onClick={() => { setShowDataEntry(p => !p); setMobilePanel(null); }}
+                className={`mobile-nav-btn ${showDataEntry ? 'active' : ''}`}>
+                <Crosshair className="w-4 h-4" />
+                <span>ENTRY</span>
+              </button>
             </div>
           </div>
 
