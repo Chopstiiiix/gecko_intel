@@ -203,7 +203,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                       className={`w-2 h-2 rounded-full border flex-shrink-0 transition-all ${
                         isLayerActive ? 'bg-current border-current scale-100' : 'bg-transparent border-white/30 scale-75'
                       }`}
-                      style={{ color: isLayerActive ? layer.color : 'inherit', boxShadow: isLayerActive ? `0 0 8px ${layer.color}` : 'none' }}
+                      style={{ color: isLayerActive ? layer.color : 'inherit' }}
                     />
                     <span className={`text-[9px] font-mono uppercase tracking-wider flex-1 text-left ${isLayerActive ? 'text-white' : 'text-white/60'}`}>
                       {layer.label}
@@ -267,13 +267,6 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                   opacity: isActive ? 1 : (isHovered ? 0.85 : 0.55),
                 }}
               >
-                {/* Active Indicator dot */}
-                {isActive && (
-                  <div 
-                    className="absolute -left-1 w-1 h-1 rounded-full animate-pulse"
-                    style={{ backgroundColor: group.color, boxShadow: `0 0 8px ${group.color}` }}
-                  />
-                )}
                 {group.label}
               </div>
 
