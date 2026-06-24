@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Plane, Satellite, Activity, Sun, AlertTriangle, Camera, Flame, Target,
   CloudLightning, Radiation, Tv, Anchor, Ship, Newspaper,
-  Network, Share2, Radio, Mountain, Route, Landmark, ChevronLeft, Crosshair
+  Network, Share2, Radio, Mountain, Route, Landmark, PanelLeftClose, Crosshair
 } from 'lucide-react';
 
 interface LayerPanelProps {
@@ -229,16 +229,17 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className="absolute top-0 left-0 h-full w-[80px] border-r border-[rgba(143,163,118,0.25)] flex flex-col pt-28 pb-6 z-50 pointer-events-auto"
+      className="absolute top-0 left-0 h-full w-[80px] border-r border-[rgba(143,163,118,0.25)] flex flex-col pt-28 pb-6 z-[300] pointer-events-auto"
       style={{ background: '#10150D', boxShadow: '4px 0 24px rgba(0,0,0,0.6)' }}
     >
       {onCollapse && (
         <button
           onClick={onCollapse}
-          title="Collapse panel (L)"
-          className="mx-auto mb-5 w-8 h-8 rounded-lg flex items-center justify-center border border-[rgba(143,163,118,0.3)] bg-[#1C2417] text-white hover:bg-[#25301D] transition-colors"
+          title="Collapse sidebar (L)"
+          aria-label="Collapse sidebar"
+          className="mx-auto mb-5 w-9 h-9 rounded-lg flex items-center justify-center text-[#8FA376] hover:text-white hover:bg-white/10 transition-colors"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <PanelLeftClose className="w-[18px] h-[18px]" />
         </button>
       )}
 
@@ -284,14 +285,14 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                     animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, x: -5, filter: 'blur(2px)' }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] rounded-xl p-3 z-50 pointer-events-auto"
+                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] rounded-xl p-3 z-[80] pointer-events-auto"
                     style={{
-                      background: '#10150D',
-                      border: '1px solid rgba(143,163,118,0.32)',
-                      boxShadow: '0 18px 48px rgba(0,0,0,0.65)'
+                      background: '#C9D8A8',
+                      border: '1px solid rgba(26,32,20,0.30)',
+                      boxShadow: '0 18px 48px rgba(0,0,0,0.55)'
                     }}
                   >
-                    <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-white/10 pb-2 text-white">
+                    <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-[#1A2014]/20 pb-2 text-[#1A2014]">
                       {group.fullLabel}
                     </div>
                     <div className="flex flex-col gap-1.5">
@@ -310,17 +311,17 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                                 toggle(layer.key);
                               }
                             }}
-                            className="w-full flex items-center gap-3 px-2 py-1.5 rounded bg-transparent hover:bg-white/5 transition-colors group"
+                            className="w-full flex items-center gap-3 px-2 py-1.5 rounded bg-transparent hover:bg-[#1A2014]/10 transition-colors group"
                           >
-                            <div 
-                              className={`w-2 h-2 rounded-full border flex-shrink-0 transition-all duration-300 ${isLayerActive ? 'bg-current border-current scale-100' : 'bg-transparent border-white/30 scale-75'}`}
-                              style={{ color: isLayerActive ? layer.color : 'inherit', boxShadow: isLayerActive ? `0 0 8px ${layer.color}` : 'none' }}
+                            <div
+                              className={`w-2.5 h-2.5 rounded-full border flex-shrink-0 transition-all duration-300 ${isLayerActive ? 'bg-current scale-100' : 'bg-transparent border-[#1A2014]/40 scale-75'}`}
+                              style={{ color: isLayerActive ? layer.color : 'inherit', borderColor: isLayerActive ? 'rgba(26,32,20,0.5)' : undefined }}
                             />
-                            <span className={`text-[11px] font-mono uppercase tracking-wider flex-1 text-left transition-colors duration-200 ${isLayerActive ? 'text-white' : 'text-white/50 group-hover:text-white/80'}`}>
+                            <span className={`text-[11px] font-mono uppercase tracking-wider flex-1 text-left transition-colors duration-200 ${isLayerActive ? 'text-[#1A2014] font-semibold' : 'text-[#1A2014]/55 group-hover:text-[#1A2014]/85'}`}>
                               {layer.label}
                             </span>
                             {count !== null && (
-                              <span className="text-[9px] font-mono tabular-nums text-white opacity-70">
+                              <span className="text-[9px] font-mono tabular-nums text-[#1A2014] opacity-70">
                                 {count.toLocaleString()}
                               </span>
                             )}

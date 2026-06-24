@@ -24,8 +24,8 @@
   --line: rgba(143, 163, 118, 0.22);
 
   /* ── Core Palette ── */
-  --bg-void: #07090A;
-  --bg-primary: #0B0E09;
+  --bg-void: #1A2014;
+  --bg-primary: #1A2014;
   --bg-secondary: #10150D;
   --bg-tertiary: #161C12;
   --bg-panel: rgba(16, 21, 13, 0.88);
@@ -2346,14 +2346,14 @@ h1, h2, h3, h4, h5, h6,
 .gecko-btn-amber:hover { background: #E0AC4E; border-color: #E0AC4E; color: #0B0E09; }
 .gecko-btn-sm { padding: 7px 13px; font-size: 10px; letter-spacing: 0.14em; border-radius: 8px; }
 
-/* ── Solid map popups — hard color, readable ── */
+/* ── Pop-up windows — solid Signal (light), dark text ── */
 .maplibregl-popup-content {
-  background: #10150D !important;
+  background: #C9D8A8 !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  border: 1px solid rgba(143, 163, 118, 0.32) !important;
+  border: 1px solid rgba(26, 32, 20, 0.30) !important;
   border-radius: 12px !important;
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55) !important;
   padding: 2px !important;
   overflow: hidden;
 }
@@ -2362,6 +2362,22 @@ h1, h2, h3, h4, h5, h6,
   border: none !important;
   box-shadow: none !important;
 }
+/* dark text that pops on the light Signal background */
+.maplibregl-popup-content,
+.maplibregl-popup-content div,
+.maplibregl-popup-content span,
+.maplibregl-popup-content p,
+.maplibregl-popup-content b,
+.maplibregl-popup-content strong { color: #1A2014 !important; text-shadow: none !important; }
+.maplibregl-popup-content a {
+  color: #1A2014 !important;
+  background: #294922 !important;
+  border-color: #294922 !important;
+}
+.maplibregl-popup-content a span,
+.maplibregl-popup-content a { color: #E9E5D6 !important; }
+.maplibregl-popup-close-button { color: #1A2014 !important; opacity: 0.7; }
+.maplibregl-popup-close-button:hover { color: #B0492F !important; opacity: 1; }
 .maplibregl-popup-tip { display: none !important; }
 
 /* — Solid interactive panels; neutralize decorative glow — */

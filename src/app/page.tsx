@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, BarChart3, Newspaper, Search, X, Globe, MapPinned, Radar, Satellite, Moon, ExternalLink, AlertTriangle, Activity, Database, Wifi, Play, Network, ChevronRight } from 'lucide-react';
+import { Layers, BarChart3, Newspaper, Search, X, Globe, MapPinned, Radar, Satellite, Moon, ExternalLink, AlertTriangle, Activity, Database, Wifi, Play, Network, PanelLeftOpen } from 'lucide-react';
 import IntelFeed from '@/components/IntelFeed';
 import MarketsPanel from '@/components/MarketsPanel';
 import ScmPanel from '@/components/ScmPanel';
@@ -854,14 +854,15 @@ export default function Dashboard() {
       {/* ── NEW SIDEBAR (Root Level) ── */}
       {showLayers && !isMobile && <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} theme={geckoTheme} setTheme={setGeckoTheme} onDataEntry={() => setShowDataEntry(true)} onCollapse={() => setShowLayers(false)} />}
 
-      {/* ── COLLAPSED SIDEBAR — expand toggle ── */}
+      {/* ── COLLAPSED SIDEBAR — expand toggle (Claude-style) ── */}
       {!showLayers && !isMobile && (
         <button
           onClick={() => setShowLayers(true)}
-          title="Show panel (L)"
-          className="absolute top-28 left-2 z-[60] w-8 h-8 rounded-lg flex items-center justify-center border border-[rgba(143,163,118,0.3)] bg-[#1C2417] text-white hover:bg-[#25301D] transition-colors pointer-events-auto"
+          title="Open sidebar (L)"
+          aria-label="Open sidebar"
+          className="absolute top-28 left-2 z-[300] w-9 h-9 rounded-lg flex items-center justify-center text-[#8FA376] hover:text-white hover:bg-white/10 transition-colors pointer-events-auto"
         >
-          <ChevronRight className="w-4 h-4" />
+          <PanelLeftOpen className="w-[18px] h-[18px]" />
         </button>
       )}
 
