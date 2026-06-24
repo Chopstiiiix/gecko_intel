@@ -1,0 +1,4 @@
+[
+  { "id": "chk-seed-1", "kind": "checkpoints", "category": "military", "label": "SAMPLE — Military Checkpoint", "lat": 10.5105, "lng": 7.4165, "severity": "info", "state": "Kaduna", "description": "SAMPLE seed record. Replace with verified checkpoint data via the DATA ENTRY console.", "source": "seed", "seed": true, "createdAt": "2026-06-24T00:00:00.000Z" },
+  { "id": "chk-seed-2", "kind": "checkpoints", "category": "police", "label": "SAMPLE — Police Checkpoint", "lat": 6.4550, "lng": 3.3940, "severity": "info", "state": "Lagos", "description": "SAMPLE seed record. Replace with verified checkpoint data via the DATA ENTRY console.", "source": "seed", "seed": true, "createdAt": "2026-06-24T00:00:00.000Z" }
+]

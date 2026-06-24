@@ -1,0 +1,17 @@
+[
+  {
+    "id": "inc-seed-1",
+    "kind": "incidents",
+    "category": "demo",
+    "label": "SAMPLE — Replace with real intel",
+    "lat": 9.082,
+    "lng": 8.6753,
+    "severity": "medium",
+    "state": "FCT",
+    "description": "This is a placeholder so the INCIDENTS layer renders out of the box. Add verified, sourced incidents via the DATA ENTRY console (top toolbar) and delete this sample.",
+    "source": "seed",
+    "date": "2026-06-24",
+    "seed": true,
+    "createdAt": "2026-06-24T00:00:00.000Z"
+  }
+]
