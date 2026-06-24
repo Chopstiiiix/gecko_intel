@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
-import WebSocket from 'ws';
+// NOTE: `ws` is a Node-only TCP library and is NOT bundled at the top level so
+// this route still works on Cloudflare Workers (where it serves the static
+// port/chokepoint intel). The live AIS stream is loaded lazily only when an
+// AIS_API_KEY is configured on a Node host.
 
 /**
  * GECKO — Maritime Intelligence
@@ -95,16 +98,26 @@ if (!globalForAis.shipsCache) {
 
 const shipsCache = globalForAis.shipsCache;
 
-function connectAisStream() {
+async function connectAisStream() {
   if (globalForAis.isAisConnecting) return;
   const apiKey = process.env.AIS_API_KEY;
   if (!apiKey) return;
 
   globalForAis.isAisConnecting = true;
-  let ws: WebSocket;
+  let ws: any;
+
+  // Lazy-load the Node `ws` library only when actually connecting (never on
+  // Workers, which have no AIS_API_KEY and can't run a raw TCP socket lib).
+  let WebSocketImpl: any;
+  try {
+    WebSocketImpl = (await import('ws')).default;
+  } catch {
+    globalForAis.isAisConnecting = false;
+    return;
+  }
 
   try {
-    ws = new WebSocket("wss://stream.aisstream.io/v0/stream");
+    ws = new WebSocketImpl("wss://stream.aisstream.io/v0/stream");
   } catch (e) {
     globalForAis.isAisConnecting = false;
     return;

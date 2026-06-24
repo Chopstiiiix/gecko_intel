@@ -149,7 +149,12 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
   };
 
   const remove = async (id: string) => {
-    await fetch(`/api/nigeria/${kind}?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+    // POST-based delete (DELETE method is blocked by the zone WAF on some hosts).
+    await fetch(`/api/nigeria/${kind}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ op: 'delete', id }),
+    });
     await loadItems(kind);
     onSaved();
   };

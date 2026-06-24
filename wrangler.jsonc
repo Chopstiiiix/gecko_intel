@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gecko-intel",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-03-25",
+  "compatibility_flags": ["nodejs_compat"],
+  // Account ID — your token can't enumerate accounts, so it is pinned here.
+  // Find it on any domain's Overview page (right sidebar) in the CF dashboard.
+  "account_id": "843a0489298cfe3ee221e4b2f1eea467",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "observability": {
+    "enabled": true
+  },
+  // Serve on the custom domain. Cloudflare auto-creates the DNS record + cert
+  // (requires the API token to cover the inspire-edge.net zone).
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "gecko.inspire-edge.net", "custom_domain": true }
+  ],
+  // Nigeria operator intel store (incidents / infrastructure / checkpoints / roads).
+  "kv_namespaces": [
+    {
+      "binding": "GECKO_KV",
+      "id": "0e9ecc8a8f4f4ca788d4267c7ab2ea7d"
+    }
+  ]
+}

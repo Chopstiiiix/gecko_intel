@@ -60,6 +60,15 @@ scanner_backend_backup.js
 # Intel sub-service deps
 intel/node_modules/
 
+# Local session / agent state
+/.spin/
+
+# Cloudflare / OpenNext build artifacts
+/.open-next/
+/.wrangler/
+.dev.vars
+.cf-token
+
 # Nigeria operator data — live working files stay local (real field intel).
 # The pristine seed templates in gecko-data/seed/ ARE tracked so the map
 # renders out of the box; the store copies them into these files on first run.

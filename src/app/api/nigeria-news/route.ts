@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import Parser from 'rss-parser';
 
 /**
  * GECKO — Nigeria News Feed
@@ -7,11 +6,42 @@ import Parser from 'rss-parser';
  * Pulls headlines from major Nigerian outlets, geoparses each against a
  * gazetteer of states + major cities, and returns the located items so they
  * can be plotted on the map. Keyless / public RSS only.
+ *
+ * Uses the platform `fetch` + a tiny regex RSS parser (no `rss-parser`) so it
+ * runs on Cloudflare Workers as well as Node.
  */
 
-export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+// Minimal RSS/Atom <item> extractor — good enough for these mainstream feeds.
+function stripCdata(s: string): string {
+  return s
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&#8217;|&#039;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&#8230;/g, '…')
+    .replace(/<[^>]+>/g, '')
+    .trim();
+}
+
+function tag(block: string, name: string): string {
+  const m = block.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, 'i'));
+  return m ? stripCdata(m[1]) : '';
+}
+
+function parseItems(xml: string): { title: string; link: string; pubDate: string; snippet: string }[] {
+  const out: { title: string; link: string; pubDate: string; snippet: string }[] = [];
+  const blocks = xml.match(/<item[\s\S]*?<\/item>/gi) || xml.match(/<entry[\s\S]*?<\/entry>/gi) || [];
+  for (const b of blocks) {
+    out.push({
+      title: tag(b, 'title'),
+      link: tag(b, 'link'),
+      pubDate: tag(b, 'pubDate') || tag(b, 'published') || tag(b, 'updated'),
+      snippet: tag(b, 'description') || tag(b, 'summary'),
+    });
+  }
+  return out;
+}
 
 const FEEDS: { url: string; source: string }[] = [
   { url: 'https://www.premiumtimesng.com/feed', source: 'Premium Times' },
@@ -56,13 +86,28 @@ function geoparse(text: string): { place: string; lng: number; lat: number } | n
   return null;
 }
 
-export async function GET() {
-  const parser = new Parser({ timeout: 8000, headers: { 'User-Agent': 'Gecko-Intel/1.0' } });
+async function fetchFeed(url: string): Promise<string | null> {
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Gecko-Intel/1.0; +https://gecko.inspire-edge.net)' },
+      signal: ctrl.signal,
+    });
+    clearTimeout(t);
+    if (!res.ok) return null;
+    return await res.text();
+  } catch {
+    return null;
+  }
+}
 
+export async function GET() {
   const settled = await Promise.allSettled(
     FEEDS.map(async (f) => {
-      const feed = await parser.parseURL(f.url);
-      return (feed.items || []).slice(0, 25).map((it) => ({ ...it, __source: f.source }));
+      const xml = await fetchFeed(f.url);
+      if (!xml) return [];
+      return parseItems(xml).slice(0, 25).map((it) => ({ ...it, __source: f.source }));
     }),
   );
 
@@ -73,7 +118,7 @@ export async function GET() {
     for (const it of r.value) {
       const title = (it.title || '').trim();
       if (!title || seen.has(title)) continue;
-      const loc = geoparse(`${title} ${it.contentSnippet || ''}`);
+      const loc = geoparse(`${title} ${it.snippet || ''}`);
       if (!loc) continue; // only plot items we can place
       seen.add(title);
       // small jitter so co-located headlines don't perfectly overlap
@@ -81,8 +126,8 @@ export async function GET() {
       items.push({
         title,
         link: it.link || '',
-        source: (it as any).__source,
-        pubDate: it.pubDate || it.isoDate || '',
+        source: it.__source,
+        pubDate: it.pubDate || '',
         place: loc.place,
         lat: loc.lat + jitter(),
         lng: loc.lng + jitter(),

@@ -48,6 +48,15 @@ export async function POST(req: Request, ctx: { params: Promise<{ kind: string }
     return NextResponse.json({ error: 'invalid JSON body' }, { status: 400 });
   }
 
+  // Delete-over-POST: some edge firewalls (incl. the default Cloudflare WAF on
+  // this zone) block the HTTP DELETE method, so the data-entry console removes
+  // records via POST { op: 'delete', id }.
+  if (body && body.op === 'delete') {
+    if (!body.id) return NextResponse.json({ error: 'id required' }, { status: 400 });
+    const removed = await deleteRecord(kind, String(body.id));
+    return NextResponse.json({ ok: removed }, { status: removed ? 200 : 404 });
+  }
+
   const normalized =
     kind === 'roads' ? normalizeRoad(body) : normalizePoint(kind, body);
 

@@ -15,6 +15,14 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
+// Seed templates bundled at build time so they are available on Cloudflare
+// Workers (which have no filesystem access to gecko-data/). Used to initialize
+// the KV / file store the first time a collection is read.
+import incidentsSeed from '../../gecko-data/seed/incidents.json';
+import infrastructureSeed from '../../gecko-data/seed/infrastructure.json';
+import checkpointsSeed from '../../gecko-data/seed/checkpoints.json';
+import roadsSeed from '../../gecko-data/seed/roads.json';
+
 export type IntelKind = 'incidents' | 'infrastructure' | 'checkpoints' | 'roads';
 
 export const KINDS: IntelKind[] = ['incidents', 'infrastructure', 'checkpoints', 'roads'];
@@ -68,6 +76,32 @@ function seedFileFor(kind: IntelKind): string {
   return path.join(SEED_DIR, `${kind}.json`);
 }
 
+// Bundled seed, keyed by kind — the source of truth for first-run init in any
+// environment (used directly on Workers where the seed/ dir isn't on disk).
+const SEED: Record<IntelKind, any[]> = {
+  incidents: incidentsSeed as any[],
+  infrastructure: infrastructureSeed as any[],
+  checkpoints: checkpointsSeed as any[],
+  roads: roadsSeed as any[],
+};
+
+const kvKey = (kind: IntelKind) => `nigeria:${kind}`;
+
+/**
+ * Return the Cloudflare KV binding when running on Workers, else null.
+ * Wrapped in try/catch so local `next dev` (no CF context) cleanly falls back
+ * to the filesystem store.
+ */
+async function getKV(): Promise<any | null> {
+  try {
+    const mod: any = await import('@opennextjs/cloudflare');
+    const ctx = mod.getCloudflareContext?.();
+    return ctx?.env?.GECKO_KV ?? null;
+  } catch {
+    return null;
+  }
+}
+
 async function ensureDir(): Promise<void> {
   await fs.mkdir(DATA_DIR, { recursive: true });
 }
@@ -84,20 +118,36 @@ async function readJsonArray(file: string): Promise<any[] | null> {
 }
 
 /**
- * Read a collection. If the live file doesn't exist yet, initialize it from the
- * tracked seed template (so a fresh clone renders immediately) and persist that
- * copy as the operator's editable working file.
+ * Read a collection.
+ *
+ * - On Cloudflare Workers: read from KV; if the key is empty, initialize it
+ *   from the bundled seed and persist that copy.
+ * - Locally: read the live JSON file; if missing, initialize it from the
+ *   tracked seed template (or bundled seed) and persist it.
  */
 export async function readKind(kind: IntelKind): Promise<any[]> {
+  const kv = await getKV();
+  if (kv) {
+    const stored = (await kv.get(kvKey(kind), 'json')) as any[] | null;
+    if (Array.isArray(stored)) return stored;
+    const seed = SEED[kind] ?? [];
+    await kv.put(kvKey(kind), JSON.stringify(seed));
+    return seed;
+  }
+  // Filesystem (local dev / self-host)
   const live = await readJsonArray(fileFor(kind));
   if (live !== null) return live;
-  // First run for this kind — seed the live file from the template (or empty).
-  const seed = (await readJsonArray(seedFileFor(kind))) ?? [];
+  const seed = (await readJsonArray(seedFileFor(kind))) ?? SEED[kind] ?? [];
   await writeKind(kind, seed);
   return seed;
 }
 
 async function writeKind(kind: IntelKind, rows: any[]): Promise<void> {
+  const kv = await getKV();
+  if (kv) {
+    await kv.put(kvKey(kind), JSON.stringify(rows));
+    return;
+  }
   await ensureDir();
   await fs.writeFile(fileFor(kind), JSON.stringify(rows, null, 2), 'utf8');
 }
