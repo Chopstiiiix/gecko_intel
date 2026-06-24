@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, BarChart3, Newspaper, Search, X, Globe, MapPinned, Radar, Satellite, Moon, ExternalLink, AlertTriangle, Activity, Database, Wifi, Play, Network, PanelLeftOpen } from 'lucide-react';
+import { Layers, BarChart3, Newspaper, Search, X, Globe, MapPinned, Radar, Satellite, Moon, ExternalLink, AlertTriangle, Activity, Database, Wifi, Play, Network, PanelLeftOpen, Crosshair } from 'lucide-react';
 import IntelFeed from '@/components/IntelFeed';
 import MarketsPanel from '@/components/MarketsPanel';
 import ScmPanel from '@/components/ScmPanel';
@@ -846,7 +846,7 @@ export default function Dashboard() {
 
 
       {/* ── NEW SIDEBAR (Root Level) ── */}
-      {showLayers && !isMobile && <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} theme={geckoTheme} setTheme={setGeckoTheme} onDataEntry={() => setShowDataEntry(true)} onCollapse={() => setShowLayers(false)} />}
+      {showLayers && !isMobile && <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} theme={geckoTheme} setTheme={setGeckoTheme} onCollapse={() => setShowLayers(false)} />}
 
       {/* ── COLLAPSED SIDEBAR — expand toggle (Claude-style) ── */}
       {!showLayers && !isMobile && (
@@ -931,6 +931,11 @@ export default function Dashboard() {
           </AnimatePresence>
         </div>
 
+        <div className="relative group">
+          <button onClick={() => setShowDataEntry(p => !p)} title="Add Nigeria field intel (N)" className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${showDataEntry ? 'bg-[var(--amber)]/20' : 'hover:bg-white/10'}`}>
+            <Crosshair className={`w-4 h-4 ${showDataEntry ? 'text-[var(--amber)]' : 'text-white/60'}`} />
+          </button>
+        </div>
 
       </div>}
 

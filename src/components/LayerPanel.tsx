@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Plane, Satellite, Activity, Sun, AlertTriangle, Camera, Flame, Target,
   CloudLightning, Radiation, Tv, Anchor, Ship, Newspaper,
-  Network, Share2, Radio, Mountain, Route, Landmark, PanelLeftClose, Crosshair
+  Network, Share2, Radio, Mountain, Route, Landmark, PanelLeftClose
 } from 'lucide-react';
 
 interface LayerPanelProps {
@@ -15,7 +15,6 @@ interface LayerPanelProps {
   isMobile?: boolean;
   theme?: 'core' | 'ghost';
   setTheme?: (theme: 'core' | 'ghost') => void;
-  onDataEntry?: () => void;
   onCollapse?: () => void;
 }
 
@@ -143,7 +142,7 @@ function Shield(props: any) {
   );
 }
 
-function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'core', setTheme, onDataEntry, onCollapse }: LayerPanelProps) {
+function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'core', setTheme, onCollapse }: LayerPanelProps) {
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 
   const LAYER_GROUPS = getLayerGroups(theme);
@@ -329,23 +328,6 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
           );
         })}
       </div>
-
-      {/* DATA ENTRY — pinned to the bottom of the sidebar */}
-      {onDataEntry && (
-        <div className="px-2 pt-3 mt-2 border-t border-[rgba(143,163,118,0.2)]">
-          <button
-            onClick={onDataEntry}
-            title="Add Nigeria field intel (N)"
-            className="w-full flex flex-col items-center justify-center gap-1 py-2.5 rounded-lg transition-colors"
-            style={{ background: '#D29B3B', color: '#0B0E09' }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = '#E0AC4E')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = '#D29B3B')}
-          >
-            <Crosshair className="w-4 h-4" />
-            <span className="text-[7px] font-mono font-bold tracking-[0.12em] leading-tight text-center">DATA ENTRY</span>
-          </button>
-        </div>
-      )}
 
     </motion.div>
   );
