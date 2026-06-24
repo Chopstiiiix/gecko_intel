@@ -243,7 +243,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
         </button>
       )}
 
-      <div className="flex-1 flex flex-col gap-8 px-2 overflow-y-auto styled-scrollbar">
+      <div className="flex-1 flex flex-col gap-8 px-2">
         {LAYER_GROUPS.map((group) => {
           const groupActiveCount = group.layers.filter(l => activeLayers[l.key]).length;
           const isActive = groupActiveCount > 0;

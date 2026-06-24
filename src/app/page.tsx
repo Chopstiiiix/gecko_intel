@@ -821,11 +821,6 @@ export default function Dashboard() {
             <span className="text-[8px] md:text-[9px] font-mono tracking-[0.22em] opacity-90 uppercase text-[var(--moss)]">NIGERIA INTELLIGENCE</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 mt-1.5 pl-[44px] min-w-0 pr-4">
-          <span className="text-[5px] md:text-[6px] text-[var(--text-muted)] font-mono tracking-[0.2em] md:tracking-[0.3em] uppercase opacity-50 truncate">
-            SOVEREIGN SECURITY OS · WEST AFRICA <span className="hidden md:inline">· SECURITY INCIDENTS · INFRASTRUCTURE · CHECKPOINTS · CORRIDORS · FIELD INTEL</span>
-          </span>
-        </div>
       </motion.div>
 
 
@@ -841,12 +836,11 @@ export default function Dashboard() {
         {spaceWeather && <span className="hidden lg:inline">SOLAR: <span style={{ color: spaceWeather.storm_color, fontWeight: 700 }}>Kp{spaceWeather.kp_index}</span></span>}
 
         <span className="hidden lg:inline-flex items-center gap-1">
-          <span className="text-[var(--cyan-primary)] font-bold">{Object.values(activeLayers).filter(Boolean).length}</span>
-          <span className="text-[var(--text-muted)]/60">FEEDS</span>
+          <span className="text-[var(--amber)] font-bold">{Object.values(activeLayers).filter(Boolean).length}</span>
+          <span className="text-[var(--text-secondary)]">FEEDS</span>
         </span>
 
         <UptimeClock />
-        <span className="text-[10px] font-bold tracking-[0.2em] text-[var(--text-muted)] opacity-50 ml-2">V.4.1</span>
       </motion.div>
 
 
@@ -1108,18 +1102,18 @@ export default function Dashboard() {
       {/* ── BOTTOM RAW METRICS (desktop) ── */}
       {!isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3, duration: 0.8 }} className="desktop-only absolute bottom-8 z-[200] pointer-events-auto" style={{ left: '120px' }}>
-          <div className="flex items-center gap-6 text-[8px] font-mono tracking-widest text-[var(--text-muted)] opacity-60">
+          <div className="flex items-center gap-6 text-[9px] font-mono tracking-widest text-[var(--text-secondary)]">
             <div className="flex gap-2 items-center">
               <span>COORD</span>
-              <span ref={coordsDisplayRef} className="text-[var(--gold-primary)] font-bold tabular-nums">—</span>
+              <span ref={coordsDisplayRef} className="text-[var(--signal)] font-bold tabular-nums">—</span>
             </div>
             <div className="flex gap-2 items-center">
               <span>LOC</span>
-              <span className="text-[var(--cyan-primary)] truncate max-w-[200px]">{locationLabel || 'HOVER MAP'}</span>
+              <span className="text-[var(--amber)] truncate max-w-[200px]">{locationLabel || 'HOVER MAP'}</span>
             </div>
             <div className="flex gap-2 items-center">
               <span>Z</span>
-              <span className="text-[var(--gold-primary)] font-bold tabular-nums">{mapView.zoom.toFixed(1)}</span>
+              <span className="text-[var(--signal)] font-bold tabular-nums">{mapView.zoom.toFixed(1)}</span>
             </div>
           </div>
         </motion.div>
@@ -1200,12 +1194,6 @@ export default function Dashboard() {
 
       {/* ── GLOBAL STATUS TICKER (bottom) ── */}
       <GlobalStatusBar />
-
-      {/* Shortcut hint */}
-      <div className="desktop-only absolute bottom-[26px] right-5 z-[200] pointer-events-none text-[6px] font-mono text-[var(--text-muted)]/40 tracking-widest">
-        [?] SHORTCUTS · [F] FULLSCREEN · [S] SHARE · [R] RESET VIEW
-      </div>
-
 
     </main>
   );

@@ -56,8 +56,8 @@ interface Props {
 }
 
 const inputCls =
-  'w-full bg-black/40 border border-white/10 rounded px-2 py-1.5 text-[11px] text-[var(--text-primary)] font-mono outline-none focus:border-[var(--gold-primary)]/60 transition-colors';
-const labelCls = 'block text-[9px] font-mono tracking-wider text-[var(--text-muted)] mb-1 uppercase';
+  'w-full bg-[#DFDAC6] border border-[#1A2014]/20 rounded px-2 py-1.5 text-[11px] text-[#1A2014] font-mono outline-none focus:border-[#294922] transition-colors';
+const labelCls = 'block text-[9px] font-mono tracking-wider text-[#3d4433] mb-1 uppercase';
 
 export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord, onFlyTo }: Props) {
   const [kind, setKind] = useState<Kind>('incidents');
@@ -179,15 +179,15 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 30 }}
-      className="absolute top-[70px] right-3 z-[400] w-[340px] max-h-[82vh] overflow-y-auto glass-panel p-4 pointer-events-auto"
-      style={{ borderTop: `2px solid ${meta.color}` }}
+      className="absolute top-[70px] right-3 z-[400] w-[340px] max-h-[82vh] overflow-y-auto rounded-2xl p-4 pointer-events-auto styled-scrollbar"
+      style={{ background: '#C9D8A8', border: '1px solid rgba(26,32,20,0.3)', borderTop: `3px solid ${meta.color}`, boxShadow: '0 18px 48px rgba(0,0,0,0.55)' }}
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Plus className="w-4 h-4" style={{ color: meta.color }} />
-          <span className="text-[12px] font-mono tracking-widest text-[var(--text-primary)]">DATA ENTRY</span>
+          <span className="text-[12px] font-mono tracking-widest text-[#1A2014]">DATA ENTRY</span>
         </div>
-        <button onClick={onClose} className="text-[var(--text-muted)] hover:text-white transition-colors">
+        <button onClick={onClose} className="text-[#3d4433] hover:text-[#1A2014] transition-colors">
           <X className="w-4 h-4" />
         </button>
       </div>
@@ -201,7 +201,7 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
             className={`px-2 py-1.5 rounded text-[9px] font-mono tracking-wider border transition-all ${
               kind === k
                 ? 'text-black font-bold'
-                : 'text-[var(--text-muted)] border-white/10 hover:border-white/30'
+                : 'text-[#3d4433] border-[#1A2014]/20 hover:border-[#1A2014]/40'
             }`}
             style={kind === k ? { background: KIND_META[k].color, borderColor: KIND_META[k].color } : {}}
           >
@@ -258,11 +258,11 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
           <div>
             <div className="flex items-center justify-between mb-1">
               <label className={labelCls} style={{ marginBottom: 0 }}>Route points ({roadPoints.length})</label>
-              <select className="bg-black/40 border border-white/10 rounded px-1 py-0.5 text-[9px] text-[var(--text-primary)] font-mono" value={form.status || 'open'} onChange={(e) => set('status', e.target.value)}>
+              <select className="bg-[#DFDAC6] border border-[#1A2014]/20 rounded px-1 py-0.5 text-[9px] text-[#1A2014] font-mono" value={form.status || 'open'} onChange={(e) => set('status', e.target.value)}>
                 {ROAD_STATUS.map((s) => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
-            <div className="bg-black/30 border border-white/10 rounded p-2 max-h-[80px] overflow-y-auto text-[9px] font-mono text-[var(--text-muted)]">
+            <div className="bg-[#DFDAC6] border border-[#1A2014]/20 rounded p-2 max-h-[80px] overflow-y-auto text-[9px] font-mono text-[#3d4433]">
               {roadPoints.length === 0 ? 'Grab map-cursor points along the route →' : roadPoints.map((p, i) => (
                 <div key={i} className="flex justify-between"><span>{i + 1}. {p[1].toFixed(4)}, {p[0].toFixed(4)}</span>
                   <button onClick={() => setRoadPoints((arr) => arr.filter((_, j) => j !== i))} className="text-[var(--alert-red)]">×</button>
@@ -272,7 +272,7 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
           </div>
         )}
 
-        <button onClick={grabCursor} className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded border border-[var(--gold-primary)]/40 text-[10px] font-mono tracking-wider text-[var(--gold-primary)] hover:bg-[var(--gold-primary)]/10 transition-colors">
+        <button onClick={grabCursor} className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded border border-[#294922]/50 text-[10px] font-mono tracking-wider text-[#294922] hover:bg-[#294922]/10 transition-colors">
           <Crosshair className="w-3.5 h-3.5" /> {kind === 'roads' ? 'ADD MAP-CURSOR POINT' : 'GRAB MAP CURSOR'}
         </button>
 
@@ -301,7 +301,7 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
         )}
 
         {msg && (
-          <div className={`text-[10px] font-mono px-2 py-1.5 rounded ${msg.kind === 'ok' ? 'text-[#5F8443] bg-[#5F8443]/10' : 'text-[var(--alert-red)] bg-[var(--alert-red)]/10'}`}>
+          <div className={`text-[10px] font-mono px-2 py-1.5 rounded ${msg.kind === 'ok' ? 'text-[#294922] bg-[#294922]/12' : 'text-[#B0492F] bg-[#B0492F]/12'}`}>
             {msg.text}
           </div>
         )}
@@ -312,20 +312,20 @@ export default function DataEntryPanel({ open, onClose, onSaved, getCursorCoord,
       </div>
 
       {/* existing records */}
-      <div className="mt-4 pt-3 border-t border-white/10">
+      <div className="mt-4 pt-3 border-t border-[#1A2014]/20">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[9px] font-mono tracking-wider text-[var(--text-muted)] uppercase">{kind} on map ({items.length})</span>
-          <button onClick={() => loadItems(kind)} className="text-[var(--text-muted)] hover:text-white"><RefreshCw className="w-3 h-3" /></button>
+          <span className="text-[9px] font-mono tracking-wider text-[#3d4433] uppercase">{kind} on map ({items.length})</span>
+          <button onClick={() => loadItems(kind)} className="text-[#3d4433] hover:text-[#1A2014]"><RefreshCw className="w-3 h-3" /></button>
         </div>
         <div className="space-y-1 max-h-[160px] overflow-y-auto">
           {items.map((it) => (
-            <div key={idOf(it)} className="flex items-center justify-between gap-2 bg-black/30 rounded px-2 py-1.5">
+            <div key={idOf(it)} className="flex items-center justify-between gap-2 bg-[#DFDAC6] rounded px-2 py-1.5">
               <button onClick={() => flyTo(it)} className="flex items-center gap-1.5 text-left min-w-0 group">
                 <MapPin className="w-3 h-3 flex-shrink-0" style={{ color: meta.color }} />
-                <span className="text-[10px] font-mono text-[var(--text-primary)] truncate group-hover:text-[var(--gold-primary)]">{labelOf(it)}</span>
-                {seedOf(it) && <span className="text-[8px] font-mono text-[var(--text-muted)] border border-white/15 rounded px-1">SEED</span>}
+                <span className="text-[10px] font-mono text-[#1A2014] truncate group-hover:text-[#294922]">{labelOf(it)}</span>
+                {seedOf(it) && <span className="text-[8px] font-mono text-[#3d4433] border border-[#1A2014]/25 rounded px-1">SEED</span>}
               </button>
-              <button onClick={() => remove(idOf(it))} className="text-[var(--text-muted)] hover:text-[var(--alert-red)] flex-shrink-0"><Trash2 className="w-3 h-3" /></button>
+              <button onClick={() => remove(idOf(it))} className="text-[#3d4433] hover:text-[var(--alert-red)] flex-shrink-0"><Trash2 className="w-3 h-3" /></button>
             </div>
           ))}
         </div>
