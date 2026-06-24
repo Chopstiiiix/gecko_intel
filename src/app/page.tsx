@@ -871,7 +871,7 @@ export default function Dashboard() {
           {/* OSINT / Recon Panel Slideout */}
           <AnimatePresence>
             {showIntel && (
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="absolute right-12 top-1/2 -translate-y-1/2 w-80">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="fixed right-16 top-1/2 -translate-y-1/2 w-80 max-h-[86vh] overflow-y-auto styled-scrollbar z-[260] pointer-events-auto">
                 <OsintPanel theme={geckoTheme} setTheme={setGeckoTheme} onSweepVisualize={setSweepData} onScanGeolocate={(target, data) => {
                   setScanTargets(prev => {
                     const existing = prev.filter(t => t.id !== target);
@@ -891,7 +891,7 @@ export default function Dashboard() {
           {/* Markets Panel Slideout */}
           <AnimatePresence>
             {showMarkets && (
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="absolute right-12 top-1/2 -translate-y-1/2 w-80">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="fixed right-16 top-1/2 -translate-y-1/2 w-80 max-h-[86vh] overflow-y-auto styled-scrollbar z-[260] pointer-events-auto">
                 <MarketsPanel data={data} spaceWeather={spaceWeather} />
               </motion.div>
             )}
@@ -905,7 +905,7 @@ export default function Dashboard() {
           {/* Alerts Panel Slideout */}
           <AnimatePresence>
             {showAlerts && (
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="absolute right-12 top-1/2 -translate-y-1/2 w-80">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="fixed right-16 top-1/2 -translate-y-1/2 w-80 max-h-[86vh] overflow-y-auto styled-scrollbar z-[260] pointer-events-auto">
                 <LiveAlerts data={data} onLocate={(lat, lng) => setFlyToLocation({ lat, lng, ts: Date.now() })} onWatchFeed={(url, name) => { setLiveFeedUrl(url); setLiveFeedName(name); }} />
               </motion.div>
             )}
@@ -924,7 +924,7 @@ export default function Dashboard() {
           </button>
           <AnimatePresence>
             {showDesktopSearch && (
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="absolute right-12 top-1/2 -translate-y-1/2 w-80">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="fixed right-16 top-1/2 -translate-y-1/2 w-80 max-h-[86vh] overflow-y-auto styled-scrollbar z-[260] pointer-events-auto">
                 <SearchBar alwaysExpanded onLocate={(lat, lng, zoom) => { setFlyToLocation({ lat, lng, zoom, ts: Date.now() }); setShowDesktopSearch(false); }} />
               </motion.div>
             )}
