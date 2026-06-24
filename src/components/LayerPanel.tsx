@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Plane, Satellite, Activity, Sun, AlertTriangle, Camera, Flame, Target,
   CloudLightning, Radiation, Tv, Anchor, Ship, Newspaper,
-  Network, Share2, Radio, Mountain, Route, Landmark
+  Network, Share2, Radio, Mountain, Route, Landmark, ChevronLeft, Crosshair
 } from 'lucide-react';
 
 interface LayerPanelProps {
@@ -15,6 +15,8 @@ interface LayerPanelProps {
   isMobile?: boolean;
   theme?: 'core' | 'ghost';
   setTheme?: (theme: 'core' | 'ghost') => void;
+  onDataEntry?: () => void;
+  onCollapse?: () => void;
 }
 
 const getLayerGroups = (theme: 'core' | 'ghost') => {
@@ -141,7 +143,7 @@ function Shield(props: any) {
   );
 }
 
-function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'core', setTheme }: LayerPanelProps) {
+function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'core', setTheme, onDataEntry, onCollapse }: LayerPanelProps) {
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null);
 
   const LAYER_GROUPS = getLayerGroups(theme);
@@ -227,11 +229,20 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className="absolute top-0 left-0 h-full w-[80px] border-r border-[var(--border-primary)] flex flex-col pt-32 pb-8 z-50 pointer-events-auto bg-[var(--bg-panel)] backdrop-blur-[24px] saturate-150"
-      style={{ boxShadow: '4px 0 24px rgba(0,0,0,0.5)' }}
+      className="absolute top-0 left-0 h-full w-[80px] border-r border-[rgba(143,163,118,0.25)] flex flex-col pt-28 pb-6 z-50 pointer-events-auto"
+      style={{ background: '#10150D', boxShadow: '4px 0 24px rgba(0,0,0,0.6)' }}
     >
-      
-      <div className="flex-1 flex flex-col gap-8 px-2">
+      {onCollapse && (
+        <button
+          onClick={onCollapse}
+          title="Collapse panel (L)"
+          className="mx-auto mb-5 w-8 h-8 rounded-lg flex items-center justify-center border border-[rgba(143,163,118,0.3)] bg-[#1C2417] text-white hover:bg-[#25301D] transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+      )}
+
+      <div className="flex-1 flex flex-col gap-8 px-2 overflow-y-auto styled-scrollbar">
         {LAYER_GROUPS.map((group) => {
           const groupActiveCount = group.layers.filter(l => activeLayers[l.key]).length;
           const isActive = groupActiveCount > 0;
@@ -273,12 +284,11 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                     animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, x: -5, filter: 'blur(2px)' }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] border border-white/10 rounded-2xl p-3 z-50 pointer-events-auto"
+                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] rounded-xl p-3 z-50 pointer-events-auto"
                     style={{
-                      background: 'rgba(13,18,11,0.62)',
-                      backdropFilter: 'blur(26px) saturate(150%)',
-                      WebkitBackdropFilter: 'blur(26px) saturate(150%)',
-                      boxShadow: '0 16px 44px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08)'
+                      background: '#10150D',
+                      border: '1px solid rgba(143,163,118,0.32)',
+                      boxShadow: '0 18px 48px rgba(0,0,0,0.65)'
                     }}
                   >
                     <div className="text-[11px] font-bold font-mono mb-3 tracking-widest border-b border-white/10 pb-2 text-white">
@@ -325,6 +335,23 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
           );
         })}
       </div>
+
+      {/* DATA ENTRY — pinned to the bottom of the sidebar */}
+      {onDataEntry && (
+        <div className="px-2 pt-3 mt-2 border-t border-[rgba(143,163,118,0.2)]">
+          <button
+            onClick={onDataEntry}
+            title="Add Nigeria field intel (N)"
+            className="w-full flex flex-col items-center justify-center gap-1 py-2.5 rounded-lg transition-colors"
+            style={{ background: '#D29B3B', color: '#0B0E09' }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = '#E0AC4E')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = '#D29B3B')}
+          >
+            <Crosshair className="w-4 h-4" />
+            <span className="text-[7px] font-mono font-bold tracking-[0.12em] leading-tight text-center">DATA ENTRY</span>
+          </button>
+        </div>
+      )}
 
     </motion.div>
   );

@@ -158,7 +158,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-3 py-1.5 rounded text-[10px] font-mono tracking-wider transition-all ${filter === f ? 'bg-[var(--cyan-primary)]/20 text-[var(--cyan-primary)] border border-[var(--cyan-primary)]/50' : 'text-[#62704E] border border-transparent hover:text-[#E9E5D6] hover:bg-[#2A2A28]'}`}
+                  className={`px-3 py-1.5 rounded text-[10px] font-mono tracking-wider transition-all ${filter === f ? 'bg-[var(--cyan-primary)]/20 text-[var(--cyan-primary)] border border-[var(--cyan-primary)]/50' : 'text-[#8FA376] border border-transparent hover:text-[#E9E5D6] hover:bg-[#2A2A28]'}`}
                 >
                   {f.toUpperCase()}
                 </button>
@@ -199,9 +199,9 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                         </div>
                         <div className="flex items-center justify-between border-t border-[#2A2A28]/50 pt-1.5 mt-1.5">
                           <div className="flex items-center gap-2">
-                            <span className="text-[9px] font-mono text-[#62704E] uppercase tracking-wider">{alert.source}</span>
+                            <span className="text-[9px] font-mono text-[#8FA376] uppercase tracking-wider">{alert.source}</span>
                             {alert.time && (
-                              <span className="text-[9px] font-mono text-[#62704E] flex items-center gap-1 border-l border-[#2A2A28] pl-2">
+                              <span className="text-[9px] font-mono text-[#8FA376] flex items-center gap-1 border-l border-[#2A2A28] pl-2">
                                 <Clock className="w-2.5 h-2.5" />
                                 {new Date(alert.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>

@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, BarChart3, Newspaper, Search, X, Globe, MapPinned, Radar, Satellite, Moon, ExternalLink, AlertTriangle, Activity, Database, Wifi, Play, Network, Crosshair } from 'lucide-react';
+import { Layers, BarChart3, Newspaper, Search, X, Globe, MapPinned, Radar, Satellite, Moon, ExternalLink, AlertTriangle, Activity, Database, Wifi, Play, Network, ChevronRight } from 'lucide-react';
 import IntelFeed from '@/components/IntelFeed';
 import MarketsPanel from '@/components/MarketsPanel';
 import ScmPanel from '@/components/ScmPanel';
@@ -770,16 +770,6 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
-      {/* ── DATA ENTRY TOGGLE BUTTON ── */}
-      <button
-        onClick={() => setShowDataEntry(p => !p)}
-        className="gecko-btn gecko-btn-amber gecko-btn-sm absolute top-[70px] right-3 z-[350] pointer-events-auto"
-        style={{ display: showDataEntry ? 'none' : 'inline-flex' }}
-        title="Add Nigeria field intel (N)"
-      >
-        <Crosshair className="w-3.5 h-3.5" />
-        <span className="hidden md:inline">DATA ENTRY</span>
-      </button>
 
 
       {/* ── MAP VIEW CONTROLS (3D/2D + SATELLITE TOGGLE) ── */}
@@ -862,7 +852,18 @@ export default function Dashboard() {
 
 
       {/* ── NEW SIDEBAR (Root Level) ── */}
-      {showLayers && !isMobile && <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} theme={geckoTheme} setTheme={setGeckoTheme} />}
+      {showLayers && !isMobile && <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} theme={geckoTheme} setTheme={setGeckoTheme} onDataEntry={() => setShowDataEntry(true)} onCollapse={() => setShowLayers(false)} />}
+
+      {/* ── COLLAPSED SIDEBAR — expand toggle ── */}
+      {!showLayers && !isMobile && (
+        <button
+          onClick={() => setShowLayers(true)}
+          title="Show panel (L)"
+          className="absolute top-28 left-2 z-[60] w-8 h-8 rounded-lg flex items-center justify-center border border-[rgba(143,163,118,0.3)] bg-[#1C2417] text-white hover:bg-[#25301D] transition-colors pointer-events-auto"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      )}
 
 
 

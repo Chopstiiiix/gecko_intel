@@ -173,7 +173,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       createIcon(map, 'plane-green', flightPriv, 24);   
       createIcon(map, 'plane-pink', flightGov, 24);    
       createIcon(map, 'plane-red', flightMil, 24);     
-      createIcon(map, 'plane-grey', isGhost ? phantomPurple : '#62704E', 24);    
+      createIcon(map, 'plane-grey', isGhost ? phantomPurple : '#8FA376', 24);    
       createDot(map, 'dot-gold', isGhost ? phantomPurple : '#5F8443', 8);
       createDot(map, 'dot-red', isGhost ? phantomPurple : '#B0492F', 10);
       createDot(map, 'dot-orange', isGhost ? phantomPurple : '#D29B3B', 10);
@@ -226,7 +226,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       //  NIGERIA INTEL LAYERS (Gecko)
       // ════════════════════════════════════════════════════════════
       const sevColor: any = ['match', ['get', 'severity'],
-        'critical', '#B0492F', 'high', '#B0492F', 'medium', '#D29B3B', 'low', '#8FA376', '#62704E'];
+        'critical', '#B0492F', 'high', '#B0492F', 'medium', '#D29B3B', 'low', '#8FA376', '#8FA376'];
 
       // Roads / corridors (lines) — status-coloured
       map.addLayer({ id: 'ng-roads-line', type: 'line', source: 'ng-roads', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: {
@@ -386,7 +386,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         'circle-color': ['case', 
           ['in', 'SEISMIC RISK', ['get', 'status']], '#D29B3B',
           ['==', ['get','status'], 'Active Conflict Zone'], '#B0492F', 
-          ['==', ['get','status'], 'Destroyed / Decommissioning'], '#62704E', 
+          ['==', ['get','status'], 'Destroyed / Decommissioning'], '#8FA376', 
           '#5F8443'
         ],
         'circle-opacity': 0.75,
@@ -651,15 +651,15 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         popup(coords, `<div style="${pStyle}border:1px solid rgba(95,132,67,0.3);">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
             <span style="color:#5F8443;font-size:16px;font-weight:700;letter-spacing:0.1em;">${htmlEsc(cs)}</span>
-            <span style="color:#62704E;font-size:10px;">${htmlEsc(p.icao24||'')}</span>
+            <span style="color:#8FA376;font-size:10px;">${htmlEsc(p.icao24||'')}</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:11px;">
-            <div><span style="color:#62704E;font-size:9px;">MODEL</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.model||'—')}</span></div>
-            <div><span style="color:#62704E;font-size:9px;">ALT</span><br/><span style="color:#D29B3B;">${p.alt?Math.round(p.alt)+'m':'—'}</span></div>
-            <div><span style="color:#62704E;font-size:9px;">SPEED</span><br/><span style="color:#E9E5D6;">${p.speed_knots||'—'}kt</span></div>
-            <div><span style="color:#62704E;font-size:9px;">HDG</span><br/><span style="color:#E9E5D6;">${Math.round(p.heading||0)}°</span></div>
-            <div><span style="color:#62704E;font-size:9px;">REG</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.registration||'—')}</span></div>
-            <div><span style="color:#62704E;font-size:9px;">POS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(2)},${coords[0].toFixed(2)}</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">MODEL</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.model||'—')}</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">ALT</span><br/><span style="color:#D29B3B;">${p.alt?Math.round(p.alt)+'m':'—'}</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">SPEED</span><br/><span style="color:#E9E5D6;">${p.speed_knots||'—'}kt</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">HDG</span><br/><span style="color:#E9E5D6;">${Math.round(p.heading||0)}°</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">REG</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.registration||'—')}</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">POS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(2)},${coords[0].toFixed(2)}</span></div>
           </div>
           <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
             <a href="https://www.flightaware.com/live/flight/${encodeURIComponent(cs)}" target="_blank" style="${linkStyle}color:#5F8443;border:1px solid rgba(95,132,67,0.4);background:rgba(95,132,67,0.1);">⚡ FLIGHTAWARE</a>
@@ -706,8 +706,8 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:#D29B3B;font-size:14px;font-weight:700;margin-bottom:4px;">M${p.magnitude} EARTHQUAKE</div>
         <div style="font-size:9px;color:#E9E5D6;margin-bottom:8px;">${htmlEsc(p.place||'Unknown location')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#62704E;">DEPTH</span><br/><span style="color:#E9E5D6;">${p.depth||'—'}km</span></div>
-          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}, ${coords[0].toFixed(3)}</span></div>
+          <div><span style="color:#8FA376;">DEPTH</span><br/><span style="color:#E9E5D6;">${p.depth||'—'}km</span></div>
+          <div><span style="color:#8FA376;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}, ${coords[0].toFixed(3)}</span></div>
         </div>
         <a href="${p.source === 'NIGGG-BAS' ? 'https://ndc.niggg.bas.bg/' : `https://earthquake.usgs.gov/earthquakes/eventpage/${encodeURIComponent(p.id||'')}`}" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(210,155,59,0.4);background:rgba(210,155,59,0.1);">📊 ${p.source === 'NIGGG-BAS' ? 'NIGGG-BAS' : 'USGS DETAILS'}</a>
       </div>`);
@@ -721,9 +721,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       popup(coords, `<div style="${pStyle}border:1px solid rgba(95,132,67,0.3);">
         <div style="color:#5F8443;font-size:12px;font-weight:700;letter-spacing:0.1em;margin-bottom:4px;">🛰️ ${htmlEsc(p.name)}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#62704E;">MISSION</span><br/><span style="color:${colorSafe(p.color)};">${htmlEsc(p.mission||'Unknown')}</span></div>
-          <div><span style="color:#62704E;">ALT</span><br/><span style="color:#D29B3B;">${p.alt ? p.alt+' km' : '—'}</span></div>
-          <div><span style="color:#62704E;">POS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(2)}°, ${coords[0].toFixed(2)}°</span></div>
+          <div><span style="color:#8FA376;">MISSION</span><br/><span style="color:${colorSafe(p.color)};">${htmlEsc(p.mission||'Unknown')}</span></div>
+          <div><span style="color:#8FA376;">ALT</span><br/><span style="color:#D29B3B;">${p.alt ? p.alt+' km' : '—'}</span></div>
+          <div><span style="color:#8FA376;">POS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(2)}°, ${coords[0].toFixed(2)}°</span></div>
         </div>
         ${p.noradId ? `<a href="https://www.n2yo.com/satellite/?s=${p.noradId}" target="_blank" style="display:block;text-align:center;padding:4px;margin-top:6px;font-size:8px;font-family:monospace;letter-spacing:0.1em;text-decoration:none;color:#D29B3B;border:1px solid rgba(210,155,59,0.4);background:rgba(210,155,59,0.1);border-radius:2px;cursor:pointer;">📡 TRACK ON N2YO</a>` : ''}
       </div>`);
@@ -737,8 +737,8 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       popup(coords, `<div style="${pStyle}border:1px solid rgba(255,107,0,0.3);">
         <div style="color:#D29B3B;font-size:12px;font-weight:700;margin-bottom:6px;">🔥 ACTIVE FIRE DETECTED</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#62704E;">BRIGHTNESS</span><br/><span style="color:#D29B3B;">${p.brightness||'—'}K</span></div>
-          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#8FA376;">BRIGHTNESS</span><br/><span style="color:#D29B3B;">${p.brightness||'—'}K</span></div>
+          <div><span style="color:#8FA376;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
         <a href="https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;l:noaa20-viirs,viirs,modis_a,modis_t;@${coords[0]},${coords[1]},10z" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(255,107,0,0.4);background:rgba(255,107,0,0.1);">🛰️ NASA FIRMS MAP</a>
       </div>`);
@@ -755,12 +755,12 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       popup(coords, `<div style="${pStyle}border:1px solid rgba(255,23,68,0.4);box-shadow:inset 0 0 12px rgba(255,23,68,0.1);">
         <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,23,68,0.3);padding-bottom:6px;margin-bottom:8px;">
           <div style="color:#B0492F;font-size:12px;font-weight:700;letter-spacing:0.1em;text-shadow:0 0 4px rgba(255,23,68,0.5);">[ ${htmlEsc(tType)} ]</div>
-          <div style="color:#62704E;font-size:9px;">${htmlEsc(p.country || 'UNKNOWN')}</div>
+          <div style="color:#8FA376;font-size:9px;">${htmlEsc(p.country || 'UNKNOWN')}</div>
         </div>
         <div style="color:#E9E5D6;font-size:11px;font-weight:bold;margin-bottom:10px;">${htmlEsc(p.malware || 'Unidentified Threat Payload')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:12px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
-          <div><span style="color:#62704E;">TARGET IP</span><br/><span style="color:#D29B3B;font-family:monospace;">${htmlEsc(p.ip)}</span></div>
-          <div><span style="color:#62704E;">STATUS</span><br/><span style="color:${statusColor};">${(p.status||'UNKNOWN').toUpperCase()}</span></div>
+          <div><span style="color:#8FA376;">TARGET IP</span><br/><span style="color:#D29B3B;font-family:monospace;">${htmlEsc(p.ip)}</span></div>
+          <div><span style="color:#8FA376;">STATUS</span><br/><span style="color:${statusColor};">${(p.status||'UNKNOWN').toUpperCase()}</span></div>
         </div>
         <div style="display:flex;gap:6px;">
           <a href="https://feodotracker.abuse.ch/browse/" target="_blank" style="${linkStyle}flex:1;text-align:center;color:#E9E5D6;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);">THREAT INTEL ↗</a>
@@ -806,8 +806,8 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:${color};font-size:12px;font-weight:700;margin-bottom:6px;">⚠️ ${htmlEsc(p.label || 'WARNING EVENT')}</div>
         <div style="font-size:10px;color:#E9E5D6;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.description || 'Global event detected at this location.')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#62704E;">SEVERITY</span><br/><span style="color:${color};">${(p.severity||'unknown').toUpperCase()}</span></div>
-          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#8FA376;">SEVERITY</span><br/><span style="color:${color};">${(p.severity||'unknown').toUpperCase()}</span></div>
+          <div><span style="color:#8FA376;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
         ${p.sourceUrl ? `<a href="${urlSafe(p.sourceUrl)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>` : ''}
       </div>`);
@@ -833,12 +833,12 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:#E9E5D6;font-size:12px;font-weight:700;margin-bottom:6px;">${htmlEsc(p.label || 'Untitled')}</div>
         ${p.description ? `<div style="font-size:10px;color:#8FA376;margin-bottom:8px;line-height:1.45;">${htmlEsc(p.description)}</div>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          ${p.category ? `<div><span style="color:#62704E;">CATEGORY</span><br/><span style="color:${color};">${htmlEsc(String(p.category).toUpperCase())}</span></div>` : ''}
-          ${p.severity ? `<div><span style="color:#62704E;">SEVERITY</span><br/><span style="color:${color};">${htmlEsc(String(p.severity).toUpperCase())}</span></div>` : ''}
-          ${p.state ? `<div><span style="color:#62704E;">STATE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.state)}</span></div>` : ''}
-          ${p.date ? `<div><span style="color:#62704E;">DATE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.date)}</span></div>` : ''}
-          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
-          ${p.source ? `<div><span style="color:#62704E;">SOURCE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.source)}</span></div>` : ''}
+          ${p.category ? `<div><span style="color:#8FA376;">CATEGORY</span><br/><span style="color:${color};">${htmlEsc(String(p.category).toUpperCase())}</span></div>` : ''}
+          ${p.severity ? `<div><span style="color:#8FA376;">SEVERITY</span><br/><span style="color:${color};">${htmlEsc(String(p.severity).toUpperCase())}</span></div>` : ''}
+          ${p.state ? `<div><span style="color:#8FA376;">STATE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.state)}</span></div>` : ''}
+          ${p.date ? `<div><span style="color:#8FA376;">DATE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.date)}</span></div>` : ''}
+          <div><span style="color:#8FA376;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          ${p.source ? `<div><span style="color:#8FA376;">SOURCE</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.source)}</span></div>` : ''}
         </div>
         ${p.sourceUrl ? `<a href="${urlSafe(p.sourceUrl)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>` : ''}
       </div>`);
@@ -851,7 +851,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       popup(coords, `<div style="${pStyle}border:1px solid ${color}40;">
         <div style="color:${color};font-size:9px;font-weight:700;letter-spacing:0.12em;margin-bottom:4px;">📰 ${htmlEsc(p.source || 'NIGERIA NEWS')} · ${htmlEsc(p.place || '')}</div>
         <div style="color:#E9E5D6;font-size:11px;font-weight:600;margin-bottom:8px;line-height:1.4;">${htmlEsc(p.title || '')}</div>
-        ${p.pubDate ? `<div style="font-size:9px;color:#62704E;margin-bottom:8px;">${htmlEsc(p.pubDate)}</div>` : ''}
+        ${p.pubDate ? `<div style="font-size:9px;color:#8FA376;margin-bottom:8px;">${htmlEsc(p.pubDate)}</div>` : ''}
         ${p.link ? `<a href="${urlSafe(p.link)}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;">[ READ ARTICLE ↗ ]</a>` : ''}
       </div>`);
     });
@@ -867,9 +867,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:#E9E5D6;font-size:12px;font-weight:700;margin-bottom:6px;">${htmlEsc(p.name || 'Road')}</div>
         ${p.description ? `<div style="font-size:10px;color:#8FA376;margin-bottom:8px;line-height:1.45;">${htmlEsc(p.description)}</div>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#62704E;">STATUS</span><br/><span style="color:${color};">${htmlEsc(String(p.status || 'open').toUpperCase())}</span></div>
-          ${p.roadClass ? `<div><span style="color:#62704E;">CLASS</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.roadClass)}</span></div>` : ''}
-          ${p.state ? `<div style="grid-column:1/3;"><span style="color:#62704E;">STATES</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.state)}</span></div>` : ''}
+          <div><span style="color:#8FA376;">STATUS</span><br/><span style="color:${color};">${htmlEsc(String(p.status || 'open').toUpperCase())}</span></div>
+          ${p.roadClass ? `<div><span style="color:#8FA376;">CLASS</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.roadClass)}</span></div>` : ''}
+          ${p.state ? `<div style="grid-column:1/3;"><span style="color:#8FA376;">STATES</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.state)}</span></div>` : ''}
         </div>
       </div>`);
     });
@@ -898,10 +898,10 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
             <span style="color:${domainColor};font-size:11px;font-weight:700;letter-spacing:0.1em;">${domainLabel}</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:8px;">
-            <div><span style="color:#62704E;">FROM</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.fromName || 'Origin')}</span></div>
-            <div><span style="color:#62704E;">TO</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.toName || 'Destination')}</span></div>
-            <div><span style="color:#62704E;">DOMAIN</span><br/><span style="color:${domainColor};">${p.domain}</span></div>
-            <div><span style="color:#62704E;">SOURCE</span><br/><a href="${urlSafe(srcUrl)}" target="_blank" style="color:${domainColor};text-decoration:underline;cursor:pointer;">${htmlEsc(p.source || 'GECKO')}</a></div>
+            <div><span style="color:#8FA376;">FROM</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.fromName || 'Origin')}</span></div>
+            <div><span style="color:#8FA376;">TO</span><br/><span style="color:#E9E5D6;">${htmlEsc(p.toName || 'Destination')}</span></div>
+            <div><span style="color:#8FA376;">DOMAIN</span><br/><span style="color:${domainColor};">${p.domain}</span></div>
+            <div><span style="color:#8FA376;">SOURCE</span><br/><a href="${urlSafe(srcUrl)}" target="_blank" style="color:${domainColor};text-decoration:underline;cursor:pointer;">${htmlEsc(p.source || 'GECKO')}</a></div>
           </div>
           <a href="${urlSafe(srcUrl)}" target="_blank" style="${linkStyle}color:${domainColor};border:1px solid ${domainColor}40;background:${domainColor}18;display:inline-block;margin-top:4px;">OPEN SOURCE ↗</a>
         </div>`);
@@ -923,8 +923,8 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:#B0492F;font-size:12px;font-weight:700;margin-bottom:6px;">🎯 TARGET: ${htmlEsc(p.id)}</div>
         <div style="font-size:9px;color:#E9E5D6;margin-bottom:8px;">${htmlEsc(p.city || 'Unknown')}, ${htmlEsc(p.country || 'Unknown')} — ${htmlEsc(p.isp || 'Unknown ISP')}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#62704E;">TYPE</span><br/><span style="color:#D29B3B;">${(p.type || 'UNKNOWN').toUpperCase()}</span></div>
-          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#8FA376;">TYPE</span><br/><span style="color:#D29B3B;">${(p.type || 'UNKNOWN').toUpperCase()}</span></div>
+          <div><span style="color:#8FA376;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
         <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${idSafe(p.id)}' })" style="width:100%;margin-top:8px;padding:6px 12px;background:rgba(255,109,0,0.15);border:1px solid rgba(255,109,0,0.5);color:#D29B3B;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ IP INTEL DEEP DIVE ]</button>
       </div>`);
@@ -949,7 +949,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:${color};font-size:12px;font-weight:700;margin-bottom:4px;">🏢 ${htmlEsc(p.name)}</div>
         <div style="font-size:9px;color:#aaa;margin-bottom:8px;">${htmlEsc(p.category)} | ${htmlEsc(p.city)}, ${htmlEsc(p.country)}</div>
         <div style="display:grid;grid-template-columns:1fr;gap:4px;font-size:11px;">
-          <div><span style="color:#62704E;font-size:9px;">SCM RISK LEVEL</span><br/><span style="color:${color};font-weight:bold;">${p.risk_level}</span></div>
+          <div><span style="color:#8FA376;font-size:9px;">SCM RISK LEVEL</span><br/><span style="color:${color};font-weight:bold;">${p.risk_level}</span></div>
         </div>
         ${threatsHtml}
       </div>`);
@@ -963,16 +963,16 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const ports = JSON.parse(p.ports || '[]');
       const vulns = JSON.parse(p.vulns || '[]');
       const hostnames = JSON.parse(p.hostnames || '[]');
-      const riskColors: Record<string, string> = { CRITICAL: '#B0492F', HIGH: '#D29B3B', MEDIUM: '#D29B3B', LOW: '#5F8443', INFO: '#62704E' };
+      const riskColors: Record<string, string> = { CRITICAL: '#B0492F', HIGH: '#D29B3B', MEDIUM: '#D29B3B', LOW: '#5F8443', INFO: '#8FA376' };
       popup(coords, `<div style="font-family:monospace;font-size:11px;color:#E9E5D6;">
         <div style="font-size:13px;font-weight:bold;margin-bottom:6px;color:${p.color};">${p.device_type}</div>
         <div style="font-size:12px;margin-bottom:8px;color:#fff;">${p.ip}</div>
-        ${hostnames.length > 0 ? `<div style="font-size:9px;color:#62704E;margin-bottom:6px;">${hostnames.join(', ')}</div>` : ''}
+        ${hostnames.length > 0 ? `<div style="font-size:9px;color:#8FA376;margin-bottom:6px;">${hostnames.join(', ')}</div>` : ''}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
-          <div><span style="color:#62704E;">PORTS</span><br/><span style="color:#E9E5D6;">${ports.length}</span></div>
-          <div><span style="color:#62704E;">RISK</span><br/><span style="color:${riskColors[p.risk_level] || '#666'};">${p.risk_level}</span></div>
+          <div><span style="color:#8FA376;">PORTS</span><br/><span style="color:#E9E5D6;">${ports.length}</span></div>
+          <div><span style="color:#8FA376;">RISK</span><br/><span style="color:${riskColors[p.risk_level] || '#666'};">${p.risk_level}</span></div>
         </div>
-        <div style="font-size:9px;color:#62704E;margin-bottom:6px;">Open: ${ports.slice(0, 12).join(', ')}${ports.length > 12 ? ' ...' : ''}</div>
+        <div style="font-size:9px;color:#8FA376;margin-bottom:6px;">Open: ${ports.slice(0, 12).join(', ')}${ports.length > 12 ? ' ...' : ''}</div>
         ${vulns.length > 0 ? `<div style="font-size:9px;color:#B0492F;margin-bottom:6px;">⚠ CVEs: ${vulns.slice(0, 5).join(', ')}${vulns.length > 5 ? ` +${vulns.length - 5} more` : ''}</div>` : ''}
         <button onclick="window.openGeckoIntel({ type: 'ip', ip: '${p.ip}' })" style="width:100%;margin-top:6px;padding:6px 12px;background:rgba(255,109,0,0.15);border:1px solid rgba(255,109,0,0.5);color:#D29B3B;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:bold;letter-spacing:0.1em;border-radius:4px;cursor:pointer;">[ IP INTEL DEEP DIVE ]</button>
       </div>`);
@@ -987,10 +987,10 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:${p.color};font-size:12px;font-weight:700;letter-spacing:0.1em;margin-bottom:4px;">🎈 ${p.callsign}</div>
         <div style="font-size:9px;color:#aaa;margin-bottom:8px;">${p.type.toUpperCase()} / STATUS: ${p.status.toUpperCase()}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#62704E;">ALTITUDE</span><br/><span style="color:#E9E5D6;">${p.altitude} m</span></div>
-          <div><span style="color:#62704E;">SPEED</span><br/><span style="color:#E9E5D6;">${Math.round(p.speed)} km/h</span></div>
-          <div><span style="color:#62704E;">VERT RATE</span><br/><span style="color:${p.verticalRate > 0 ? '#5F8443' : '#B0492F'};">${p.verticalRate.toFixed(1)} m/s</span></div>
-          <div><span style="color:#62704E;">TEMP</span><br/><span style="color:#E9E5D6;">${p.temperature}°C</span></div>
+          <div><span style="color:#8FA376;">ALTITUDE</span><br/><span style="color:#E9E5D6;">${p.altitude} m</span></div>
+          <div><span style="color:#8FA376;">SPEED</span><br/><span style="color:#E9E5D6;">${Math.round(p.speed)} km/h</span></div>
+          <div><span style="color:#8FA376;">VERT RATE</span><br/><span style="color:${p.verticalRate > 0 ? '#5F8443' : '#B0492F'};">${p.verticalRate.toFixed(1)} m/s</span></div>
+          <div><span style="color:#8FA376;">TEMP</span><br/><span style="color:#E9E5D6;">${p.temperature}°C</span></div>
         </div>
       </div>`);
     });
@@ -1005,9 +1005,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:${color};font-size:12px;font-weight:700;margin-bottom:4px;">☢️ ${p.name}</div>
         <div style="font-size:9px;color:#aaa;margin-bottom:8px;">${p.city}, ${p.country}</div>
         <div style="display:grid;grid-template-columns:1fr;gap:4px;font-size:11px;">
-          <div><span style="color:#62704E;font-size:9px;">READING</span><br/><span style="color:${color};font-weight:bold;">${p.reading} nSv/h</span></div>
-          <div><span style="color:#62704E;font-size:9px;">STATUS</span><br/><span style="color:${color};">${p.status}</span></div>
-          <div><span style="color:#62704E;font-size:9px;">NETWORK</span><br/><span style="color:#E9E5D6;">${p.network}</span></div>
+          <div><span style="color:#8FA376;font-size:9px;">READING</span><br/><span style="color:${color};font-weight:bold;">${p.reading} nSv/h</span></div>
+          <div><span style="color:#8FA376;font-size:9px;">STATUS</span><br/><span style="color:${color};">${p.status}</span></div>
+          <div><span style="color:#8FA376;font-size:9px;">NETWORK</span><br/><span style="color:#E9E5D6;">${p.network}</span></div>
         </div>
       </div>`);
     });
@@ -1023,16 +1023,16 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       popup(coords, `<div style="${pStyle}border:1px solid ${color}60;box-shadow:inset 0 0 12px ${color}15;">
         <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid ${color}40;padding-bottom:6px;margin-bottom:8px;">
           <div style="color:${color};font-size:12px;font-weight:700;letter-spacing:0.1em;">${icon} [ ${(p.type||'VESSEL').toUpperCase()} ]</div>
-          <div style="color:#62704E;font-size:9px;">FLAG: ${p.flag||'UNK'}</div>
+          <div style="color:#8FA376;font-size:9px;">FLAG: ${p.flag||'UNK'}</div>
         </div>
         <div style="color:#E9E5D6;font-size:11px;font-weight:bold;margin-bottom:10px;">${p.name || 'UNIDENTIFIED VESSEL'}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:8px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
-          <div><span style="color:#62704E;">SPEED</span><br/><span style="color:${color};font-family:monospace;">${Number(p.speed).toFixed(1)} kn</span></div>
-          <div><span style="color:#62704E;">HEADING</span><br/><span style="color:${color};font-family:monospace;">${Number(p.heading).toFixed(0)}°</span></div>
-          <div><span style="color:#62704E;">LATITUDE</span><br/><span style="color:#E9E5D6;font-family:monospace;">${coords[1].toFixed(4)}°</span></div>
-          <div><span style="color:#62704E;">LONGITUDE</span><br/><span style="color:#E9E5D6;font-family:monospace;">${coords[0].toFixed(4)}°</span></div>
+          <div><span style="color:#8FA376;">SPEED</span><br/><span style="color:${color};font-family:monospace;">${Number(p.speed).toFixed(1)} kn</span></div>
+          <div><span style="color:#8FA376;">HEADING</span><br/><span style="color:${color};font-family:monospace;">${Number(p.heading).toFixed(0)}°</span></div>
+          <div><span style="color:#8FA376;">LATITUDE</span><br/><span style="color:#E9E5D6;font-family:monospace;">${coords[1].toFixed(4)}°</span></div>
+          <div><span style="color:#8FA376;">LONGITUDE</span><br/><span style="color:#E9E5D6;font-family:monospace;">${coords[0].toFixed(4)}°</span></div>
         </div>
-        <div><span style="color:#62704E;font-size:9px;">DESTINATION: </span><span style="color:#E9E5D6;font-size:9px;">${p.destination || 'UNKNOWN'}</span></div>
+        <div><span style="color:#8FA376;font-size:9px;">DESTINATION: </span><span style="color:#E9E5D6;font-size:9px;">${p.destination || 'UNKNOWN'}</span></div>
         <a href="https://www.marinetraffic.com/en/ais/details/ships/mmsi:${p.mmsi}" target="_blank" style="${linkStyle}flex:1;text-align:center;color:${color};border:1px solid ${color}40;background:${color}15;display:inline-block;width:100%;box-sizing:border-box;margin-top:4px;">[ OPEN SOURCE ↗ ]</a>
       </div>`);
     });
@@ -1047,8 +1047,8 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         <div style="color:#D29B3B;font-size:14px;font-weight:700;margin-bottom:6px;">${iconEmoji} ${p.type || 'Weather Event'}</div>
         <div style="font-size:10px;color:#E9E5D6;margin-bottom:8px;line-height:1.4;">${p.title || 'Unknown event'}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#62704E;">SEVERITY</span><br/><span style="color:${p.severity === 'high' ? '#B0492F' : '#D29B3B'};">${(p.severity||'low').toUpperCase()}</span></div>
-          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#8FA376;">SEVERITY</span><br/><span style="color:${p.severity === 'high' ? '#B0492F' : '#D29B3B'};">${(p.severity||'low').toUpperCase()}</span></div>
+          <div><span style="color:#8FA376;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
         <div style="display:flex;gap:6px;">
           ${p.source ? `<a href="${p.source}" target="_blank" style="${linkStyle}color:#D29B3B;border:1px solid rgba(224,64,251,0.4);background:rgba(224,64,251,0.1);">📡 SOURCE</a>` : ''}
@@ -1062,16 +1062,16 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      const statusColor = p.status.includes('SEISMIC RISK') ? '#D29B3B' : p.status === 'Active Conflict Zone' ? '#B0492F' : p.status === 'Operational' ? '#5F8443' : '#62704E';
+      const statusColor = p.status.includes('SEISMIC RISK') ? '#D29B3B' : p.status === 'Active Conflict Zone' ? '#B0492F' : p.status === 'Operational' ? '#5F8443' : '#8FA376';
       popup(coords, `<div style="${pStyle}border:1px solid rgba(118,255,3,0.3);">
         <div style="color:#5F8443;font-size:14px;font-weight:700;margin-bottom:4px;">☢️ ${p.name || 'Nuclear Facility'}</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#62704E;">STATUS</span><br/><span style="color:${statusColor};">${p.status || '—'}</span></div>
-          <div><span style="color:#62704E;">CITY</span><br/><span style="color:#E9E5D6;">${p.city || '—'}, ${p.country || ''}</span></div>
-          <div><span style="color:#62704E;">REACTORS</span><br/><span style="color:#5F8443;">${p.reactors || '—'}</span></div>
-          <div><span style="color:#62704E;">CAPACITY</span><br/><span style="color:#E9E5D6;">${p.capacityMW ? p.capacityMW.toLocaleString() + ' MW' : '—'}</span></div>
-          <div><span style="color:#62704E;">OWNER</span><br/><span style="color:#E9E5D6;">${p.owner || '—'}</span></div>
-          <div><span style="color:#62704E;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+          <div><span style="color:#8FA376;">STATUS</span><br/><span style="color:${statusColor};">${p.status || '—'}</span></div>
+          <div><span style="color:#8FA376;">CITY</span><br/><span style="color:#E9E5D6;">${p.city || '—'}, ${p.country || ''}</span></div>
+          <div><span style="color:#8FA376;">REACTORS</span><br/><span style="color:#5F8443;">${p.reactors || '—'}</span></div>
+          <div><span style="color:#8FA376;">CAPACITY</span><br/><span style="color:#E9E5D6;">${p.capacityMW ? p.capacityMW.toLocaleString() + ' MW' : '—'}</span></div>
+          <div><span style="color:#8FA376;">OWNER</span><br/><span style="color:#E9E5D6;">${p.owner || '—'}</span></div>
+          <div><span style="color:#8FA376;">COORDS</span><br/><span style="color:#E9E5D6;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
         </div>
         <a href="https://www.google.com/maps/@${coords[1]},${coords[0]},14z/data=!3m1!1e3" target="_blank" style="${linkStyle}color:#5F8443;border:1px solid rgba(118,255,3,0.4);background:rgba(118,255,3,0.1);">SATELLITE VIEW</a>
       </div>`);
@@ -1088,8 +1088,8 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       const congestionHtml = p.congestion ? `
         <div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-            <div><span style="color:#62704E;font-size:9px;">CONGESTION</span><br/><span style="color:${p.congestion === 'SEVERE' ? '#B0492F' : p.congestion === 'CONGESTED' ? '#D29B3B' : '#5F8443'};font-weight:bold;font-size:10px;">${p.congestion}</span></div>
-            <div><span style="color:#62704E;font-size:9px;">EST. DWELL TIME</span><br/><span style="color:#E9E5D6;font-weight:bold;font-size:10px;">${p.dwell_time || 'Unknown'}</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">CONGESTION</span><br/><span style="color:${p.congestion === 'SEVERE' ? '#B0492F' : p.congestion === 'CONGESTED' ? '#D29B3B' : '#5F8443'};font-weight:bold;font-size:10px;">${p.congestion}</span></div>
+            <div><span style="color:#8FA376;font-size:9px;">EST. DWELL TIME</span><br/><span style="color:#E9E5D6;font-weight:bold;font-size:10px;">${p.dwell_time || 'Unknown'}</span></div>
           </div>
         </div>` : '';
 
@@ -1240,7 +1240,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       updateMapIcon('plane-green', flightPriv, 24);
       updateMapIcon('plane-pink', flightGov, 24);
       updateMapIcon('plane-red', flightMil, 24);
-      updateMapIcon('plane-grey', isGhost ? phantomPurple : '#62704E', 24);
+      updateMapIcon('plane-grey', isGhost ? phantomPurple : '#8FA376', 24);
     }, [mapReady, theme]);
 
   // ── DECOUPLED LAYER RENDERERS (Performance Optimized) ──
