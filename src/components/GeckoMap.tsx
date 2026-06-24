@@ -17,6 +17,7 @@ interface GeckoMapProps {
   sweepData?: any;
   scanTargets?: any[];
   demoMode?: boolean;
+  idleSpin?: boolean;
   theme?: 'core' | 'ghost';
 }
 
@@ -42,7 +43,7 @@ function computeSolarTerminator(): [number, number][] {
 
 const EMPTY_FC = { type: 'FeatureCollection' as const, features: [] };
 
-function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightClick, onViewStateChange, flyToLocation, projection = 'globe', mapStyle = 'dark', sweepData, scanTargets = [], demoMode = false, theme = 'core' }: GeckoMapProps) {
+function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightClick, onViewStateChange, flyToLocation, projection = 'globe', mapStyle = 'dark', sweepData, scanTargets = [], demoMode = false, idleSpin = false, theme = 'core' }: GeckoMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const popupRef = useRef<maplibregl.Popup | null>(null);
@@ -117,7 +118,9 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
       spinReq = requestAnimationFrame(frame);
     };
 
-    if (demoMode) {
+    // Gentle globe spin on demo mode OR after the page has been idle (only
+    // meaningful on the 3D globe projection).
+    if ((demoMode || idleSpin) && projection === 'globe') {
       startSpinning();
     } else {
       isSpinning = false;
@@ -131,7 +134,7 @@ function GeckoMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCli
         clearInterval((window as any)._globeSpinTimer);
       }
     };
-  }, [mapReady, demoMode]);
+  }, [mapReady, demoMode, idleSpin, projection]);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;

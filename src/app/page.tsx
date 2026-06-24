@@ -107,6 +107,7 @@ export default function Dashboard() {
   const [showIntel, setShowIntel] = useState(false);
   const [showEntityGraph, setShowEntityGraph] = useState(false);
   const [showDataEntry, setShowDataEntry] = useState(false);
+  const [idleSpin, setIdleSpin] = useState(false);
   const [showDesktopSearch, setShowDesktopSearch] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mobilePanel, setMobilePanel] = useState<'layers'|'markets'|'intel'|'search'|'recon'|null>(null);
@@ -175,6 +176,23 @@ export default function Dashboard() {
   useEffect(() => {
     const splashTimer = setTimeout(() => setShowSplash(false), 2500);
     return () => clearTimeout(splashTimer);
+  }, []);
+
+  // After 60s of inactivity → gentle globe spin; any interaction stops it.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const reset = () => {
+      setIdleSpin(false);
+      clearTimeout(timer);
+      timer = setTimeout(() => setIdleSpin(true), 60000);
+    };
+    const events = ['mousemove', 'mousedown', 'keydown', 'wheel', 'touchstart'];
+    events.forEach((e) => window.addEventListener(e, reset, { passive: true }));
+    reset();
+    return () => {
+      clearTimeout(timer);
+      events.forEach((e) => window.removeEventListener(e, reset));
+    };
   }, []);
 
   // On mount: geolocate by IP and fly to user's city (after splash/map init)
@@ -753,6 +771,7 @@ export default function Dashboard() {
           sweepData={sweepData}
           scanTargets={scanTargets}
           demoMode={demoMode}
+          idleSpin={idleSpin}
           theme={geckoTheme}
         />
       </ErrorBoundary>
