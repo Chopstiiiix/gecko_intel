@@ -224,52 +224,52 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
   }
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className="absolute top-0 left-0 h-full w-[80px] border-r border-[rgba(143,163,118,0.25)] flex flex-col pt-28 pb-6 z-[300] pointer-events-auto"
-      style={{ background: '#10150D', boxShadow: '4px 0 24px rgba(0,0,0,0.6)' }}
+      className="absolute top-0 left-0 h-full flex flex-col pt-[84px] pb-6 pl-3 z-[300] pointer-events-none"
     >
       {onCollapse && (
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.94 }}
           onClick={onCollapse}
           title="Collapse sidebar (L)"
           aria-label="Collapse sidebar"
-          className="mx-auto mb-5 w-9 h-9 rounded-lg flex items-center justify-center text-[#8FA376] hover:text-white hover:bg-white/10 transition-colors"
+          className="glass-float-btn pointer-events-auto mb-3 w-12 h-12 rounded-xl flex items-center justify-center text-[#C9D8A8] hover:text-white"
         >
           <PanelLeftClose className="w-[18px] h-[18px]" />
-        </button>
+        </motion.button>
       )}
 
-      <div className="flex-1 flex flex-col gap-8 px-2">
+      <div className="flex-1 flex flex-col gap-2.5">
         {LAYER_GROUPS.map((group) => {
           const groupActiveCount = group.layers.filter(l => activeLayers[l.key]).length;
           const isActive = groupActiveCount > 0;
           const isHovered = hoveredGroup === group.label;
+          const GroupIcon = group.layers[0]?.icon || Shield;
 
           return (
-            <div 
-              key={group.label} 
-              className="relative flex justify-center items-center"
+            <div
+              key={group.label}
+              className="relative flex justify-center items-center pointer-events-auto"
               onMouseEnter={() => setHoveredGroup(group.label)}
               onMouseLeave={() => setHoveredGroup(null)}
             >
-              {/* The Vertical Label */}
-              <div 
-                className={`text-[10px] font-mono font-bold cursor-pointer select-none transition-all duration-300 flex items-center justify-center`}
-                style={{
-                  writingMode: 'horizontal-tb',
-                  color: '#FFFFFF',
-                  textShadow: 'none',
-                  letterSpacing: '0.1em',
-                  opacity: isActive ? 1 : (isHovered ? 0.85 : 0.55),
-                }}
+              {/* Floating liquid-glass button */}
+              <motion.button
+                whileHover={{ scale: 1.12 }}
+                whileTap={{ scale: 0.94 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+                className="glass-float-btn w-12 h-12 rounded-xl flex flex-col items-center justify-center gap-0.5 select-none"
+                style={isActive ? { borderColor: `${group.color}aa`, background: `${group.color}26` } : undefined}
               >
-                {group.label}
-              </div>
+                <GroupIcon className="w-[17px] h-[17px]" style={{ color: isActive ? group.color : '#C9D8A8' }} />
+                <span className="text-[6px] font-bold tracking-[0.08em] leading-none" style={{ color: isActive ? group.color : '#8FA376' }}>{group.label}</span>
+              </motion.button>
 
-              {/* Slide-out Menu */}
+              {/* Slide-out Menu (unchanged) */}
               <AnimatePresence>
                 {isHovered && (
                   <motion.div
@@ -277,7 +277,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers, isMobile, theme = 'co
                     animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, x: -5, filter: 'blur(2px)' }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-[70px] top-1/2 -translate-y-1/2 min-w-[240px] rounded-xl p-3 z-[80] pointer-events-auto"
+                    className="absolute left-[58px] top-1/2 -translate-y-1/2 min-w-[240px] rounded-xl p-3 z-[80] pointer-events-auto"
                     style={{
                       background: '#294922',
                       border: '1px solid rgba(201,216,168,0.25)',

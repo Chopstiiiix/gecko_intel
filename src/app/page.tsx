@@ -869,14 +869,16 @@ export default function Dashboard() {
 
       {/* ── COLLAPSED SIDEBAR — expand toggle (Claude-style) ── */}
       {!showLayers && !isMobile && (
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.94 }}
           onClick={() => setShowLayers(true)}
           title="Open sidebar (L)"
           aria-label="Open sidebar"
-          className="absolute top-28 left-2 z-[300] w-9 h-9 rounded-lg flex items-center justify-center text-[#8FA376] hover:text-white hover:bg-white/10 transition-colors pointer-events-auto"
+          className="glass-float-btn absolute top-[84px] left-3 z-[300] w-12 h-12 rounded-xl flex items-center justify-center text-[#C9D8A8] hover:text-white pointer-events-auto"
         >
           <PanelLeftOpen className="w-[18px] h-[18px]" />
-        </button>
+        </motion.button>
       )}
 
 
